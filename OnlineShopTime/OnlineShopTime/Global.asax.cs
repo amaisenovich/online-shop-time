@@ -31,7 +31,7 @@ namespace OnlineShopTime
             // Set the Culture based on a route, a cookie or the browser settings,
             // or default value if something went wrong
             var cultureInfo = new CultureInfo(
-                routeCulture ?? (languageCookie.Value != null
+                routeCulture ?? (languageCookie != null
                    ? languageCookie.Value
                    : userLanguages != null
                        ? userLanguages[0]
