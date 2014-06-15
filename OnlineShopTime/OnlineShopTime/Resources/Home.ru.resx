@@ -126,6 +126,9 @@
   <data name="Contacts" xml:space="preserve">
     <value>Контакты</value>
   </data>
+  <data name="Gallery" xml:space="preserve">
+    <value>Галерея</value>
+  </data>
   <data name="Hello" xml:space="preserve">
     <value>Здравствуйте</value>
   </data>
@@ -146,8 +149,5 @@
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Регистрация</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value />
   </data>
 </root>
