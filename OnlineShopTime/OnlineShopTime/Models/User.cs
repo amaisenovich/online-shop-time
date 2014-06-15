@@ -12,14 +12,30 @@ namespace OnlineShopTime.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Users
+    public partial class User
     {
-        public string UserId { get; set; }
+        public User()
+        {
+            this.Comments = new HashSet<Comment>();
+            this.Offers = new HashSet<Offer>();
+            this.Orders = new HashSet<Order>();
+        }
+    
+        public string UserID { get; set; }
         public string UserName { get; set; }
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public int Raiting { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool IsAdmin { get; set; }
+        public string AvatarURL { get; set; }
         public string Discriminator { get; set; }
+    
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Offer> Offers { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

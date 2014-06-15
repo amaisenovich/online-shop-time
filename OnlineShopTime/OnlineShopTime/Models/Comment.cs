@@ -12,9 +12,15 @@ namespace OnlineShopTime.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserPhotoes
+    public partial class Comment
     {
-        public string Id { get; set; }
-        public string photo { get; set; }
+        public string CommentID { get; set; }
+        public string OfferID { get; set; }
+        public string PostedBy { get; set; }
+        public string Message { get; set; }
+        public Nullable<System.DateTime> DateAndTime { get; set; }
+    
+        public virtual Offer Offer { get; set; }
+        public virtual User User { get; set; }
     }
 }

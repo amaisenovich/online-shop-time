@@ -166,28 +166,33 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Example.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Example.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Example.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Example.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Example.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Example.edmx</DependentUpon>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Photo.cs" />
-    <Compile Include="Models\UserPhotoes.cs">
-      <DependentUpon>Example.tt</DependentUpon>
+    <Compile Include="Models\Offer.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Users.cs">
-      <DependentUpon>Example.tt</DependentUpon>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShopDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShopDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShopDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Home.Designer.cs">
@@ -203,6 +208,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ShopOnlineDB.mdf" />
+    <Content Include="App_Data\ShopOnlineDB_log.ldf">
+      <DependentUpon>ShopOnlineDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -211,22 +220,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Example.edmx">
+    <EntityDeploy Include="Models\ShopDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Example.Designer.cs</LastGenOutput>
+      <LastGenOutput>ShopDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\Example.Context.tt">
+    <Content Include="Models\ShopDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Example.edmx</DependentUpon>
-      <LastGenOutput>Example.Context.cs</LastGenOutput>
+      <DependentUpon>ShopDB.edmx</DependentUpon>
+      <LastGenOutput>ShopDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Example.edmx.diagram">
-      <DependentUpon>Example.edmx</DependentUpon>
+    <Content Include="Models\ShopDB.edmx.diagram">
+      <DependentUpon>ShopDB.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\Example.tt">
+    <Content Include="Models\ShopDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Example.edmx</DependentUpon>
-      <LastGenOutput>Example.cs</LastGenOutput>
+      <DependentUpon>ShopDB.edmx</DependentUpon>
+      <LastGenOutput>ShopDB.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -266,9 +275,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

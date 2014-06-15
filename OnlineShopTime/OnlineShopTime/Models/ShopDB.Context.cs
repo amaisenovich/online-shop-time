@@ -13,10 +13,10 @@ namespace OnlineShopTime.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ShopOnlineDBEntities : DbContext
+    public partial class ShopDBEntities : DbContext
     {
-        public ShopOnlineDBEntities()
-            : base("name=ShopOnlineDBEntities")
+        public ShopDBEntities()
+            : base("name=ShopDBEntities")
         {
         }
     
@@ -25,7 +25,9 @@ namespace OnlineShopTime.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<UserPhotoes> UserPhotoes { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Offer> Offers { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
