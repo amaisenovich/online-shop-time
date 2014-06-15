@@ -5,12 +5,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – приложение ASP.NET</title>
-    @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @{
+        var styleCookie = HttpContext.Current.Request.Cookies["style"];
+        var styleBundle = styleCookie != null ? styleCookie.Value : "~/Content/light_css";
+     }
+    @Styles.Render(styleBundle);
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,6 +35,13 @@
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "en" })">English</a></li>
                             <li><a href="@Url.Action("ChangeCulture", "Home", new { lang = "ru" })">Русский</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Home.ColorTheme<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("ChangeStyle", "Home", new { style = "~/Content/light_css" })">Lumen</a></li>
+                            <li><a href="@Url.Action("ChangeStyle", "Home", new { style = "~/Content/dark_css" })">Darkly</a></li>
                         </ul>
                     </li>
                 </ul>

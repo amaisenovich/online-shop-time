@@ -21,6 +21,10 @@ namespace OnlineShopTime
         }
 
         protected void Application_AcquireRequestState(object sender, EventArgs e) {
+            SetCulture();
+        }
+
+        private void SetCulture() {
             var handler = Context.Handler as MvcHandler;
             var routeData = handler != null ? handler.RequestContext.RouteData : null;
             var routeCulture = routeData != null ? routeData.Values["culture"].ToString() : null;

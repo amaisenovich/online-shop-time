@@ -23,8 +23,12 @@ namespace OnlineShopTime
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+            bundles.Add(new StyleBundle("~/Content/light_css").Include(
+                      "~/Content/lumen_bootstrap.css",
+                      "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/dark_css").Include(
+                      "~/Content/darkly_bootstrap.css",
                       "~/Content/site.css"));
         }
     }
