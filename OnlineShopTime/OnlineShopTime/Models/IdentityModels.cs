@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineShopTime.Models
 {
@@ -26,6 +27,6 @@ namespace OnlineShopTime.Models
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaim");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<Photo>().ToTable("UserPhotoes");
-        } 
+        }
     }
 }
