@@ -278,6 +278,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Home\OfferPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

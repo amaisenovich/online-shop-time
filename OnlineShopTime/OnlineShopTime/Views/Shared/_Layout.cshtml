@@ -4,13 +4,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title – приложение ASP.NET</title>
+    <title>@ViewBag.Title</title>
     @Scripts.Render("~/bundles/modernizr")
     @{
         var styleCookie = HttpContext.Current.Request.Cookies["style"];
         var styleBundle = styleCookie != null ? styleCookie.Value : "~/Content/light_css";
      }
-    @Styles.Render(styleBundle);
+    @Styles.Render(styleBundle)
 
 </head>
 <body>
@@ -26,7 +26,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(@Resources.Home.HomePage, "Index", "Home")</li>
                     <li>@Html.ActionLink(@Resources.Home.Gallery, "Gallery", "Home")</li>
                     <li>@Html.ActionLink(@Resources.Home.AboutApp, "About", "Home")</li>
                     <li>@Html.ActionLink(@Resources.Home.Contacts, "Contact", "Home")</li>
