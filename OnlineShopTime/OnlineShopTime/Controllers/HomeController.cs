@@ -34,7 +34,7 @@ namespace OnlineShopTime.Controllers
         public ActionResult ChangeCulture(string lang) {
             var langCookie = new HttpCookie("lang", lang) { HttpOnly = true };
             Response.AppendCookie(langCookie);
-            return RedirectToAction("Index", "Home", new { culture = lang });
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult ChangeStyle(string style) {
