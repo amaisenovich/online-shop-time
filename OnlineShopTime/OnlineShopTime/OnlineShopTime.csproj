@@ -173,6 +173,9 @@
     <Compile Include="Models\Offer.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OfferRaiting.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Order.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
@@ -195,6 +198,9 @@
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserRaiting.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

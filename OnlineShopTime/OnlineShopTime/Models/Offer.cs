@@ -17,21 +17,23 @@ namespace OnlineShopTime.Models
         public Offer()
         {
             this.Comments = new HashSet<Comment>();
+            this.OfferRaitings = new HashSet<OfferRaiting>();
             this.Orders = new HashSet<Order>();
             this.Tags = new HashSet<Tag>();
         }
     
         public string OfferID { get; set; }
-        public string Name { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> DateAndTime { get; set; }
         public string OfferedBy { get; set; }
-        public Nullable<int> Rating { get; set; }
+        public Nullable<double> Rating { get; set; }
         public string PhotoURL1 { get; set; }
         public string PhotoURL2 { get; set; }
         public string PhotoURL3 { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<OfferRaiting> OfferRaitings { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Tag> Tags { get; set; }

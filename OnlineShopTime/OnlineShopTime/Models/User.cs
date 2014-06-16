@@ -17,8 +17,10 @@ namespace OnlineShopTime.Models
         public User()
         {
             this.Comments = new HashSet<Comment>();
+            this.OfferRaitings = new HashSet<OfferRaiting>();
             this.Offers = new HashSet<Offer>();
             this.Orders = new HashSet<Order>();
+            this.UserRaitings = new HashSet<UserRaiting>();
         }
     
         public string UserID { get; set; }
@@ -35,7 +37,9 @@ namespace OnlineShopTime.Models
         public string Discriminator { get; set; }
     
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<OfferRaiting> OfferRaitings { get; set; }
         public virtual ICollection<Offer> Offers { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<UserRaiting> UserRaitings { get; set; }
     }
 }
