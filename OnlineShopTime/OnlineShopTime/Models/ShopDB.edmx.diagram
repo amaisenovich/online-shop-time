@@ -4,16 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="149b245ab961438da686fe4507d3a2c2" Name="Diagram1">
-        <EntityTypeShape EntityType="ShopOnlineDBModel.Comment" Width="1.5" PointX="5.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineDBModel.Offer" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineDBModel.Order" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopOnlineDBModel.User" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+      <Diagram DiagramId="2ad7f9d53fea4523bdc392da4a6e9f3f" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="ShopOnlineDBModel.Comment" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineDBModel.Offer" Width="1.5" PointX="5.625" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineDBModel.Order" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineDBModel.Tag" Width="1.5" PointX="3.125" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopOnlineDBModel.User" Width="1.5" PointX="6.375" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="ShopOnlineDBModel.FK_Comments_Offers" ManuallyRouted="false" />
         <AssociationConnector Association="ShopOnlineDBModel.FK_Comments_Users" ManuallyRouted="false" />
         <AssociationConnector Association="ShopOnlineDBModel.FK_Offers_Users" ManuallyRouted="false" />
         <AssociationConnector Association="ShopOnlineDBModel.FK_Orders_Offers" ManuallyRouted="false" />
         <AssociationConnector Association="ShopOnlineDBModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopOnlineDBModel.OfferTags" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

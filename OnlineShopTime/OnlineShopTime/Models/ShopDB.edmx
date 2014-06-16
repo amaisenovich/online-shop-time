@@ -29,6 +29,14 @@
           <Property Name="PhotoURL2" Type="varchar(max)" />
           <Property Name="PhotoURL3" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="OfferTags">
+          <Key>
+            <PropertyRef Name="OfferID" />
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="OfferID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TagID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
         <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderID" />
@@ -38,6 +46,13 @@
           <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="DateAndTime" Type="datetime" />
           <Property Name="OrderStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -92,6 +107,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OfferTags_Offers">
+          <End Role="Offers" Type="Self.Offers" Multiplicity="1" />
+          <End Role="OfferTags" Type="Self.OfferTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offers">
+              <PropertyRef Name="OfferID" />
+            </Principal>
+            <Dependent Role="OfferTags">
+              <PropertyRef Name="OfferID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfferTags_Tags">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
+          <End Role="OfferTags" Type="Self.OfferTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagID" />
+            </Principal>
+            <Dependent Role="OfferTags">
+              <PropertyRef Name="TagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Orders_Offers">
           <End Role="Offers" Type="Self.Offers" Multiplicity="1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
@@ -119,7 +158,9 @@
         <EntityContainer Name="Хранилище ShopOnlineDBModelContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfferTags" EntityType="Self.OfferTags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Comments_Offers" Association="Self.FK_Comments_Offers">
             <End Role="Offers" EntitySet="Offers" />
@@ -132,6 +173,14 @@
           <AssociationSet Name="FK_Offers_Users" Association="Self.FK_Offers_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Offers" EntitySet="Offers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfferTags_Offers" Association="Self.FK_OfferTags_Offers">
+            <End Role="Offers" EntitySet="Offers" />
+            <End Role="OfferTags" EntitySet="OfferTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfferTags_Tags" Association="Self.FK_OfferTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="OfferTags" EntitySet="OfferTags" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_Offers" Association="Self.FK_Orders_Offers">
             <End Role="Offers" EntitySet="Offers" />
@@ -175,6 +224,7 @@
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Offers" FromRole="Offers" ToRole="Comments" />
           <NavigationProperty Name="User" Relationship="Self.FK_Offers_Users" FromRole="Offers" ToRole="Users" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Offers" FromRole="Offers" ToRole="Orders" />
+          <NavigationProperty Name="Tags" Relationship="Self.OfferTags" FromRole="Offers" ToRole="Tags" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -187,6 +237,14 @@
           <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Offer" Relationship="Self.FK_Orders_Offers" FromRole="Orders" ToRole="Offers" />
           <NavigationProperty Name="User" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagID" />
+          </Key>
+          <Property Name="TagID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Offers" Relationship="Self.OfferTags" FromRole="Tags" ToRole="Offers" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -268,10 +326,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="OfferTags">
+          <End Role="Offers" Type="Self.Offer" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="ShopDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Offers" EntityType="Self.Offer" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Comments_Offers" Association="Self.FK_Comments_Offers">
             <End Role="Offers" EntitySet="Offers" />
@@ -292,6 +355,10 @@
           <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="OfferTags" Association="Self.OfferTags">
+            <End Role="Offers" EntitySet="Offers" />
+            <End Role="Tags" EntitySet="Tags" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -337,6 +404,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="ShopOnlineDBModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="TagID" ColumnName="TagID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ShopOnlineDBModel.User">
               <MappingFragment StoreEntitySet="Users">
@@ -355,6 +430,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="OfferTags" TypeName="ShopOnlineDBModel.OfferTags" StoreEntitySet="OfferTags">
+            <EndProperty Name="Offers">
+              <ScalarProperty Name="OfferID" ColumnName="OfferID" />
+            </EndProperty>
+            <EndProperty Name="Tags">
+              <ScalarProperty Name="TagID" ColumnName="TagID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

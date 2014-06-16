@@ -28,6 +28,7 @@ namespace OnlineShopTime.Models
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Offer> Offers { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace OnlineShopTime.Models
         {
             this.Comments = new HashSet<Comment>();
             this.Orders = new HashSet<Order>();
+            this.Tags = new HashSet<Tag>();
         }
     
         public string OfferID { get; set; }
@@ -33,5 +34,6 @@ namespace OnlineShopTime.Models
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 }

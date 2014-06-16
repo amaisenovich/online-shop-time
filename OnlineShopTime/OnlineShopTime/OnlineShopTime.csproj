@@ -191,6 +191,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShopDB.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tag.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
