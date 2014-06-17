@@ -8,22 +8,15 @@ namespace OnlineShopTime.Models
 {
     public class TopOffers
     {
-        ShopDBEntities db;
+        //Offers 
         public TopOffers()
         {
-            db = new ShopDBEntities();
             GetTopOffers();
         }
         public void GetTopOffers()
         {
-            var query = from offer in db.Offers
-                        join offerID in
-                            (from rate in db.OfferRaiting
-                             group rate.Raiting by rate.OfferID into g
-                             orderby (g.ToList().Sum() / g.Count()) descending
-                             select g) on offer.OfferID equals offerID.Key orderby offerID.ToList().Sum() / offerID.Count() descending
-                        select new { Offer = offer, Raiting = offerID.ToList().Sum() / offerID.Count()};
-
+            ShopDBEntities db = new ShopDBEntities();
+                        
         }
     }
 }
