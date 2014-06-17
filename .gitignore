@@ -145,8 +145,6 @@ ClientBin/
 [Ss]tyle[Cc]op.*
 ~$*
 *~
-*.dbmdl
-*.dbproj.schemaview
 *.pfx
 *.publishsettings
 node_modules/

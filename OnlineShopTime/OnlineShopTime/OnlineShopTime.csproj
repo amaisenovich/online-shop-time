@@ -197,6 +197,7 @@
     <Compile Include="Models\Tags.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TopOffers.cs" />
     <Compile Include="Models\UserRaiting.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>

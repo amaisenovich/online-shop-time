@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using OnlineShopTime.Models;
 
 namespace OnlineShopTime.Controllers
 {
@@ -10,6 +11,7 @@ namespace OnlineShopTime.Controllers
     {
         public ActionResult Index()
         {
+            TopOffers to = new TopOffers();
             return View();
         }
 
