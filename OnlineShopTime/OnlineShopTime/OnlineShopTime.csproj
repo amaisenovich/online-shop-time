@@ -166,17 +166,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Comment.cs">
+    <Compile Include="Models\Comments.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Offer.cs">
-      <DependentUpon>ShopDB.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\OfferRaiting.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Order.cs">
+    <Compile Include="Models\Offers.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Orders.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShopDB.Context.cs">
@@ -194,13 +194,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShopDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Tag.cs">
-      <DependentUpon>ShopDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\User.cs">
+    <Compile Include="Models\Tags.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRaiting.cs">
+      <DependentUpon>ShopDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Users.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -217,9 +217,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ShopOnlineDB.mdf" />
-    <Content Include="App_Data\ShopOnlineDB_log.ldf">
-      <DependentUpon>ShopOnlineDB.mdf</DependentUpon>
+    <Content Include="App_Data\ShopDB.mdf" />
+    <Content Include="App_Data\ShopDB_log.ldf">
+      <DependentUpon>ShopDB.mdf</DependentUpon>
     </Content>
     <Content Include="Content\darkly_bootstrap.css" />
     <Content Include="Content\lumen_bootstrap.css" />
@@ -258,7 +258,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -25,12 +25,12 @@ namespace OnlineShopTime.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Comment> Comments { get; set; }
-        public virtual DbSet<OfferRaiting> OfferRaitings { get; set; }
-        public virtual DbSet<Offer> Offers { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
-        public virtual DbSet<UserRaiting> UserRaitings { get; set; }
-        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Comments> Comments { get; set; }
+        public virtual DbSet<OfferRaiting> OfferRaiting { get; set; }
+        public virtual DbSet<Offers> Offers { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Tags> Tags { get; set; }
+        public virtual DbSet<UserRaiting> UserRaiting { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

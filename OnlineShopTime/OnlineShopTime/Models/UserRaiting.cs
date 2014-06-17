@@ -16,8 +16,8 @@ namespace OnlineShopTime.Models
     {
         public string UserID { get; set; }
         public string VoterID { get; set; }
-        public Nullable<double> Raiting { get; set; }
+        public Nullable<float> Rating { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual Users Users { get; set; }
     }
 }

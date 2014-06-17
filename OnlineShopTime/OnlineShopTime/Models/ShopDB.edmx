@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ShopOnlineDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище ShopDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentID" />
@@ -12,7 +12,7 @@
           <Property Name="CommentID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="OfferID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="PostedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Message" Type="varchar(max)" />
+          <Property Name="Message" Type="nvarchar(max)" />
           <Property Name="DateAndTime" Type="datetime" />
         </EntityType>
         <EntityType Name="OfferRaiting">
@@ -22,29 +22,29 @@
           </Key>
           <Property Name="OfferID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Raiting" Type="float" />
+          <Property Name="Raiting" Type="real" />
         </EntityType>
         <EntityType Name="Offers">
           <Key>
             <PropertyRef Name="OfferID" />
           </Key>
           <Property Name="OfferID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Title" Type="varchar(max)" />
-          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="DateAndTime" Type="datetime" />
           <Property Name="OfferedBy" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Rating" Type="float" />
-          <Property Name="PhotoURL1" Type="varchar(max)" />
-          <Property Name="PhotoURL2" Type="varchar(max)" />
-          <Property Name="PhotoURL3" Type="varchar(max)" />
+          <Property Name="Photo1URL" Type="nvarchar(max)" />
+          <Property Name="Photo2URL" Type="nvarchar(max)" />
+          <Property Name="Photo3URL" Type="nvarchar(max)" />
+          <Property Name="Photo4URL" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="OfferTags">
           <Key>
-            <PropertyRef Name="OfferID" />
             <PropertyRef Name="TagID" />
+            <PropertyRef Name="OfferID" />
           </Key>
-          <Property Name="OfferID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="TagID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="OfferID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="Orders">
           <Key>
@@ -54,14 +54,14 @@
           <Property Name="OfferID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="ClientID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="DateAndTime" Type="datetime" />
-          <Property Name="OrderStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderStatus" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
             <PropertyRef Name="TagID" />
           </Key>
           <Property Name="TagID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="UserRaiting">
           <Key>
@@ -70,7 +70,7 @@
           </Key>
           <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="VoterID" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Raiting" Type="float" />
+          <Property Name="Rating" Type="real" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -82,7 +82,6 @@
           <Property Name="SecurityStamp" Type="nvarchar(max)" />
           <Property Name="FirstName" Type="nvarchar(max)" />
           <Property Name="LastName" Type="nvarchar(max)" />
-          <Property Name="Raiting" Type="int" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="PhoneNumber" Type="nvarchar(max)" />
           <Property Name="IsAdmin" Type="bit" Nullable="false" />
@@ -122,6 +121,18 @@
             </Principal>
             <Dependent Role="OfferRaiting">
               <PropertyRef Name="OfferID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfferRaiting_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="OfferRaiting" Type="Self.OfferRaiting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OfferRaiting">
+              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -185,18 +196,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="OfferRaiting" Type="Self.OfferRaiting" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="OfferRaiting">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UserRaiting_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UserRaiting" Type="Self.UserRaiting" Multiplicity="*" />
@@ -209,7 +208,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище ShopOnlineDBModelContainer">
+        <EntityContainer Name="Хранилище ShopDBModelContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OfferRaiting" EntityType="Self.OfferRaiting" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Offers" EntityType="Self.Offers" Schema="dbo" store:Type="Tables" />
@@ -228,6 +227,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_OfferRaiting_Offers" Association="Self.FK_OfferRaiting_Offers">
             <End Role="Offers" EntitySet="Offers" />
+            <End Role="OfferRaiting" EntitySet="OfferRaiting" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfferRaiting_Users" Association="Self.FK_OfferRaiting_Users">
+            <End Role="Users" EntitySet="Users" />
             <End Role="OfferRaiting" EntitySet="OfferRaiting" />
           </AssociationSet>
           <AssociationSet Name="FK_Offers_Users" Association="Self.FK_Offers_Users">
@@ -250,10 +253,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_Users" Association="Self.FK_Table_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="OfferRaiting" EntitySet="OfferRaiting" />
-          </AssociationSet>
           <AssociationSet Name="FK_UserRaiting_Users" Association="Self.FK_UserRaiting_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="UserRaiting" EntitySet="UserRaiting" />
@@ -263,18 +262,18 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ShopOnlineDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Comment">
+      <Schema Namespace="ShopDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comments">
           <Key>
             <PropertyRef Name="CommentID" />
           </Key>
           <Property Name="CommentID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OfferID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PostedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateAndTime" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Offer" Relationship="Self.FK_Comments_Offers" FromRole="Comments" ToRole="Offers" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
+          <NavigationProperty Name="Offers" Relationship="Self.FK_Comments_Offers" FromRole="Comments" ToRole="Offers" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Comments_Users" FromRole="Comments" ToRole="Users" />
         </EntityType>
         <EntityType Name="OfferRaiting">
           <Key>
@@ -283,30 +282,30 @@
           </Key>
           <Property Name="OfferID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Raiting" Type="Double" />
-          <NavigationProperty Name="Offer" Relationship="Self.FK_OfferRaiting_Offers" FromRole="OfferRaiting" ToRole="Offers" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Table_Users" FromRole="OfferRaiting" ToRole="Users" />
+          <Property Name="Raiting" Type="Single" />
+          <NavigationProperty Name="Offers" Relationship="Self.FK_OfferRaiting_Offers" FromRole="OfferRaiting" ToRole="Offers" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_OfferRaiting_Users" FromRole="OfferRaiting" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Offer">
+        <EntityType Name="Offers">
           <Key>
             <PropertyRef Name="OfferID" />
           </Key>
           <Property Name="OfferID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateAndTime" Type="DateTime" Precision="3" />
           <Property Name="OfferedBy" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Rating" Type="Double" />
-          <Property Name="PhotoURL1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="PhotoURL2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="PhotoURL3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Photo1URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo2URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo3URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Photo4URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Offers" FromRole="Offers" ToRole="Comments" />
-          <NavigationProperty Name="OfferRaitings" Relationship="Self.FK_OfferRaiting_Offers" FromRole="Offers" ToRole="OfferRaiting" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Offers_Users" FromRole="Offers" ToRole="Users" />
+          <NavigationProperty Name="OfferRaiting" Relationship="Self.FK_OfferRaiting_Offers" FromRole="Offers" ToRole="OfferRaiting" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Offers_Users" FromRole="Offers" ToRole="Users" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Offers" FromRole="Offers" ToRole="Orders" />
           <NavigationProperty Name="Tags" Relationship="Self.OfferTags" FromRole="Offers" ToRole="Tags" />
         </EntityType>
-        <EntityType Name="Order">
+        <EntityType Name="Orders">
           <Key>
             <PropertyRef Name="OrderID" />
           </Key>
@@ -314,16 +313,16 @@
           <Property Name="OfferID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ClientID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateAndTime" Type="DateTime" Precision="3" />
-          <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Offer" Relationship="Self.FK_Orders_Offers" FromRole="Orders" ToRole="Offers" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+          <Property Name="OrderStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Offers" Relationship="Self.FK_Orders_Offers" FromRole="Orders" ToRole="Offers" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
         </EntityType>
-        <EntityType Name="Tag">
+        <EntityType Name="Tags">
           <Key>
             <PropertyRef Name="TagID" />
           </Key>
           <Property Name="TagID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Offers" Relationship="Self.OfferTags" FromRole="Tags" ToRole="Offers" />
         </EntityType>
         <EntityType Name="UserRaiting">
@@ -333,10 +332,10 @@
           </Key>
           <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="VoterID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Raiting" Type="Double" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserRaiting_Users" FromRole="UserRaiting" ToRole="Users" />
+          <Property Name="Rating" Type="Single" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserRaiting_Users" FromRole="UserRaiting" ToRole="Users" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
@@ -346,21 +345,20 @@
           <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Raiting" Type="Int32" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
           <Property Name="AvatarURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
-          <NavigationProperty Name="OfferRaitings" Relationship="Self.FK_Table_Users" FromRole="Users" ToRole="OfferRaiting" />
+          <NavigationProperty Name="OfferRaiting" Relationship="Self.FK_OfferRaiting_Users" FromRole="Users" ToRole="OfferRaiting" />
           <NavigationProperty Name="Offers" Relationship="Self.FK_Offers_Users" FromRole="Users" ToRole="Offers" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
-          <NavigationProperty Name="UserRaitings" Relationship="Self.FK_UserRaiting_Users" FromRole="Users" ToRole="UserRaiting" />
+          <NavigationProperty Name="UserRaiting" Relationship="Self.FK_UserRaiting_Users" FromRole="Users" ToRole="UserRaiting" />
         </EntityType>
         <Association Name="FK_Comments_Offers">
-          <End Role="Offers" Type="Self.Offer" Multiplicity="1" />
-          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <End Role="Offers" Type="Self.Offers" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Offers">
               <PropertyRef Name="OfferID" />
@@ -371,8 +369,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Comments_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -383,7 +381,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OfferRaiting_Offers">
-          <End Role="Offers" Type="Self.Offer" Multiplicity="1" />
+          <End Role="Offers" Type="Self.Offers" Multiplicity="1" />
           <End Role="OfferRaiting" Type="Self.OfferRaiting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Offers">
@@ -394,8 +392,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Table_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+        <Association Name="FK_OfferRaiting_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="OfferRaiting" Type="Self.OfferRaiting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -407,8 +405,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Offers_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Offers" Type="Self.Offer" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Offers" Type="Self.Offers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -419,8 +417,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Offers">
-          <End Role="Offers" Type="Self.Offer" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <End Role="Offers" Type="Self.Offers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Offers">
               <PropertyRef Name="OfferID" />
@@ -431,8 +429,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
               <PropertyRef Name="UserID" />
@@ -443,7 +441,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserRaiting_Users">
-          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UserRaiting" Type="Self.UserRaiting" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
@@ -455,17 +453,17 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="OfferTags">
-          <End Role="Offers" Type="Self.Offer" Multiplicity="*" />
-          <End Role="Tags" Type="Self.Tag" Multiplicity="*" />
+          <End Role="Offers" Type="Self.Offers" Multiplicity="*" />
+          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
         </Association>
         <EntityContainer Name="ShopDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="OfferRaitings" EntityType="Self.OfferRaiting" />
-          <EntitySet Name="Offers" EntityType="Self.Offer" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="Tags" EntityType="Self.Tag" />
-          <EntitySet Name="UserRaitings" EntityType="Self.UserRaiting" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Comments" EntityType="Self.Comments" />
+          <EntitySet Name="OfferRaiting" EntityType="Self.OfferRaiting" />
+          <EntitySet Name="Offers" EntityType="Self.Offers" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" />
+          <EntitySet Name="UserRaiting" EntityType="Self.UserRaiting" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
           <AssociationSet Name="FK_Comments_Offers" Association="Self.FK_Comments_Offers">
             <End Role="Offers" EntitySet="Offers" />
             <End Role="Comments" EntitySet="Comments" />
@@ -476,11 +474,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_OfferRaiting_Offers" Association="Self.FK_OfferRaiting_Offers">
             <End Role="Offers" EntitySet="Offers" />
-            <End Role="OfferRaiting" EntitySet="OfferRaitings" />
+            <End Role="OfferRaiting" EntitySet="OfferRaiting" />
           </AssociationSet>
-          <AssociationSet Name="FK_Table_Users" Association="Self.FK_Table_Users">
+          <AssociationSet Name="FK_OfferRaiting_Users" Association="Self.FK_OfferRaiting_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="OfferRaiting" EntitySet="OfferRaitings" />
+            <End Role="OfferRaiting" EntitySet="OfferRaiting" />
           </AssociationSet>
           <AssociationSet Name="FK_Offers_Users" Association="Self.FK_Offers_Users">
             <End Role="Users" EntitySet="Users" />
@@ -496,7 +494,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_UserRaiting_Users" Association="Self.FK_UserRaiting_Users">
             <End Role="Users" EntitySet="Users" />
-            <End Role="UserRaiting" EntitySet="UserRaitings" />
+            <End Role="UserRaiting" EntitySet="UserRaiting" />
           </AssociationSet>
           <AssociationSet Name="OfferTags" Association="Self.OfferTags">
             <End Role="Offers" EntitySet="Offers" />
@@ -508,9 +506,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ShopOnlineDBModelContainer" CdmEntityContainer="ShopDBEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ShopDBModelContainer" CdmEntityContainer="ShopDBEntities">
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="ShopOnlineDBModel.Comment">
+            <EntityTypeMapping TypeName="ShopDBModel.Comments">
               <MappingFragment StoreEntitySet="Comments">
                 <ScalarProperty Name="CommentID" ColumnName="CommentID" />
                 <ScalarProperty Name="OfferID" ColumnName="OfferID" />
@@ -520,8 +518,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OfferRaitings">
-            <EntityTypeMapping TypeName="ShopOnlineDBModel.OfferRaiting">
+          <EntitySetMapping Name="OfferRaiting">
+            <EntityTypeMapping TypeName="ShopDBModel.OfferRaiting">
               <MappingFragment StoreEntitySet="OfferRaiting">
                 <ScalarProperty Name="OfferID" ColumnName="OfferID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -530,22 +528,22 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Offers">
-            <EntityTypeMapping TypeName="ShopOnlineDBModel.Offer">
+            <EntityTypeMapping TypeName="ShopDBModel.Offers">
               <MappingFragment StoreEntitySet="Offers">
                 <ScalarProperty Name="OfferID" ColumnName="OfferID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DateAndTime" ColumnName="DateAndTime" />
                 <ScalarProperty Name="OfferedBy" ColumnName="OfferedBy" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="PhotoURL1" ColumnName="PhotoURL1" />
-                <ScalarProperty Name="PhotoURL2" ColumnName="PhotoURL2" />
-                <ScalarProperty Name="PhotoURL3" ColumnName="PhotoURL3" />
+                <ScalarProperty Name="Photo1URL" ColumnName="Photo1URL" />
+                <ScalarProperty Name="Photo2URL" ColumnName="Photo2URL" />
+                <ScalarProperty Name="Photo3URL" ColumnName="Photo3URL" />
+                <ScalarProperty Name="Photo4URL" ColumnName="Photo4URL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="ShopOnlineDBModel.Order">
+            <EntityTypeMapping TypeName="ShopDBModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="OfferID" ColumnName="OfferID" />
@@ -556,24 +554,24 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tags">
-            <EntityTypeMapping TypeName="ShopOnlineDBModel.Tag">
+            <EntityTypeMapping TypeName="ShopDBModel.Tags">
               <MappingFragment StoreEntitySet="Tags">
                 <ScalarProperty Name="TagID" ColumnName="TagID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserRaitings">
-            <EntityTypeMapping TypeName="ShopOnlineDBModel.UserRaiting">
+          <EntitySetMapping Name="UserRaiting">
+            <EntityTypeMapping TypeName="ShopDBModel.UserRaiting">
               <MappingFragment StoreEntitySet="UserRaiting">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="VoterID" ColumnName="VoterID" />
-                <ScalarProperty Name="Raiting" ColumnName="Raiting" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="ShopOnlineDBModel.User">
+            <EntityTypeMapping TypeName="ShopDBModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
@@ -581,7 +579,6 @@
                 <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Raiting" ColumnName="Raiting" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
@@ -590,7 +587,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="OfferTags" TypeName="ShopOnlineDBModel.OfferTags" StoreEntitySet="OfferTags">
+          <AssociationSetMapping Name="OfferTags" TypeName="ShopDBModel.OfferTags" StoreEntitySet="OfferTags">
             <EndProperty Name="Offers">
               <ScalarProperty Name="OfferID" ColumnName="OfferID" />
             </EndProperty>
@@ -612,7 +609,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />

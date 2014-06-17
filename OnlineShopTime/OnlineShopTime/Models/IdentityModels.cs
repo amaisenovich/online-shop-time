@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
+using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 
 namespace OnlineShopTime.Models
 {
@@ -8,7 +13,6 @@ namespace OnlineShopTime.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Raiting { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public bool IsAdmin { get; set; }
@@ -18,10 +22,9 @@ namespace OnlineShopTime.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("ShopOnlineDB")
+            : base("ShopDB")
         {
         }
-
         protected override void OnModelCreating(System.Data.Entity.DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
