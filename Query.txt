@@ -1,0 +1,178 @@
+CREATE TABLE [dbo].[Comments] (
+    [CommentID]   NVARCHAR (128) NOT NULL,
+    [OfferID]     NVARCHAR (128) NOT NULL,
+    [PostedBy]    NVARCHAR (128) NOT NULL,
+    [Message]     NVARCHAR (MAX) NULL,
+    [DateAndTime] DATETIME       NULL,
+    PRIMARY KEY CLUSTERED ([CommentID] ASC)
+);
+
+
+
+CREATE TABLE [dbo].[Offers] (
+    [OfferID]     NVARCHAR (128) NOT NULL,
+    [Name]        NVARCHAR (MAX) NULL,
+    [Description] NVARCHAR (MAX) NULL,
+    [DateAndTime] DATETIME       NULL,
+    [OfferedBy]   NVARCHAR (128) NOT NULL,
+    [Photo1URL]   NVARCHAR (MAX) NULL,
+    [Photo2URL]   NVARCHAR (MAX) NULL,
+    [Photo3URL]   NVARCHAR (MAX) NULL,
+    [Photo4URL]   NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([OfferID] ASC)
+);
+
+
+
+CREATE TABLE [dbo].[OfferTags] (
+    [TagID]   NVARCHAR (128) NOT NULL,
+    [OfferID] NVARCHAR (128) NOT NULL,
+    PRIMARY KEY CLUSTERED ([OfferID] ASC, [TagID] ASC)
+);
+
+
+
+CREATE TABLE [dbo].[Orders] (
+    [OrderID]     NVARCHAR (128) NOT NULL,
+    [OfferID]     NVARCHAR (128) NOT NULL,
+    [ClientID]    NVARCHAR (128) NOT NULL,
+    [DateAndTime] DATETIME       NULL,
+    [OrderStatus] NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([OrderID] ASC),
+);
+
+
+
+CREATE TABLE [dbo].[Tags] (
+    [TagID] NVARCHAR (128) NOT NULL,
+    [Name]  NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([TagID] ASC)
+);
+
+
+
+
+CREATE TABLE [dbo].[Users] (
+    [UserID]        NVARCHAR (128) NOT NULL,
+    [UserName]      NVARCHAR (MAX) NULL,
+    [PasswordHash]  NVARCHAR (MAX) NULL,
+    [SecurityStamp] NVARCHAR (MAX) NULL,
+    [FirstName]     NVARCHAR (MAX) NULL,
+    [LastName]      NVARCHAR (MAX) NULL,
+    [Email]         NVARCHAR (MAX) NULL,
+    [PhoneNumber]   NVARCHAR (MAX) NULL,
+    [IsAdmin]       BIT            NULL,
+    [AvatarURL]     NVARCHAR (MAX) NULL,
+    [Discriminator] NVARCHAR (128) NOT NULL,
+    CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED ([UserID] ASC)
+);
+
+
+
+
+CREATE TABLE [dbo].[OfferRaiting] (
+    [OfferID] NVARCHAR (128) NOT NULL,
+    [UserID]  NVARCHAR (128) NOT NULL,
+    [Raiting] REAL           NULL,
+    PRIMARY KEY CLUSTERED ([OfferID] ASC)
+);
+
+
+
+
+CREATE TABLE [dbo].[UserRaiting] (
+    [UserID]  NVARCHAR (128) NOT NULL,
+    [VoterID] NVARCHAR (128) NOT NULL,
+    [Rating]  REAL           NULL,
+    PRIMARY KEY CLUSTERED ([UserID] ASC)
+);
+
+
+
+//-----------------------------------------------------------------------------
+
+
+CREATE TABLE [dbo].[Comments] (
+    [CommentID]   NVARCHAR (128) DEFAULT (newid()) NOT NULL,
+    [OfferID]     NVARCHAR (128) NOT NULL,
+    [PostedBy]    NVARCHAR (128) NOT NULL,
+    [Message]     NVARCHAR (MAX) NULL,
+    [DateAndTime] DATETIME       NULL,
+    PRIMARY KEY CLUSTERED ([CommentID] ASC),
+    CONSTRAINT [FK_Comments_Offers] FOREIGN KEY ([OfferID]) REFERENCES [dbo].[Offers] ([OfferID]),
+    CONSTRAINT [FK_Comments_Users] FOREIGN KEY ([PostedBy]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+CREATE TABLE [dbo].[OfferRaiting] (
+    [OfferID] NVARCHAR (128) NOT NULL,
+    [UserID]  NVARCHAR (128) NOT NULL,
+    [Raiting] REAL           NULL,
+    PRIMARY KEY CLUSTERED ([UserID] ASC, [OfferID] ASC),
+    CONSTRAINT [FK_OfferRaiting_Offers] FOREIGN KEY ([OfferID]) REFERENCES [dbo].[Offers] ([OfferID]),
+    CONSTRAINT [FK_OfferRaiting_Users] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+CREATE TABLE [dbo].[Offers] (
+    [OfferID]     NVARCHAR (128) DEFAULT (newid()) NOT NULL,
+    [Name]        NVARCHAR (MAX) NULL,
+    [Description] NVARCHAR (MAX) NULL,
+    [DateAndTime] DATETIME       NULL,
+    [OfferedBy]   NVARCHAR (128) NOT NULL,
+    [Photo1URL]   NVARCHAR (MAX) NULL,
+    [Photo2URL]   NVARCHAR (MAX) NULL,
+    [Photo3URL]   NVARCHAR (MAX) NULL,
+    [Photo4URL]   NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([OfferID] ASC),
+    CONSTRAINT [FK_Offers_Users] FOREIGN KEY ([OfferedBy]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+CREATE TABLE [dbo].[OfferTags] (
+    [TagID]   NVARCHAR (128) NOT NULL,
+    [OfferID] NVARCHAR (128) NOT NULL,
+    PRIMARY KEY CLUSTERED ([OfferID] ASC, [TagID] ASC),
+    CONSTRAINT [FK_OfferTags_Offers] FOREIGN KEY ([OfferID]) REFERENCES [dbo].[Offers] ([OfferID]),
+    CONSTRAINT [FK_OfferTags_Tags] FOREIGN KEY ([TagID]) REFERENCES [dbo].[Tags] ([TagID])
+);
+
+CREATE TABLE [dbo].[Orders] (
+    [OrderID]     NVARCHAR (128) DEFAULT (newid()) NOT NULL,
+    [OfferID]     NVARCHAR (128) NOT NULL,
+    [ClientID]    NVARCHAR (128) NOT NULL,
+    [DateAndTime] DATETIME       NULL,
+    [OrderStatus] NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([OrderID] ASC),
+    CONSTRAINT [FK_Orders_Users] FOREIGN KEY ([ClientID]) REFERENCES [dbo].[Users] ([UserID]),
+    CONSTRAINT [FK_Orders_Offers] FOREIGN KEY ([OfferID]) REFERENCES [dbo].[Offers] ([OfferID])
+);
+
+CREATE TABLE [dbo].[Tags] (
+    [TagID] NVARCHAR (128) DEFAULT (newid()) NOT NULL,
+    [Name]  NVARCHAR (MAX) NULL,
+    PRIMARY KEY CLUSTERED ([TagID] ASC)
+);
+
+CREATE TABLE [dbo].[UserRaiting] (
+    [UserID]  NVARCHAR (128) NOT NULL,
+    [VoterID] NVARCHAR (128) NOT NULL,
+    [Rating]  REAL           NULL,
+    PRIMARY KEY CLUSTERED ([VoterID] ASC, [UserID] ASC),
+    CONSTRAINT [FK_UserRaiting_Users] FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID])
+);
+
+CREATE TABLE [dbo].[Users] (
+    [UserID]        NVARCHAR (128) DEFAULT (newid()) NOT NULL,
+    [UserName]      NVARCHAR (MAX) NULL,
+    [PasswordHash]  NVARCHAR (MAX) NULL,
+    [SecurityStamp] NVARCHAR (MAX) NULL,
+    [FirstName]     NVARCHAR (MAX) NULL,
+    [LastName]      NVARCHAR (MAX) NULL,
+    [Email]         NVARCHAR (MAX) NULL,
+    [PhoneNumber]   NVARCHAR (MAX) NULL,
+    [IsAdmin]       BIT            DEFAULT ((0)) NOT NULL,
+    [AvatarURL]     NVARCHAR (MAX) NULL,
+    [Discriminator] NVARCHAR (128) NOT NULL,
+    CONSTRAINT [PK_dbo.Users] PRIMARY KEY CLUSTERED ([UserID] ASC)
+);
+
+
+
