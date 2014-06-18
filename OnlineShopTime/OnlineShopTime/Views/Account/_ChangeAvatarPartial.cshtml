@@ -1,0 +1,30 @@
+﻿@using OnlineShopTime.Models
+@using Microsoft.AspNet.Identity
+@using CloudinaryDotNet
+@model OnlineShopTime.Models.ManageUserViewModel
+
+<br/>
+
+@{
+    ShopDBEntities db = new ShopDBEntities();
+    var userID = User.Identity.GetUserId();
+    var user = db.Users.FirstOrDefault(m => m.UserID == userID);
+}
+
+@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+        <h2>Direct upload from the browser</h2>
+    <form>
+        @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
+    </form>
+
+    <!-- status box -->
+    <div class="status">
+        <h2>Status</h2>
+        <span class="status_value">Idle</span>
+    </div>
+
+    <div class="uploaded_info_holder">
+        @Model.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(user.AvatarURL)
+    </div>
+}

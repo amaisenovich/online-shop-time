@@ -1,4 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace OnlineShopTime.Models
 {
@@ -11,6 +15,13 @@ namespace OnlineShopTime.Models
 
     public class ManageUserViewModel
     {
+        public ManageUserViewModel(Cloudinary cloudinary)
+        {
+            Cloudinary = cloudinary;
+        }
+
+        public Cloudinary Cloudinary { get; set; }
+
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Текущий пароль")]

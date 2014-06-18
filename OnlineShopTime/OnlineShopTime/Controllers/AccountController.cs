@@ -9,12 +9,18 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using OnlineShopTime.Models;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
+using Newtonsoft.Json.Linq;
+using System.IO;
 
 namespace OnlineShopTime.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        static Cloudinary m_cloudinary;
+        static ShopDBEntities m_db;
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -23,6 +29,72 @@ namespace OnlineShopTime.Controllers
         public AccountController(UserManager<ApplicationUser> userManager)
         {
             UserManager = userManager;
+
+            m_db = new ShopDBEntities();
+            m_db.Database.Initialize(false);
+
+            Account acc = new Account(
+                    Properties.Settings.Default.CloudName,
+                    Properties.Settings.Default.ApiKey,
+                    Properties.Settings.Default.ApiSecret);
+
+            m_cloudinary = new Cloudinary(acc);
+        }
+
+        [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void UploadDirect()
+        {
+            var headers = HttpContext.Request.Headers;
+
+            string content = null;
+            using (StreamReader reader = new StreamReader(HttpContext.Request.InputStream))
+            {
+                content = reader.ReadToEnd();
+            }
+
+            if (String.IsNullOrEmpty(content)) return;
+
+            Dictionary<string, string> results = new Dictionary<string, string>();
+
+            string[] pairs = content.Split(new char[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var pair in pairs)
+            {
+                string[] splittedPair = pair.Split('=');
+
+                results.Add(splittedPair[0], splittedPair[1]);
+            }
+
+            //Photo p = new Photo()
+            //{
+            //    Bytes = Int32.Parse(results["bytes"]),
+            //    CreatedAt = DateTime.ParseExact(HttpUtility.UrlDecode(results["created_at"]), "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture),
+            //    Format = results["format"],
+            //    Height = Int32.Parse(results["height"]),
+            //    Path = results["path"],
+            //    PublicId = results["public_id"],
+            //    ResourceType = results["resource_type"],
+            //    SecureUrl = results["secure_url"],
+            //    Signature = results["signature"],
+            //    Type = results["type"],
+            //    Url = results["url"],
+            //    Version = Int32.Parse(results["version"]),
+            //    Width = Int32.Parse(results["width"]),
+            //};
+
+            CurrentUser.AvatarURL = results["public_id"];
+
+            m_db.SaveChanges();
+        }
+
+        Users CurrentUser
+        {
+            get
+            {
+                var userID = User.Identity.GetUserId();
+                var user = m_db.Users.FirstOrDefault(m => m.UserID == userID);
+                return user;
+            }
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
@@ -125,8 +197,9 @@ namespace OnlineShopTime.Controllers
                 : message == ManageMessageId.Error ? "Произошла ошибка."
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
+            ViewBag.HasAvatar = CurrentUser.AvatarURL != null;
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View();
+            return View(new ManageUserViewModel(m_cloudinary));
         }
 
         //
@@ -137,6 +210,7 @@ namespace OnlineShopTime.Controllers
         {
             bool hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
+            ViewBag.HasAvatar = CurrentUser.AvatarURL != null;
             ViewBag.ReturnUrl = Url.Action("Manage");
             if (hasPassword)
             {
