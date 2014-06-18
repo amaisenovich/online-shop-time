@@ -31,7 +31,7 @@ namespace OnlineShopTime.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public bool IsAdmin { get; set; }
+        public string UserRights { get; set; }
         public string AvatarURL { get; set; }
         public string Discriminator { get; set; }
     

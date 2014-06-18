@@ -84,7 +84,7 @@
           <Property Name="LastName" Type="nvarchar(max)" />
           <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="PhoneNumber" Type="nvarchar(max)" />
-          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="UserRights" Type="nvarchar(max)" />
           <Property Name="AvatarURL" Type="nvarchar(max)" />
           <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
@@ -347,7 +347,7 @@
           <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="UserRights" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AvatarURL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Users" FromRole="Users" ToRole="Comments" />
@@ -581,7 +581,7 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="UserRights" ColumnName="UserRights" />
                 <ScalarProperty Name="AvatarURL" ColumnName="AvatarURL" />
                 <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
               </MappingFragment>
