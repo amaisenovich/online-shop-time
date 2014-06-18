@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
@@ -9,9 +9,8 @@
     @{
         var styleCookie = HttpContext.Current.Request.Cookies["style"];
         var styleBundle = styleCookie != null ? styleCookie.Value : "~/Content/light_css";
-     }
+    }
     @Styles.Render(styleBundle)
-
 </head>
 <body>
     <div class="navbar navbar-default navbar-fixed-top">
@@ -27,8 +26,8 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(@Resources.Home.Gallery, "Gallery", "Home")</li>
-                    <li>@Html.ActionLink(@Resources.Home.AboutApp, "About", "Home")</li>
-                    <li>@Html.ActionLink(@Resources.Home.Contacts, "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink(@Resources.Home.AboutApp, "About", "Home")</li>
+                        <li>@Html.ActionLink(@Resources.Home.Contacts, "Contact", "Home")</li>*@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Home.Language<b class="caret"></b></a>
                         <ul class="dropdown-menu">
@@ -52,7 +51,9 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <center>
+                <p>&copy; @DateTime.Now.Year – @Resources.Home.ItansitionCP</p>
+            </center>
         </footer>
     </div>
     @Scripts.Render("~/bundles/jquery")

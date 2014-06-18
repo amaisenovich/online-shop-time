@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Create offer.
+        /// </summary>
+        public static string CreateOffer {
+            get {
+                return ResourceManager.GetString("CreateOffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Gallery.
         /// </summary>
         public static string Gallery {
@@ -120,6 +129,15 @@ namespace Resources {
         public static string HomePage {
             get {
                 return ResourceManager.GetString("HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Course project in the Itransition company.
+        /// </summary>
+        public static string ItansitionCP {
+            get {
+                return ResourceManager.GetString("ItansitionCP", resourceCulture);
             }
         }
         

@@ -11,7 +11,6 @@ namespace OnlineShopTime.Controllers
     {
         public ActionResult Index()
         {
-            TopOffers to = new TopOffers();
             return View();
         }
 

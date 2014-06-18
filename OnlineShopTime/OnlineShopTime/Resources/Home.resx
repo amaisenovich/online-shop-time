@@ -129,6 +129,9 @@
   <data name="Contacts" xml:space="preserve">
     <value>Contacts</value>
   </data>
+  <data name="CreateOffer" xml:space="preserve">
+    <value>Create offer</value>
+  </data>
   <data name="Gallery" xml:space="preserve">
     <value>Gallery</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="HomePage" xml:space="preserve">
     <value>Home page</value>
+  </data>
+  <data name="ItansitionCP" xml:space="preserve">
+    <value>Course project in the Itransition company</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
