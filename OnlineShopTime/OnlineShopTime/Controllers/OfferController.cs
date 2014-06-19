@@ -9,22 +9,23 @@ namespace OnlineShopTime.Controllers
 {
     public class OfferController : Controller
     {
-        WorkWithOffers wO;
+        WorkWithOffers WWO;
+
         [HttpGet]
         public ActionResult Create()
         {
-            if (wO == null)
-                wO = new WorkWithOffers(User.Identity.Name);
-            Session["wO"] = wO;
+            if (WWO == null)
+                WWO = new WorkWithOffers(User.Identity.Name);
+            Session["WWO"] = WWO;
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Offers newOffer)
         {
-            wO = (WorkWithOffers)Session["wO"];
-            bool trie = ModelState.IsValid;
-            wO.AddNewOffer(newOffer);
+            WWO = (WorkWithOffers)Session["WWO"];
+            WWO.AddNewOffer(newOffer);
+            Session["WWO"] = WWO;
             return RedirectToAction("Index", "Home"); 
         }
     }
