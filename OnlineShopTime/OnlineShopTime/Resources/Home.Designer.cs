@@ -178,6 +178,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Description.
+        /// </summary>
+        public static string OfferPageDescriptionLabel {
+            get {
+                return ResourceManager.GetString("OfferPageDescriptionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Images.
+        /// </summary>
+        public static string OfferPageImagesLabel {
+            get {
+                return ResourceManager.GetString("OfferPageImagesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Tags.
+        /// </summary>
+        public static string OfferPageTagsLabel {
+            get {
+                return ResourceManager.GetString("OfferPageTagsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Title.
+        /// </summary>
+        public static string OfferPageTitleLabel {
+            get {
+                return ResourceManager.GetString("OfferPageTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Registration.
         /// </summary>
         public static string Registration {

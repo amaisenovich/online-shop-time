@@ -156,6 +156,18 @@
   <data name="Management" xml:space="preserve">
     <value>Management</value>
   </data>
+  <data name="OfferPageDescriptionLabel" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="OfferPageImagesLabel" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="OfferPageTagsLabel" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="OfferPageTitleLabel" xml:space="preserve">
+    <value>Title</value>
+  </data>
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>
   </data>

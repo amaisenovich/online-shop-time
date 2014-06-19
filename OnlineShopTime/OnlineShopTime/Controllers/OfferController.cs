@@ -9,20 +9,30 @@ namespace OnlineShopTime.Controllers
 {
     public class OfferController : Controller
     {
+        WorkWithOffers wO;
         [HttpGet]
         public ActionResult Create()
         {
+            if (wO != null)
+                wO = new WorkWithOffers();
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Offers newOffer)
         {
-            if (newOffer.Name == "LOL")
+            if (ModelState.IsValid)
             {
- 
+                
+                ShopDBEntities db = new ShopDBEntities();
+                newOffer.DateAndTime = DateTime.Now;
+                newOffer.OfferedBy = User.Identity.Name;
             }
-            return RedirectToAction("Home", "Index");
+            //else
+            //{
+ 
+            //}
+            return RedirectToAction("Index", "Home");
         }
 	}
 }
