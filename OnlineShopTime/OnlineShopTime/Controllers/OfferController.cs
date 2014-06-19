@@ -13,26 +13,19 @@ namespace OnlineShopTime.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (wO != null)
-                wO = new WorkWithOffers();
+            if (wO == null)
+                wO = new WorkWithOffers(User.Identity.Name);
+            Session["wO"] = wO;
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Offers newOffer)
         {
-            if (ModelState.IsValid)
-            {
-                
-                ShopDBEntities db = new ShopDBEntities();
-                newOffer.DateAndTime = DateTime.Now;
-                newOffer.OfferedBy = User.Identity.Name;
-            }
-            //else
-            //{
- 
-            //}
-            return RedirectToAction("Index", "Home");
+            wO = (WorkWithOffers)Session["wO"];
+            bool trie = ModelState.IsValid;
+            wO.AddNewOffer(newOffer);
+            return RedirectToAction("Index", "Home"); 
         }
-	}
+    }
 }

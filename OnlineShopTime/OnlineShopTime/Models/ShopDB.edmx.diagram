@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0ea634ccdd6e4048ae14fb4774a1f8ce" Name="Diagram1" ZoomLevel="60">
+      <Diagram DiagramId="0ea634ccdd6e4048ae14fb4774a1f8ce" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="ShopDBModel.Comments" Width="1.5" PointX="8" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ShopDBModel.OfferRaiting" Width="1.5" PointX="6.25" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="ShopDBModel.Offers" Width="1.5" PointX="4.375" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ShopDBModel.Orders" Width="1.5" PointX="2.125" PointY="9.875" IsExpanded="true" />
         <EntityTypeShape EntityType="ShopDBModel.Tags" Width="1.5" PointX="2.125" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="ShopDBModel.UserRaiting" Width="1.5" PointX="2.125" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopDBModel.Users" Width="1.5" PointX="4.375" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopDBModel.Users" Width="1.5" PointX="4.375" PointY="11.625" IsExpanded="true" />
         <AssociationConnector Association="ShopDBModel.FK_Comments_Offers" ManuallyRouted="false" />
         <AssociationConnector Association="ShopDBModel.FK_Comments_Users" ManuallyRouted="false" />
         <AssociationConnector Association="ShopDBModel.FK_OfferRaiting_Offers" ManuallyRouted="false" />
