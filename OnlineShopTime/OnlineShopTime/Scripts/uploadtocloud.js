@@ -3,14 +3,16 @@
     .fileupload({
         dropZone: '#direct_upload',
         start: function () {
-            $('.status_value').text('Starting direct upload...');
+            //$('.status_value').text('Starting direct upload...');
+            $('#progress').addClass('active');
         },
         progress: function () {
-            $('.status_value').text('Uploading...');
+            //$('.status_value').text('Uploading...');            
         },
     })
     .on('cloudinarydone', function (e, data) {
-        $('.status_value').text('Idle');
+        //$('.status_value').text('Idle');
+        $('#progress').removeClass('active');
         $.post('/Account/UploadDirect', data.result);
         var info = $('<div class="uploaded_info"/>');
         $('.uploaded_info_holder').empty();

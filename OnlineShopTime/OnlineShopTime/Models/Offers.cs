@@ -9,19 +9,24 @@
 
 namespace OnlineShopTime.Models
 {
+    using CloudinaryDotNet;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     
     public partial class Offers
     {
-        public Offers()
+        public Offers(Cloudinary cloudinary)
         {
             this.Comments = new HashSet<Comments>();
             this.OfferRaiting = new HashSet<OfferRaiting>();
             this.Orders = new HashSet<Orders>();
             this.Tags = new HashSet<Tags>();
+
+            Cloudinary = cloudinary;
         }
+
+        public Cloudinary Cloudinary { get; set; }
     
         public string OfferID { get; set; }
         [Required(ErrorMessage = "@Resources.Home.ErroeNameInput")]
