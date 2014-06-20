@@ -40,7 +40,7 @@ namespace OnlineShopTime.Controllers
                     break;
             }
             Session["IndexData"] = IndexViewData;
-            return Index();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Gallery()

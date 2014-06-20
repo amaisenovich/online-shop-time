@@ -3,19 +3,26 @@
 }
 <br />
 <center>
-    <form method="post" action="TabClick">
-        <div class="btn-group btn-group-justified">
-            <div class="btn-group">
-                <button type="submit" class="btn btn-default" name="tabID" value="1">@Resources.Home.TopOffers</button>
+    @using (@Html.BeginForm("TabClick", "Home"))
+    {
+        <div class="row">
+            <div class="col-md-4">
+                <div class="btn-group">
+                    <button type="submit" name="tabID" class="btn btn-default" value="1" style="width: 250px">@Resources.Home.TopOffers</button>
+                </div>
             </div>
-            <div class="btn-group">
-                <button type="submit" class="btn btn-default" name="tabID" value="3">@Resources.Home.NewOffers</button>
+            <div class="col-md-4">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-default" name="tabID" value="3" style="width: 250px">@Resources.Home.NewOffers</button>
+                </div>
             </div>
-            <div class="btn-group">
-                <button type="submit" class="btn btn-default" name="tabID" value="2">@Resources.Home.TopUsers</button>
+            <div class="col-md-4">
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-default" name="tabID" value="2" style="width: 250px">@Resources.Home.TopUsers</button>
+                </div>
             </div>
         </div>
-    </form>
+    }
 </center>
 <br />
 @if (ViewBag.ViewData.ShowString == "TopOffers")
@@ -30,7 +37,7 @@
 {
     for (int i = 0; i < 10; i++)
     {
-        @Html.Partial("_OfferPartial");
+        @Html.Partial("_UserPartial");
     }
 }
 
