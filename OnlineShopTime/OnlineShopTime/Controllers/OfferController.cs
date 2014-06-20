@@ -38,6 +38,7 @@ namespace OnlineShopTime.Controllers
         {
             WWO = (WorkWithOffers)Session["WWO"];
             newOffer = WWO.CompleteOfferWithData(newOffer);
+            WWO.AddNewOffer(newOffer);
             Session["WWO"] = WWO;
             return RedirectToAction("Index", "Home");
         }
