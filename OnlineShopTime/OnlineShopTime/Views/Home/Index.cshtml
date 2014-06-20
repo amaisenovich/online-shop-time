@@ -2,7 +2,42 @@
     ViewBag.Title = "Home Page";
 }
 <br />
-@for (int i = 0; i < 10; i++)
-{ 
-    @Html.Partial("_OfferPartial");
+<center>
+    <form method="post" action="TabClick">
+        <div class="btn-group btn-group-justified">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-default" name="tabID" value="1">@Resources.Home.TopOffers</button>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-default" name="tabID" value="3">@Resources.Home.NewOffers</button>
+            </div>
+            <div class="btn-group">
+                <button type="submit" class="btn btn-default" name="tabID" value="2">@Resources.Home.TopUsers</button>
+            </div>
+        </div>
+    </form>
+</center>
+<br />
+@if (ViewBag.ViewData.ShowString == "TopOffers")
+{
+    for (int i = 0; i < 10; i++)
+    {
+        @Html.Partial("_OfferPartial");
+    }
+}
+
+@if (ViewBag.ViewData.ShowString == "TopUsers")
+{
+    for (int i = 0; i < 10; i++)
+    {
+        @Html.Partial("_OfferPartial");
+    }
+}
+
+@if (ViewBag.ViewData.ShowString == "NewOffers")
+{
+    for (int i = 0; i < 10; i++)
+    {
+        @Html.Partial("_OfferPartial");
+    }
 }

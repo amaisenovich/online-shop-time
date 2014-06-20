@@ -123,14 +123,26 @@
   <data name="AppName" xml:space="preserve">
     <value>Онлайн магазин "Время"</value>
   </data>
+  <data name="BestOffers" xml:space="preserve">
+    <value>Лучшие предложения</value>
+  </data>
+  <data name="BestUsers" xml:space="preserve">
+    <value>Лучшие пользователи</value>
+  </data>
   <data name="ColorTheme" xml:space="preserve">
     <value>Стиль</value>
   </data>
   <data name="Contacts" xml:space="preserve">
     <value>Контакты</value>
   </data>
+  <data name="CreateButton" xml:space="preserve">
+    <value>Создать</value>
+  </data>
   <data name="CreateOffer" xml:space="preserve">
     <value>Создать предложене</value>
+  </data>
+  <data name="ErroeNameInput" xml:space="preserve">
+    <value>Название является обязательным полем</value>
   </data>
   <data name="Gallery" xml:space="preserve">
     <value>Галерея</value>
@@ -156,6 +168,9 @@
   <data name="Management" xml:space="preserve">
     <value>Управление</value>
   </data>
+  <data name="NewOffers" xml:space="preserve">
+    <value>Новые предложения</value>
+  </data>
   <data name="OfferPageDescriptionLabel" xml:space="preserve">
     <value>Описание</value>
   </data>
@@ -170,5 +185,14 @@
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Регистрация</value>
+  </data>
+  <data name="TagsSeparator" xml:space="preserve">
+    <value>Используйте # как разделитель</value>
+  </data>
+  <data name="TopOffers" xml:space="preserve">
+    <value>Лучшие предложения</value>
+  </data>
+  <data name="TopUsers" xml:space="preserve">
+    <value>Лучшие пользователи</value>
   </data>
 </root>

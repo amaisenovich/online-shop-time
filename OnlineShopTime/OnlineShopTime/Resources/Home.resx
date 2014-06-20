@@ -123,14 +123,26 @@
   <data name="AppName" xml:space="preserve">
     <value>Online Shop "Time"</value>
   </data>
+  <data name="BestOffers" xml:space="preserve">
+    <value>Best offers</value>
+  </data>
+  <data name="BestUsers" xml:space="preserve">
+    <value>Best users</value>
+  </data>
   <data name="ColorTheme" xml:space="preserve">
     <value>Style</value>
   </data>
   <data name="Contacts" xml:space="preserve">
     <value>Contacts</value>
   </data>
+  <data name="CreateButton" xml:space="preserve">
+    <value>Create</value>
+  </data>
   <data name="CreateOffer" xml:space="preserve">
     <value>Create offer</value>
+  </data>
+  <data name="ErroeNameInput" xml:space="preserve">
+    <value>Title is required</value>
   </data>
   <data name="Gallery" xml:space="preserve">
     <value>Gallery</value>
@@ -156,6 +168,9 @@
   <data name="Management" xml:space="preserve">
     <value>Management</value>
   </data>
+  <data name="NewOffers" xml:space="preserve">
+    <value>New offers</value>
+  </data>
   <data name="OfferPageDescriptionLabel" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -170,5 +185,14 @@
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>
+  </data>
+  <data name="TagsSeparator" xml:space="preserve">
+    <value>Use # like separator</value>
+  </data>
+  <data name="TopOffers" xml:space="preserve">
+    <value>Top offers</value>
+  </data>
+  <data name="TopUsers" xml:space="preserve">
+    <value>Top users</value>
   </data>
 </root>

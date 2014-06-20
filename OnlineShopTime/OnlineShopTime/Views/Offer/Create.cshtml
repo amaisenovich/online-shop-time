@@ -9,32 +9,38 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="form-horizontal">
 
+    <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true)
 
-        <div class="form-group" style="margin-left:5%; width: 85%">
-            <label style="float: left">@Resources.Home.OfferPageTitleLabel:</label>
-            <input class="form-control" name="Name" style="float: right; max-height: 28px; max-width: 88%;" />
-        </div>
+        <div class="jumbotron" style="float: left; width: 100%">
 
-        <div class="form-group" style="margin-left:5%; width: 85%">
-            <label style="float: left">@Resources.Home.OfferPageDescriptionLabel:</label>
-            <textarea class="form-control" name="Description" style="float: right; max-width: 88%; resize: none"></textarea>
-        </div>
+            <div style="float: left; width: 69%">
+                <label style="width: 100%">@Resources.Home.OfferPageTitleLabel:</label>
+                <input class="form-control" name="Name" style="max-height: 35px; width: 100%; max-width: 100%;" placeholder="@Resources.Home.OfferPageTitleLabel"/>
+            </div>
+            
+            <div style="float: left; width: 69%; margin-top: 5px">
+                <label style="width: 100%">@Resources.Home.OfferPageDescriptionLabel:</label>
+                <textarea class="form-control" name="Description" style="max-width: 100%; resize: none; height: 160px;" placeholder="@Resources.Home.OfferPageDescriptionLabel"></textarea>
+            </div>
 
-        <div class="form-group" style="margin-left:5%; width: 85%">
-            <label style="float: left; margin-top: 4px;">@Resources.Home.OfferPageTagsLabel:</label>
-            <input class="form-control" name="Tags" style="float: right; max-height: 28px; max-width: 88%;" />
-        </div>
+            <div style="float: right; width: 30%">
+                <center>
+                    IMAGES WILL BE HERE I THINK
+                </center>
+            </div>
 
-        <div class="form-group" style="margin-left:5%; width: 85%">
-            <label style="float: left; margin-top: 4px;">@Resources.Home.OfferPageImagesLabel:</label>
-        </div>
+            <div style="float: left; width: 69%; margin-top: 5px">
+                <label style="width: 100%">@Resources.Home.OfferPageTagsLabel:</label>
+                <input class="form-control" name="Tags" style="max-height: 35px; width: 100%; max-width: 100%;" placeholder="@Resources.Home.TagsSeparator" />
+            </div>
 
-        <div class="form-group" style="margin-left:14%; width: 85%">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <div style="width: 100%; float: left; width: 69%; margin-top: 1%">
+                <input type="submit" value="@Resources.Home.CreateButton" class="btn btn-default" />
+            </div>
+
         </div>
 
     </div>

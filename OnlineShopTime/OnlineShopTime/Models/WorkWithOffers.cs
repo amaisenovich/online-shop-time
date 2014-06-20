@@ -32,12 +32,16 @@ namespace OnlineShopTime.Models
         {
             //Empty for now.
         }
-        public void AddNewOffer(Offers newOffer)
+        public Offers CompleteOfferWithData(Offers newOffer)
         {
             newOffer.Users = (from rec in Db.Users where rec.UserID == UserID select rec).FirstOrDefault();
             newOffer.DateAndTime = DateTime.Now;
             newOffer.OfferedBy = UserID;
             newOffer.OfferID = Guid.NewGuid().ToString();
+            return newOffer;
+        }
+        public void AddNewOffer(Offers newOffer)
+        {
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
         }

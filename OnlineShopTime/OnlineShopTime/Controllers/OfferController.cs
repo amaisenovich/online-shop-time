@@ -17,6 +17,7 @@ namespace OnlineShopTime.Controllers
             if (WWO == null)
                 WWO = new WorkWithOffers(User.Identity.Name);
             Session["WWO"] = WWO;
+            ViewBag.NameIsCorrect = true;
             return View();
         }
 
@@ -24,9 +25,9 @@ namespace OnlineShopTime.Controllers
         public ActionResult Create(Offers newOffer)
         {
             WWO = (WorkWithOffers)Session["WWO"];
-            WWO.AddNewOffer(newOffer);
+            newOffer = WWO.CompleteOfferWithData(newOffer);
             Session["WWO"] = WWO;
-            return RedirectToAction("Index", "Home"); 
+            return RedirectToAction("Index", "Home");
         }
     }
 }

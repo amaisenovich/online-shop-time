@@ -79,6 +79,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Best offers.
+        /// </summary>
+        public static string BestOffers {
+            get {
+                return ResourceManager.GetString("BestOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Best users.
+        /// </summary>
+        public static string BestUsers {
+            get {
+                return ResourceManager.GetString("BestUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Style.
         /// </summary>
         public static string ColorTheme {
@@ -97,11 +115,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Create.
+        /// </summary>
+        public static string CreateButton {
+            get {
+                return ResourceManager.GetString("CreateButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Create offer.
         /// </summary>
         public static string CreateOffer {
             get {
                 return ResourceManager.GetString("CreateOffer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Title is required.
+        /// </summary>
+        public static string ErroeNameInput {
+            get {
+                return ResourceManager.GetString("ErroeNameInput", resourceCulture);
             }
         }
         
@@ -178,6 +214,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на New offers.
+        /// </summary>
+        public static string NewOffers {
+            get {
+                return ResourceManager.GetString("NewOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Description.
         /// </summary>
         public static string OfferPageDescriptionLabel {
@@ -219,6 +264,33 @@ namespace Resources {
         public static string Registration {
             get {
                 return ResourceManager.GetString("Registration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Use # like separator.
+        /// </summary>
+        public static string TagsSeparator {
+            get {
+                return ResourceManager.GetString("TagsSeparator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Top offers.
+        /// </summary>
+        public static string TopOffers {
+            get {
+                return ResourceManager.GetString("TopOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Top users.
+        /// </summary>
+        public static string TopUsers {
+            get {
+                return ResourceManager.GetString("TopUsers", resourceCulture);
             }
         }
     }

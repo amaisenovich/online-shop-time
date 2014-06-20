@@ -24,6 +24,7 @@ namespace OnlineShopTime.Models
         }
     
         public string OfferID { get; set; }
+        [Required(ErrorMessage = "@Resources.Home.ErroeNameInput")]
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> DateAndTime { get; set; }
