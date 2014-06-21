@@ -34,6 +34,7 @@ namespace OnlineShopTime.Models
         }
         public Offers CompleteOfferWithData(Offers newOffer)
         {
+            //Fill model with data, which user doesn't input.
             newOffer.Users = (from rec in Db.Users where rec.UserID == UserID select rec).FirstOrDefault();
             newOffer.DateAndTime = DateTime.Now;
             newOffer.OfferedBy = UserID;
@@ -42,6 +43,7 @@ namespace OnlineShopTime.Models
         }
         public void AddNewOffer(Offers newOffer)
         {
+            //Add new offer to DB.
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
         }

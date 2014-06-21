@@ -27,16 +27,21 @@ namespace OnlineShopTime.Controllers
         public ActionResult TabClick(int tabID)
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
+            WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
+            WorkWithUsers WWU = new WorkWithUsers();
             switch (tabID)
             {
                 case 1:
                     IndexViewData.ShowTopOffers();
+                    //IndexViewData.TopOffers = WWO.GetTopOffers();
                     break;
                 case 2:
                     IndexViewData.ShowTopUsers();
+                    IndexViewData.TopUsers = WWU.GetTopUsers();
                     break;
                 case 3:
                     IndexViewData.ShowNewOffers();
+                    //IndexViewData.NewOffers = WWO.GetNewOffers();
                     break;
             }
             Session["IndexData"] = IndexViewData;

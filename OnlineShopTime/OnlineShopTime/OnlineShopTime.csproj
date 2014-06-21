@@ -173,6 +173,7 @@
     <Compile Include="Models\Comments.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkWithUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexDataModel.cs" />
     <Compile Include="Models\OfferRaiting.cs">

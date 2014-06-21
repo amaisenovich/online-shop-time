@@ -9,6 +9,12 @@ namespace OnlineShopTime.Models
     {
         public string ShowString;
 
+        public IQueryable<Offers> NewOffers;
+
+        public IQueryable<Users> TopUsers;
+
+        public IQueryable<Offers> TopOffers;
+
         public IndexDataModel()
         {
             ShowTopOffers();

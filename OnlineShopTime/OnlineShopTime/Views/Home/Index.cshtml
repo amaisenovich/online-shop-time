@@ -1,6 +1,9 @@
-﻿@{
+﻿@using OnlineShopTime.Models;
+
+@{
     ViewBag.Title = "Home Page";
 }
+
 <br />
 <center>
     @using (@Html.BeginForm("TabClick", "Home"))
@@ -35,10 +38,11 @@
 
 @if (ViewBag.ViewData.ShowString == "TopUsers")
 {
-    for (int i = 0; i < 10; i++)
+    foreach (Users TopUser in ViewBag.ViewData.TopUsers)
     {
-        @Html.Partial("_UserPartial");
+        @Html.Partial("_UserPartial", TopUser);
     }
+
 }
 
 @if (ViewBag.ViewData.ShowString == "NewOffers")

@@ -19,27 +19,21 @@ namespace OnlineShopTime.Controllers
                     Properties.Settings.Default.CloudName,
                     Properties.Settings.Default.ApiKey,
                     Properties.Settings.Default.ApiSecret);
-
             m_cloudinary = new Cloudinary(acc);
         }
 
         [HttpGet]
         public ActionResult Create()
-        {
-            if (WWO == null)
-                WWO = new WorkWithOffers(User.Identity.Name);
-            Session["WWO"] = WWO;
-            ViewBag.NameIsCorrect = true;
+        {            
             return View(new Offers(m_cloudinary));
         }
 
         [HttpPost]
         public ActionResult Create(Offers newOffer)
         {
-            WWO = (WorkWithOffers)Session["WWO"];
+            WWO = new WorkWithOffers(User.Identity.Name);
             newOffer = WWO.CompleteOfferWithData(newOffer);
             WWO.AddNewOffer(newOffer);
-            Session["WWO"] = WWO;
             return RedirectToAction("Index", "Home");
         }
     }
