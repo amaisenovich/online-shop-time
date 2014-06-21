@@ -29,7 +29,7 @@ namespace OnlineShopTime.Models
         }
         public IQueryable<Users> GetTopUsers()
         {
-            //Returns IQueryable of Users arranged by (likes - dislikes). Returns only 10 records.
+            //Returns IQueryable of Users arranged by (likes - dislikes). Returns only top 10 records.
             var UserRaitingArranged = from RaitingRecords in db.UserRaiting
                                       group RaitingRecords by RaitingRecords.UserID
                                           into ResultTable

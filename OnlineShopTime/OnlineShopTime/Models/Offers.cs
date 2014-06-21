@@ -43,8 +43,7 @@ namespace OnlineShopTime.Models
         public string Photo1URL { get; set; }
         public string Photo2URL { get; set; }
         public string Photo3URL { get; set; }
-        public string Photo4URL { get; set; }
-    
+        public string Photo4URL { get; set; }    
         public virtual ICollection<Comments> Comments { get; set; }
         public virtual ICollection<OfferRaiting> OfferRaiting { get; set; }
         public virtual Users Users { get; set; }

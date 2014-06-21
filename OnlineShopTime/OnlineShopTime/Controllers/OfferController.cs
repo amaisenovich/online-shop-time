@@ -26,7 +26,7 @@ namespace OnlineShopTime.Controllers
         [HttpGet]
         public ActionResult Create()
         {            
-            return View(new Offers(m_cloudinary));
+            return View(new Offers());
         }
 
         [HttpPost]
