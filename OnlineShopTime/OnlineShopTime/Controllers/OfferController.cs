@@ -36,6 +36,7 @@ namespace OnlineShopTime.Controllers
         public ActionResult Create(Offers newOffer)
         {
             string defaultImage = null;
+            WWO = (WorkWithOffers)Session["WWO"];
             newOffer = WWO.CompleteOfferWithData(newOffer);
             newOffer.Photo1URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
