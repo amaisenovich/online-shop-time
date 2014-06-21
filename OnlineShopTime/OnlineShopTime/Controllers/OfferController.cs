@@ -25,14 +25,16 @@ namespace OnlineShopTime.Controllers
 
         [HttpGet]
         public ActionResult Create()
-        {            
+        {
+            WWO = new WorkWithOffers(User.Identity.Name);
+            Session["WWO"] = WWO;
+            ViewBag.NameIsCorrect = true;
             return View(new Offers());
         }
 
         [HttpPost]
         public ActionResult Create(Offers newOffer)
         {
-            WWO = new WorkWithOffers(User.Identity.Name);
             string defaultImage = null;
             WWO = (WorkWithOffers)Session["WWO"];
             newOffer = WWO.CompleteOfferWithData(newOffer);
