@@ -16,14 +16,20 @@ namespace OnlineShopTime.Models
     
     public partial class Offers
     {
-        public Offers(Cloudinary cloudinary)
+        public Offers()
         {
             this.Comments = new HashSet<Comments>();
             this.OfferRaiting = new HashSet<OfferRaiting>();
             this.Orders = new HashSet<Orders>();
             this.Tags = new HashSet<Tags>();
 
-            Cloudinary = cloudinary;
+
+            Account acc = new Account(
+                    Properties.Settings.Default.CloudName,
+                    Properties.Settings.Default.ApiKey,
+                    Properties.Settings.Default.ApiSecret);
+
+            Cloudinary = new Cloudinary(acc);
         }
 
         public Cloudinary Cloudinary { get; set; }
