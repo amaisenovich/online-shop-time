@@ -36,14 +36,12 @@ namespace OnlineShopTime.Controllers
         public ActionResult Create(Offers newOffer)
         {
             string defaultImage = null;
-            WWO = (WorkWithOffers)Session["WWO"];
             newOffer = WWO.CompleteOfferWithData(newOffer);
             newOffer.Photo1URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo3URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             WWO.AddNewOffer(newOffer);
-            Session["WWO"] = WWO;
             imageURLs.Clear();
             return RedirectToAction("Index", "Home");
         }
