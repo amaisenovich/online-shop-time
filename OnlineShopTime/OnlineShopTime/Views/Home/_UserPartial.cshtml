@@ -1,7 +1,16 @@
 ﻿@model OnlineShopTime.Models.Users
+@using OnlineShopTime.Models;
 
 <div class="jumbotron">
-    <h1>@Model.UserName</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <center>
+        <div class="row">
+            <div class="col-md-4">
+                <img src="Placeholder" alt="Placeholder" class="img-thumbnail" style="width: 150px; height: 150px;">
+            </div>
+            <div class="col-md-8">
+                <h1>@Model.UserName</h1>
+                <h3>PLACE OF LIKES AND DISLIKES</h3>
+            </div>
+        </div>
+    </center>
 </div>

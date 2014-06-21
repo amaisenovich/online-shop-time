@@ -26,9 +26,6 @@ namespace OnlineShopTime.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            WWO = new WorkWithOffers(User.Identity.Name);
-            Session["WWO"] = WWO;
-            ViewBag.NameIsCorrect = true;
             return View(new Offers());
         }
 
@@ -36,7 +33,7 @@ namespace OnlineShopTime.Controllers
         public ActionResult Create(Offers newOffer)
         {
             string defaultImage = null;
-            WWO = (WorkWithOffers)Session["WWO"];
+            WWO = new WorkWithOffers(User.Identity.Name);
             newOffer = WWO.CompleteOfferWithData(newOffer);
             newOffer.Photo1URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
