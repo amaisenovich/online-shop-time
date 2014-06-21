@@ -5,54 +5,6 @@
     ViewBag.Title = "Create";
 }
 
-@*@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="jumbotron" style="float: left; width: 100%">
-
-            <div style="float: left; width: 69%">
-                <label style="width: 100%">@Resources.Home.OfferPageTitleLabel:</label>
-                <input class="form-control" name="Name" style="max-height: 35px; width: 100%; max-width: 100%;" placeholder="@Resources.Home.OfferPageTitleLabel" />
-            </div>
-
-            <div style="float: left; width: 69%; margin-top: 5px">
-                <label style="width: 100%">@Resources.Home.OfferPageDescriptionLabel:</label>
-                <textarea class="form-control" name="Description" style="max-width: 100%; resize: none; height: 160px;" placeholder="@Resources.Home.OfferPageDescriptionLabel"></textarea>
-            </div>
-
-            <div style="float: right; width: 30%">
-                <form>
-                    @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
-                </form>
-                <br />
-                <div class="progress progress-striped" style="width:70%" id="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 100%">
-                    </div>
-                </div>
-                <div class="uploaded_info_holder">
-                </div>
-            </div>
-
-            <div style="float: left; width: 69%; margin-top: 5px">
-                <label style="width: 100%">@Resources.Home.OfferPageTagsLabel:</label>
-                <input class="form-control" name="Tags" style="max-height: 35px; width: 100%; max-width: 100%;" placeholder="@Resources.Home.TagsSeparator" />
-            </div>
-
-            <div style="width: 100%; float: left; width: 69%; margin-top: 1%">
-                <input type="submit" value="@Resources.Home.CreateButton" class="btn btn-default" />
-               
-            </div>
-
-        </div>
-
-    </div>
-}*@
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -84,7 +36,6 @@
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button type="submit" class="btn btn-default">@Resources.Home.CreateButton</button>
-                                @*<input type="submit" value="@Resources.Home.CreateButton" class="btn btn-default" />*@
                             </div>
                         </div>
                     </form>
@@ -114,29 +65,31 @@
 
     <script type="text/javascript">
         $(function () {
+            var count = 0;
             $('.cloudinary-fileupload')
             .fileupload({
                 dropZone: '#direct_upload',
                 start: function () {
-                    //$('.status_value').text('Starting direct upload...');
                     $('#progress').addClass('active');
                 },
                 progress: function () {
-                    //$('.status_value').text('Uploading...');
                 },
             })
             .on('cloudinarydone', function (e, data) {
-                //$('.status_value').text('Idle');
                 $('#progress').removeClass('active');
                 $.post('/Offer/AddImageToOffer', data.result);
                 var info = $('<div class="uploaded_info" />');
-                //$('.uploaded_info_holder').empty();
                 $(info).append($('<div class="image"/>').append(
                   $.cloudinary.image(data.result.public_id, {
                       format: data.result.format, width: 150, height: 150, crop: "fill"
                   })
                 ));
                 $('.uploaded_info_holder').append(info);
+                count++;
+                if (count >= 4) {
+                    $('.cloudinary-fileupload').hide();
+                    $('.progress-bar').hide();
+                }
             });
         });
     </script>

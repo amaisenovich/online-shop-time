@@ -43,11 +43,6 @@ namespace OnlineShopTime.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Gallery()
-        {
-            return View();
-        }
-
         public ActionResult ChangeCulture(string lang)
         {
             var langCookie = new HttpCookie("lang", lang) { HttpOnly = true };
