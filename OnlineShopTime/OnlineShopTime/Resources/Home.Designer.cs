@@ -214,6 +214,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на My Offers.
+        /// </summary>
+        public static string MyOffers {
+            get {
+                return ResourceManager.GetString("MyOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на My Orders.
+        /// </summary>
+        public static string MyOrders {
+            get {
+                return ResourceManager.GetString("MyOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на My Profile.
+        /// </summary>
+        public static string MyProfile {
+            get {
+                return ResourceManager.GetString("MyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на New offers.
         /// </summary>
         public static string NewOffers {
@@ -255,6 +282,24 @@ namespace Resources {
         public static string OfferPageTitleLabel {
             get {
                 return ResourceManager.GetString("OfferPageTitleLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Orders.
+        /// </summary>
+        public static string Orders {
+            get {
+                return ResourceManager.GetString("Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Change Password.
+        /// </summary>
+        public static string PasswordChange {
+            get {
+                return ResourceManager.GetString("PasswordChange", resourceCulture);
             }
         }
         

@@ -20,21 +20,22 @@ namespace OnlineShopTime.Models
 
         public WorkWithOffers(string UserName)
         {
-            this.UserName = UserName;
-            Db = new ShopDBEntities();
+            this.UserName = UserName;            
             GetActiveUserID(UserName);
         }
         public void GetActiveUserID(string UserName)
         {
+            Db = new ShopDBEntities();
             UserID = (from rec in Db.Users where rec.UserName == UserName select rec.UserID).FirstOrDefault();
         }
         public void GetTopOffers()
         {
             //Empty for now.
         }
-        public Offers CompleteOfferWithData(Offers newOffer)
+        private Offers CompleteOfferWithData(Offers newOffer)
         {
             //Fill model with data, which user doesn't input.
+            Db = new ShopDBEntities();
             newOffer.Users = (from rec in Db.Users where rec.UserID == UserID select rec).FirstOrDefault();
             newOffer.DateAndTime = DateTime.Now;
             newOffer.OfferedBy = UserID;
@@ -44,6 +45,8 @@ namespace OnlineShopTime.Models
         public void AddNewOffer(Offers newOffer)
         {
             //Add new offer to DB.
+            CompleteOfferWithData(newOffer);
+            Db = new ShopDBEntities();
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
         }

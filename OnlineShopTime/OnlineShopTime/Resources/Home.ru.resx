@@ -168,6 +168,15 @@
   <data name="Management" xml:space="preserve">
     <value>Управление</value>
   </data>
+  <data name="MyOffers" xml:space="preserve">
+    <value>Мои предложения</value>
+  </data>
+  <data name="MyOrders" xml:space="preserve">
+    <value>Мои заказы</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
   <data name="NewOffers" xml:space="preserve">
     <value>Новые предложения</value>
   </data>
@@ -182,6 +191,12 @@
   </data>
   <data name="OfferPageTitleLabel" xml:space="preserve">
     <value>Название</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Заказы</value>
+  </data>
+  <data name="PasswordChange" xml:space="preserve">
+    <value>Изменить пароль</value>
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Регистрация</value>

@@ -168,6 +168,15 @@
   <data name="Management" xml:space="preserve">
     <value>Management</value>
   </data>
+  <data name="MyOffers" xml:space="preserve">
+    <value>My Offers</value>
+  </data>
+  <data name="MyOrders" xml:space="preserve">
+    <value>My Orders</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>My Profile</value>
+  </data>
   <data name="NewOffers" xml:space="preserve">
     <value>New offers</value>
   </data>
@@ -182,6 +191,12 @@
   </data>
   <data name="OfferPageTitleLabel" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="Orders" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="PasswordChange" xml:space="preserve">
+    <value>Change Password</value>
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>

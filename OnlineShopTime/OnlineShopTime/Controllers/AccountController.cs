@@ -383,6 +383,21 @@ namespace OnlineShopTime.Controllers
             return (ActionResult)PartialView("_RemoveAccountPartial", linkedAccounts);
         }
 
+        [HttpGet]
+        public ActionResult EditProfile()
+        {
+            WorkWithUsers WWU = new WorkWithUsers();
+            Users ActiveUser = WWU.GetUserByName(User.Identity.Name);
+            return View(ActiveUser);
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile(Users EditUser)
+        {      
+            return View();
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && UserManager != null)

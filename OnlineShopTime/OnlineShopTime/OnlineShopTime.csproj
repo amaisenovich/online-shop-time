@@ -318,6 +318,7 @@
     <Content Include="Views\Account\_SetAvatarPartial.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_UserPartial.cshtml" />
+    <Content Include="Views\Account\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
