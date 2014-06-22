@@ -39,7 +39,7 @@ namespace OnlineShopTime.Controllers
             WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
             WorkWithUsers WWU = new WorkWithUsers();
             switch (tabID)
-            {
+            { 
                 case 1:
                     IndexViewData.ShowTopOffers();
                     //IndexViewData.TopOffers = WWO.GetTopOffers();

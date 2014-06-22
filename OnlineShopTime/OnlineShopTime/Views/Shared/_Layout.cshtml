@@ -46,15 +46,16 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <center>
-                <p>&copy; @DateTime.Now.Year – @Resources.Home.ItansitionCP</p>
-            </center>
-        </footer>
     </div>
+    <footer>
+        <center>
+            <hr />
+            <p>&copy; @DateTime.Now.Year – @Resources.Home.ItansitionCP</p>
+        </center>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

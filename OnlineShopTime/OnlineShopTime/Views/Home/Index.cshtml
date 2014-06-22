@@ -28,29 +28,44 @@
     }
 </center>
 <br />
-@if (ViewBag.ViewData.ShowString == "TopOffers")
-{
-    for (int i = 0; i < 10; i++)
-    {
-        @Html.Partial("_OfferPartial");
-    }
-}
+<div class="row" style="">
+    <center>
+        @if (ViewBag.ViewData.ShowString == "TopOffers")
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                @Html.Partial("_OfferPartial");
+            }
+        }
 
-@if (ViewBag.ViewData.ShowString == "TopUsers")
-{
-    ViewBag.Position = false;
-    foreach (Users TopUser in ViewBag.ViewData.TopUsers)
-    {
-        ViewBag.Position = !ViewBag.Position;
-        @Html.Partial("_UserPartial", TopUser);
-    }
 
-}
+        @if (ViewBag.ViewData.ShowString == "TopUsers")
+        {
+            foreach (Users TopUser in ViewBag.ViewData.TopUsers)
+            {
+                @Html.Partial("_UserPartial", TopUser);
+                @Html.Partial("_UserPartial", TopUser);
+                                                      @Html.Partial("_UserPartial", TopUser);
+                                                                                            @Html.Partial("_UserPartial", TopUser);
+                                                                                                                                  @Html.Partial("_UserPartial", TopUser);
+                                                                                                                                                                        @Html.Partial("_UserPartial", TopUser);
+                                                                                                                                                                                                              @Html.Partial("_UserPartial", TopUser);
+                                                                                                                                                                                                                                                    @Html.Partial("_UserPartial", TopUser);
+                                                                                                                                                                                                                                                                                          @Html.Partial("_UserPartial", TopUser);
+                                                                                                                                                                                                                                                                                                                                @Html.Partial("_UserPartial", TopUser);
+                                                                                                                                                                                                                                                                                                                                @Html.Partial("_UserPartial", TopUser);@Html.Partial("_UserPartial", TopUser);@Html.Partial("_UserPartial", TopUser);@Html.Partial("_UserPartial", TopUser);@Html.Partial("_UserPartial", TopUser);@Html.Partial("_UserPartial", TopUser);@Html.Partial("_UserPartial", TopUser);@Html.Partial("_UserPartial", TopUser);
+            
+            }
+        }
 
-@if (ViewBag.ViewData.ShowString == "NewOffers")
-{
-    for (int i = 0; i < 10; i++)
-    {
-        @Html.Partial("_OfferPartial");
-    }
-}
+
+
+        @if (ViewBag.ViewData.ShowString == "NewOffers")
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                @Html.Partial("_OfferPartial");
+            }
+        }
+    </center>
+</div>
