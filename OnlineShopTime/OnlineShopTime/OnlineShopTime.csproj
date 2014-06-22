@@ -42,6 +42,15 @@
     <Reference Include="CloudinaryDotNet">
       <HintPath>..\packages\CloudinaryDotNet.1.0.16\lib\net40\CloudinaryDotNet.dll</HintPath>
     </Reference>
+    <Reference Include="CoffeeScriptHttpHandler">
+      <HintPath>..\packages\CoffeeSharp.0.5\lib\CoffeeScriptHttpHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="CoffeeSharp">
+      <HintPath>..\packages\CoffeeSharp.0.5\lib\CoffeeSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Jurassic">
+      <HintPath>..\packages\CoffeeSharp.0.5\lib\Jurassic.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -352,6 +361,8 @@
           <DevelopmentServerPort>26688</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:26688/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:26688/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
