@@ -5,18 +5,18 @@
 
 @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <h2>Direct upload from the browser</h2>
+    <div class="uploaded_info_holder">
+    </div>
+    <br />
     <form>
         @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
     </form>
 
-        <br />
-        <div class="progress progress-striped" style="width:40%" id="progress" hidden="hidden">
-            <div class="progress-bar" role="progressbar" style="width: 100%">
-            </div>
+    <div class="progress progress-striped" style="width:40%" id="progress" hidden="hidden">
+        <div class="progress-bar" role="progressbar" style="width: 100%">
         </div>
-
-    <div class="uploaded_info_holder">
     </div>
+
+
 }
 

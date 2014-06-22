@@ -108,6 +108,8 @@
                 </div>
             </div>
             <div class="col-md-6">
+                <h4>Avatar</h4>
+                <hr />
                 @if (Model.AvatarURL != null)
                 {
                     @Html.Partial("_ChangeAvatarPartial", new ManageUserViewModel(ViewBag.Cloudinary))
@@ -150,7 +152,7 @@
                 $('.uploaded_info_holder').empty();
                 $(info).append($('<div class="image"/>').append(
                   $.cloudinary.image(data.result.public_id, {
-                      format: data.result.format, width: 300, height: 300, crop: "fill"
+                      format: data.result.format, width: 460, height: 300, crop: "fill"
                   })
                 ));
                 $('.uploaded_info_holder').append(info);

@@ -3,7 +3,7 @@
 @using CloudinaryDotNet
 @model OnlineShopTime.Models.ManageUserViewModel
 
-<br/>
+<br />
 
 @{
     ShopDBEntities db = new ShopDBEntities();
@@ -13,19 +13,19 @@
 
 @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <div class="uploaded_info_holder">
-        @Model.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(300).Height(300).Crop("fill")).BuildImageTag(user.AvatarURL)
+    <center>
+    <div class="jumbotron uploaded_info_holder">
+        @Model.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(460).Height(300).Crop("fill")).BuildImageTag(user.AvatarURL)
     </div>
+    </center>
     <form>
         @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
     </form>
 
-        <br />
-        <div class="progress progress-striped" style="width:40%" id="progress" hidden="hidden">
-            <div class="progress-bar" role="progressbar" style="width: 100%">
-            </div>
+    <div class="progress progress-striped" style="" id="progress" hidden="hidden">
+        <div class="progress-bar" role="progressbar" style="width: 100%">
         </div>
-
+    </div>
 }
 
 
