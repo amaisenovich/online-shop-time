@@ -4,19 +4,15 @@
 @using CloudinaryDotNet
 
 <center>
-    <div class="jumbotron" style="width: 100%;">
+    <div class="jumbotron" style="width: 49%;">
         <div class="row">
             <div class="col-md-4">
-                @*<img src="Placeholder" alt="Placeholder" class="img-thumbnail" style="width: 150px; height: 150px;">*@
                 @ViewBag.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL)
             </div>
             <div class="col-md-8">
-                <h1 id="UserName">@Model.UserName</h1>
+                <h2>@Model.UserName</h2>
                 <h3>PLACE OF LIKES AND DISLIKES</h3>
             </div>
         </div>
     </div>
 </center>
-<script>
-    $("#UserName").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
-</script>
