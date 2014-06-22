@@ -269,6 +269,7 @@
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.cloudinary.js" />
     <Content Include="Scripts\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.fittext.js" />
     <Content Include="Scripts\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.ui.widget.js" />
     <Content Include="Scripts\jquery.validate.js" />

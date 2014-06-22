@@ -38,8 +38,10 @@
 
 @if (ViewBag.ViewData.ShowString == "TopUsers")
 {
+    ViewBag.Position = false;
     foreach (Users TopUser in ViewBag.ViewData.TopUsers)
     {
+        ViewBag.Position = !ViewBag.Position;
         @Html.Partial("_UserPartial", TopUser);
     }
 

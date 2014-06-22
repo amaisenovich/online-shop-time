@@ -1,16 +1,19 @@
 ﻿@model OnlineShopTime.Models.Users
 @using OnlineShopTime.Models;
 
-<div class="jumbotron">
-    <center>
+<center>
+    <div class="jumbotron" style="width: 100%;">
         <div class="row">
             <div class="col-md-4">
                 <img src="Placeholder" alt="Placeholder" class="img-thumbnail" style="width: 150px; height: 150px;">
             </div>
             <div class="col-md-8">
-                <h1>@Model.UserName</h1>
+                <h1 id="UserName">@Model.UserName</h1>
                 <h3>PLACE OF LIKES AND DISLIKES</h3>
             </div>
         </div>
-    </center>
-</div>
+    </div>
+</center>
+<script>
+    $("#UserName").fitText(1.1, { minFontSize: 50, maxFontSize: '75px' });
+</script>
