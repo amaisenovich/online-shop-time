@@ -261,8 +261,6 @@
     </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cloudinary_cors.html" />
     <Content Include="Content\darkly_bootstrap.css" />
     <Content Include="Content\lumen_bootstrap.css" />
