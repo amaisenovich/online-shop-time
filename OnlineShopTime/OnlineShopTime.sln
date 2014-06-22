@@ -5,7 +5,6 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineShopTime", "OnlineShopTime\OnlineShopTime.csproj", "{3D5A4AC3-4FD0-4CCF-A913-09DFB852A2D9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{65A6155F-9716-457C-9D1E-B77F78596C7D}"
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C182D49D-BF9C-4AD4-82C6-1D6DFB8BDEF3}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
