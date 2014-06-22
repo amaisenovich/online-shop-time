@@ -44,12 +44,12 @@
                     <form>
                         @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
                     </form>
-                    <div class="progress progress-striped" style="width:70%" id="progress" hidden="hidden">
+                    <br />
+                    <div class="progress progress-striped" style="width:70%" id="progress">
                         <div class="progress-bar" role="progressbar" style="width: 100%">
                         </div>
                     </div>
-                    <br />
-                    <div class="uploaded_info_holder" style="max-width: 310px; max-height: 310px; min-width: 310px; min-height: 310px; ">
+                    <div class="uploaded_info_holder">
                     </div>
                 </div>
             </div>
@@ -70,22 +70,15 @@
             .fileupload({
                 dropZone: '#direct_upload',
                 start: function () {
-                    $('.cloudinary-fileupload').hide();
-                    $('#progress').show();
                     $('#progress').addClass('active');
                 },
                 progress: function () {
                 },
             })
             .on('cloudinarydone', function (e, data) {
-                $('.cloudinary-fileupload').show();
-                $('#progress').hide();
                 $('#progress').removeClass('active');
                 $.post('/Offer/AddImageToOffer', data.result);
-                var style = "style=\"float: right; margin-bottom: 10px\"";
-                if (count % 2 == 0)
-                    style = "style=\"float: left; margin-bottom: 10px\"";
-                var info = $('<div class="uploaded_info" ' + style + '/>');
+                var info = $('<div class="uploaded_info" />');
                 $(info).append($('<div class="image"/>').append(
                   $.cloudinary.image(data.result.public_id, {
                       format: data.result.format, width: 150, height: 150, crop: "fill"
@@ -95,7 +88,7 @@
                 count++;
                 if (count >= 4) {
                     $('.cloudinary-fileupload').hide();
-                    $('#progress').hide();
+                    $('.progress-bar').hide();
                 }
             });
         });
