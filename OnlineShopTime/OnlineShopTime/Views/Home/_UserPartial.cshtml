@@ -7,8 +7,7 @@
 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="padding-left: 0px; padding-right: 0px;">
     <div class="jumbotron" style="max-width: 260px; word-wrap: break-word; padding-left: 0px; padding-right: 0px">
         <div>
-            @{Random rand = new Random(DateTime.Now.Millisecond);}
-            @ViewBag.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill").Effect("sepia:" + rand.Next(60, 100))).BuildImageTag(Model.AvatarURL, "id = image")
+            @ViewBag.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL, "id = image")
         </div>
         <div>
             <h4>@Model.UserName</h4>

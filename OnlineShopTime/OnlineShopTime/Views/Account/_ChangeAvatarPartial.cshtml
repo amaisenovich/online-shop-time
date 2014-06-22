@@ -13,7 +13,9 @@
 
 @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-        <h2>Direct upload from the browser</h2>
+    <div class="uploaded_info_holder">
+        @Model.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(300).Height(300).Crop("fill")).BuildImageTag(user.AvatarURL)
+    </div>
     <form>
         @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
     </form>
@@ -24,9 +26,6 @@
             </div>
         </div>
 
-    <div class="uploaded_info_holder">
-        @Model.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(user.AvatarURL)
-    </div>
 }
 
 

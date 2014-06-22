@@ -22,7 +22,7 @@ namespace OnlineShopTime.Controllers
                 IndexViewData = new IndexDataModel();
                 IndexViewData.ShowString = "NewOffers";
                 WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
-                IndexViewData.NewOffers = WWO.GetNewOffers();                
+                IndexViewData.NewOffers = WWO.GetNewOffers();
             }
 
             ViewBag.ViewData = IndexViewData;

@@ -150,7 +150,7 @@
                 $('.uploaded_info_holder').empty();
                 $(info).append($('<div class="image"/>').append(
                   $.cloudinary.image(data.result.public_id, {
-                      format: data.result.format, width: 150, height: 150, crop: "fill"
+                      format: data.result.format, width: 300, height: 300, crop: "fill"
                   })
                 ));
                 $('.uploaded_info_holder').append(info);
