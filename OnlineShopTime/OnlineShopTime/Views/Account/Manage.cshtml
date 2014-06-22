@@ -45,15 +45,17 @@
         .fileupload({
             dropZone: '#direct_upload',
             start: function () {
-                //$('.status_value').text('Starting direct upload...');
+                $('.cloudinary-fileupload').hide();
+                $('#progress').show();
                 $('#progress').addClass('active');
             },
             progress: function () {
-                //$('.status_value').text('Uploading...');
+                //do nothing
             },
         })
         .on('cloudinarydone', function (e, data) {
-            //$('.status_value').text('Idle');
+            $('.cloudinary-fileupload').show();
+            $('#progress').hide();
             $('#progress').removeClass('active');
             $.post('/Account/UploadDirect', data.result);
             var info = $('<div class="uploaded_info"/>');
@@ -64,6 +66,7 @@
               })
             ));
             $('.uploaded_info_holder').append(info);
+            $('#progress').hide();
         });
     });
 </script>

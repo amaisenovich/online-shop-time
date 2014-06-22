@@ -18,16 +18,11 @@
         @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
     </form>
 
-    <!-- status box -->
-    <div class="status">
-        @*<h2>Status</h2>*@
-        @*<span class="status_value">Idle</span>*@
         <br />
-        <div class="progress progress-striped" style="width:40%" id="progress">
+        <div class="progress progress-striped" style="width:40%" id="progress" hidden="hidden">
             <div class="progress-bar" role="progressbar" style="width: 100%">
             </div>
         </div>
-    </div>
 
     <div class="uploaded_info_holder">
         @Model.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(user.AvatarURL)
