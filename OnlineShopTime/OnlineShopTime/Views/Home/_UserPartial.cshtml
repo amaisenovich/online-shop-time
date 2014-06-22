@@ -4,14 +4,14 @@
 @using CloudinaryDotNet
 
 
-
-<div class="jumbotron col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin:5px; max-width:260px; word-wrap: break-word">
-    <div>
-        @ViewBag.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL, "id = image")
-    </div>
-    <div>
-        <h4>@Model.UserName</h4>
-        <h6>PLACE OF LIKES AND DISLIKES</h6>
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+    <div class="jumbotron" style="max-width: 260px; word-wrap: break-word; padding-left: 0px; padding-right: 0px">
+        <div>
+            @ViewBag.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL, "id = image")
+        </div>
+        <div>
+            <h4>@Model.UserName</h4>
+            <h6>PLACE OF LIKES AND DISLIKES</h6>
+        </div>
     </div>
 </div>
-
