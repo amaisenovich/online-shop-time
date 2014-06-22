@@ -45,6 +45,14 @@ namespace OnlineShopTime.Controllers
                     break;
             }
             Session["IndexData"] = IndexViewData;
+
+            Account acc = new Account(
+                    Properties.Settings.Default.CloudName,
+                    Properties.Settings.Default.ApiKey,
+                    Properties.Settings.Default.ApiSecret);
+            Cloudinary m_cloudinary = new Cloudinary(acc);
+            ViewBag.Cloudinary = m_cloudinary;
+
             return RedirectToAction("Index", "Home");
         }
 

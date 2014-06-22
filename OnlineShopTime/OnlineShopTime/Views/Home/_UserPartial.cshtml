@@ -1,11 +1,14 @@
 ﻿@model OnlineShopTime.Models.Users
-@using OnlineShopTime.Models;
+@using OnlineShopTime.Models
+@using Microsoft.AspNet.Identity
+@using CloudinaryDotNet
 
 <center>
     <div class="jumbotron" style="width: 100%;">
         <div class="row">
             <div class="col-md-4">
-                <img src="Placeholder" alt="Placeholder" class="img-thumbnail" style="width: 150px; height: 150px;">
+                @*<img src="Placeholder" alt="Placeholder" class="img-thumbnail" style="width: 150px; height: 150px;">*@
+                @ViewBag.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL)
             </div>
             <div class="col-md-8">
                 <h1 id="UserName">@Model.UserName</h1>
