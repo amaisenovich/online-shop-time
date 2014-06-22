@@ -388,6 +388,7 @@ namespace OnlineShopTime.Controllers
         {
             WorkWithUsers WWU = new WorkWithUsers();
             Users ActiveUser = WWU.GetUserByName(User.Identity.Name);
+            ViewBag.Cloudinary = m_cloudinary;
             return View(ActiveUser);
         }
 
