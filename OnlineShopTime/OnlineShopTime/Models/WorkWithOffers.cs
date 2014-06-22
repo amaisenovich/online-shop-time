@@ -20,7 +20,7 @@ namespace OnlineShopTime.Models
 
         public WorkWithOffers(string UserName)
         {
-            this.UserName = UserName;            
+            this.UserName = UserName;
             GetActiveUserID(UserName);
         }
         public void GetActiveUserID(string UserName)
@@ -41,6 +41,12 @@ namespace OnlineShopTime.Models
             newOffer.OfferedBy = UserID;
             newOffer.OfferID = Guid.NewGuid().ToString();
             return newOffer;
+        }
+        public IQueryable<Offers> GetNewOffers()
+        {
+            //Returns 12 latest Offers
+            Db = new ShopDBEntities();
+            return (from OfferRecord in Db.Offers orderby OfferRecord.DateAndTime descending select OfferRecord).Take(12);
         }
         public void AddNewOffer(Offers newOffer)
         {

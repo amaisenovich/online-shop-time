@@ -45,19 +45,20 @@
                 foreach (Users TopUser in ViewBag.ViewData.TopUsers)
                 {
                     @Html.Partial("_UserPartial", TopUser);
-                    @Html.Partial("_UserPartial", TopUser);
-                    @Html.Partial("_UserPartial", TopUser);
                 }
             }
         </center>
     </div>
 </div>
 
-
-@if (ViewBag.ViewData.ShowString == "NewOffers")
-{
-    for (int i = 0; i < 10; i++)
-    {
-        @Html.Partial("_OfferPartial");
-    }
-}
+<div class="container-fluid">
+    <div class="row">
+        @if (ViewBag.ViewData.ShowString == "NewOffers")
+        {
+            foreach (Offers NewOffer in ViewBag.ViewData.NewOffers)
+            {
+                @Html.Partial("_OfferPartial", NewOffer);
+            }
+        }
+    </div>
+</div>

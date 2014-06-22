@@ -18,10 +18,14 @@ namespace OnlineShopTime.Controllers
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
             if (IndexViewData == null)
+            {
                 IndexViewData = new IndexDataModel();
-            Session["IndexData"] = IndexViewData;
-            ViewBag.ViewData = IndexViewData;
+                IndexViewData.ShowString = "NewOffers";
+                WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
+                IndexViewData.NewOffers = WWO.GetNewOffers();                
+            }
 
+            ViewBag.ViewData = IndexViewData;
             Account acc = new Account(
                     Properties.Settings.Default.CloudName,
                     Properties.Settings.Default.ApiKey,
@@ -30,6 +34,7 @@ namespace OnlineShopTime.Controllers
 
             ViewBag.Cloudinary = m_cloudinary;
 
+            Session["IndexData"] = IndexViewData;
             return View();
         }
 
@@ -39,9 +44,9 @@ namespace OnlineShopTime.Controllers
             WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
             WorkWithUsers WWU = new WorkWithUsers();
             switch (tabID)
-            { 
+            {
                 case 1:
-                    IndexViewData.ShowTopOffers();
+                    //IndexViewData.ShowTopOffers();
                     //IndexViewData.TopOffers = WWO.GetTopOffers();
                     break;
                 case 2:
@@ -50,7 +55,7 @@ namespace OnlineShopTime.Controllers
                     break;
                 case 3:
                     IndexViewData.ShowNewOffers();
-                    //IndexViewData.NewOffers = WWO.GetNewOffers();
+                    IndexViewData.NewOffers = WWO.GetNewOffers();
                     break;
             }
             Session["IndexData"] = IndexViewData;

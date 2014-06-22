@@ -10,8 +10,8 @@ namespace OnlineShopTime.Models
         ShopDBEntities db;
         public int[] GetUserRaiting(string Id)
         {
-            db = new ShopDBEntities();
             //Returns array. First element - number of likes, second - number of dislikes.
+            db = new ShopDBEntities();
             int likes = 0;
             int dislikes = 0;
             var UserRaitingRecords = from Record in db.UserRaiting where Record.UserID == Id select Record;
@@ -26,8 +26,8 @@ namespace OnlineShopTime.Models
         }
         public IQueryable<Users> GetTopUsers()
         {
+            //Returns IQueryable of Users arranged by (likes - dislikes). Returns only top 12 records.
             db = new ShopDBEntities();
-            //Returns IQueryable of Users arranged by (likes - dislikes). Returns only top 10 records.
             var UserRaitingArranged = from RaitingRecords in db.UserRaiting
                                       group RaitingRecords by RaitingRecords.UserID
                                           into ResultTable
@@ -38,7 +38,6 @@ namespace OnlineShopTime.Models
                                         select UserRecord).Take(12);
             return TopUser;
         }
-
         public Users GetUserByName(string UserName)
         {
             db = new ShopDBEntities();
