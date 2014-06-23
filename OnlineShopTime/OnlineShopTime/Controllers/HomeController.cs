@@ -64,16 +64,18 @@ namespace OnlineShopTime.Controllers
 
         public ActionResult ChangeCulture(string lang)
         {
+            string callbackUrl = Request.UrlReferrer.AbsolutePath;
             var langCookie = new HttpCookie("lang", lang) { HttpOnly = true };
             Response.AppendCookie(langCookie);
-            return RedirectToAction("Index", "Home");
+            return Redirect(callbackUrl);
         }
 
         public ActionResult ChangeStyle(string style)
         {
+            string callbackUrl = Request.UrlReferrer.AbsolutePath;
             var styleCookie = new HttpCookie("style", style) { HttpOnly = true };
             Response.AppendCookie(styleCookie);
-            return RedirectToAction("Index", "Home");
+            return Redirect(callbackUrl);
         }
     }
 }
