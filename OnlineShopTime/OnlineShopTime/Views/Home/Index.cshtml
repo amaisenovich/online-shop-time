@@ -29,13 +29,17 @@
 </center>
 <br />
 
-@if (ViewBag.ViewData.ShowString == "TopOffers")
-{
-    for (int i = 0; i < 10; i++)
-    {
-        @Html.Partial("_OfferPartial");
-    }
-}
+<div class="container-fluid">
+    <div class="row">
+        @if (ViewBag.ViewData.ShowString == "TopOffers")
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                @Html.Partial("_OfferPartial");
+            }
+        }
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="row">
