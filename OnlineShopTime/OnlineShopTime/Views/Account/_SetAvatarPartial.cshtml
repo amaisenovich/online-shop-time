@@ -1,8 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @model OnlineShopTime.Models.ManageUserViewModel
 
-<br />
-
 @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <div class="uploaded_info_holder">
@@ -16,7 +14,5 @@
         <div class="progress-bar" role="progressbar" style="width: 100%">
         </div>
     </div>
-
-
 }
 

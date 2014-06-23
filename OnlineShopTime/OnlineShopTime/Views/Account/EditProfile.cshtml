@@ -5,121 +5,63 @@
     ViewBag.Title = "EditProfile";
 }
 
-<h2>EditProfile</h2>
+<h2>@Resources.Home.EditProfile</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="container">
-        <div class="row">
+        <div class="row ">
             <div class="col-md-6">
-                <div class="form-horizontal">
+                <div class="form-horizontal" style="min-height: 10em">
                     <h4>Users</h4>
                     <hr />
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.UserID)
+                   
+                        <div class="jumbotron">
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.UserName, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.UserName)
-                            @Html.ValidationMessageFor(model => model.UserName)
-                        </div>
-                    </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4">@Resources.Home.FirstName:</label>
+                                    <input class="form-control" name="FirstName" maxlength="75" style="width: 100%; max-width: 100%" value="@Model.FirstName">
+                                </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PasswordHash, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PasswordHash)
-                            @Html.ValidationMessageFor(model => model.PasswordHash)
-                        </div>
-                    </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4">@Resources.Home.LastName:</label>
+                                    <input name="LastName" maxlength="75" class="form-control" style="width: 100%; max-width: 100%" value="@Model.LastName">
+                                </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.SecurityStamp, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.SecurityStamp)
-                            @Html.ValidationMessageFor(model => model.SecurityStamp)
-                        </div>
-                    </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4">Email:</label>
+                                    <input name="Email" maxlength="75" class="form-control" style="width: 100%; max-width: 100%" value="@Model.Email">
+                                </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.FirstName)
-                            @Html.ValidationMessageFor(model => model.FirstName)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.LastName)
-                            @Html.ValidationMessageFor(model => model.LastName)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Email)
-                            @Html.ValidationMessageFor(model => model.Email)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PhoneNumber, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PhoneNumber)
-                            @Html.ValidationMessageFor(model => model.PhoneNumber)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.UserRights, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.UserRights)
-                            @Html.ValidationMessageFor(model => model.UserRights)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.AvatarURL, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.AvatarURL)
-                            @Html.ValidationMessageFor(model => model.AvatarURL)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Discriminator, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Discriminator)
-                            @Html.ValidationMessageFor(model => model.Discriminator)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" class="btn btn-default" />
-                        </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4">@Resources.Home.PhoneNumber:</label>
+                                    <input name="PhoneNumber" maxlength="75" style="width: 100%; max-width: 100%" class="form-control" value="@Model.PhoneNumber">
+                                </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <h4>Avatar</h4>
-                <hr />
-                @if (Model.AvatarURL != null)
-                {
-                    @Html.Partial("_ChangeAvatarPartial", new ManageUserViewModel(ViewBag.Cloudinary))
-                }
-                else
-                {
-                    @Html.Partial("_SetAvatarPartial")
-                }
-            </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
         </div>
+        <div class="col-md-6">
+            <h4>Avatar</h4>
+            <hr />
+            @if (Model.AvatarURL != null)
+            {
+                @Html.Partial("_ChangeAvatarPartial", new ManageUserViewModel(ViewBag.Cloudinary))
+            }
+            else
+            {
+                @Html.Partial("_SetAvatarPartial")
+            }
+        </div>
+    </div>
     </div>
 }
 

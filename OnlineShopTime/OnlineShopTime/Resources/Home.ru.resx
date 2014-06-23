@@ -141,8 +141,14 @@
   <data name="CreateOffer" xml:space="preserve">
     <value>Создать предложене</value>
   </data>
+  <data name="EditProfile" xml:space="preserve">
+    <value>Редактировать профиль</value>
+  </data>
   <data name="ErroeNameInput" xml:space="preserve">
     <value>Название является обязательным полем</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>Имя</value>
   </data>
   <data name="Gallery" xml:space="preserve">
     <value>Галерея</value>
@@ -158,6 +164,9 @@
   </data>
   <data name="Language" xml:space="preserve">
     <value>Язык</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Фамилия</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>Выполнить вход</value>
@@ -197,6 +206,9 @@
   </data>
   <data name="PasswordChange" xml:space="preserve">
     <value>Изменить пароль</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
   </data>
   <data name="Registration" xml:space="preserve">
     <value>Регистрация</value>
