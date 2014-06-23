@@ -9,10 +9,8 @@
 
 namespace OnlineShopTime.Models
 {
-    using CloudinaryDotNet;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Offers
     {
@@ -22,20 +20,9 @@ namespace OnlineShopTime.Models
             this.OfferRaiting = new HashSet<OfferRaiting>();
             this.Orders = new HashSet<Orders>();
             this.Tags = new HashSet<Tags>();
-
-
-            Account acc = new Account(
-                    Properties.Settings.Default.CloudName,
-                    Properties.Settings.Default.ApiKey,
-                    Properties.Settings.Default.ApiSecret);
-
-            Cloudinary = new Cloudinary(acc);
         }
-
-        public Cloudinary Cloudinary { get; set; }
     
         public string OfferID { get; set; }
-        [Required(ErrorMessage = "@Resources.Home.ErroeNameInput")]
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> DateAndTime { get; set; }
@@ -43,7 +30,9 @@ namespace OnlineShopTime.Models
         public string Photo1URL { get; set; }
         public string Photo2URL { get; set; }
         public string Photo3URL { get; set; }
-        public string Photo4URL { get; set; }    
+        public string Photo4URL { get; set; }
+        public Nullable<decimal> Price { get; set; }
+    
         public virtual ICollection<Comments> Comments { get; set; }
         public virtual ICollection<OfferRaiting> OfferRaiting { get; set; }
         public virtual Users Users { get; set; }
