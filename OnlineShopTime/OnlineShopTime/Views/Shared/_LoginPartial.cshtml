@@ -7,7 +7,7 @@
     
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Home.Hello  @User.Identity.GetUserName() ! <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.Home.Hello,  @User.Identity.GetUserName()! <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li>
                         @Html.ActionLink(@Resources.Home.PasswordChange, "Manage", "Account")

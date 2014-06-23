@@ -3,14 +3,15 @@
 @using Microsoft.AspNet.Identity
 @using CloudinaryDotNet
 
-
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="padding-left: 0px; padding-right: 0px;">
-    <div class="jumbotron" style="max-width: 260px; word-wrap: break-word; padding-left: 0px; padding-right: 0px">
-        <div>
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 container" style="padding-left: 0px; padding-right: 0px;">
+    <div class="jumbotron row" style="max-width: 260px; word-wrap: break-word; padding-left: 0px; padding-right: 0px">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             @ViewBag.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL, "id = image")
         </div>
-        <div>
-            <h4>@Model.UserName</h4>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h3 style="line-height:1px">@Model.FirstName</h3>
+                <h3 style="line-height:1px">@Model.LastName</h3>
+            <br />
             <h6>PLACE OF LIKES AND DISLIKES</h6>
         </div>
     </div>
