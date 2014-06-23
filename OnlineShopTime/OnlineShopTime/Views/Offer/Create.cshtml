@@ -1,5 +1,6 @@
 ﻿@model OnlineShopTime.Models.Offers
 @using CloudinaryDotNet
+@using OnlineShopTime.Utils
 
 @{
     ViewBag.Title = "Create";
@@ -36,7 +37,7 @@
                 </div>
                 <div class="col-md-4 column">
                     <form>
-                        @* @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })*@
+                         @Cloud.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "false" } })
                     </form>
                     <div class="progress progress-striped" style="width:70%" id="progress" hidden="hidden">
                         <div class="progress-bar" role="progressbar" style="width: 100%">
@@ -55,7 +56,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-    @* @Model.Cloudinary.GetCloudinaryJsConfig()*@
+     @Cloud.GetCloudinaryJsConfig()
 
     <script type="text/javascript">
         $(function () {

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
 using Newtonsoft.Json.Linq;
 using OnlineShopTime.Models;
 
@@ -26,13 +24,6 @@ namespace OnlineShopTime.Controllers
             }
 
             ViewBag.ViewData = IndexViewData;
-            Account acc = new Account(
-                    Properties.Settings.Default.CloudName,
-                    Properties.Settings.Default.ApiKey,
-                    Properties.Settings.Default.ApiSecret);
-            Cloudinary m_cloudinary = new Cloudinary(acc);
-
-            ViewBag.Cloudinary = m_cloudinary;
 
             Session["IndexData"] = IndexViewData;
             return View();
@@ -41,6 +32,8 @@ namespace OnlineShopTime.Controllers
         public ActionResult TabClick(int tabID)
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
+            if (IndexViewData == null)
+                return RedirectToAction("Index", "Home");
             WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
             WorkWithUsers WWU = new WorkWithUsers();
             switch (tabID)

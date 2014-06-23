@@ -1,5 +1,6 @@
 ﻿@model OnlineShopTime.Models.Offers
 @using CloudinaryDotNet
+@using OnlineShopTime.Utils
 
 @{string defaultImage = "v6ac3uaxfe5gtlqtrbr7";}
 
@@ -8,7 +9,7 @@
 
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-3 col-xs-4">
-                @ViewBag.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(140).Height(140).Crop("fill")).BuildImageTag(Model.Photo1URL ?? defaultImage, "id = image", "class=img-responsive")
+                @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(140).Height(140).Crop("fill")).BuildImageTag(Model.Photo1URL ?? defaultImage, "id = image", "class=img-responsive")
             </div>
             <div class="col-lg-7 col-md-7 col-sm-9 col-xs-8">
                 <h3 style="margin-top:0px">@Model.Name</h3>

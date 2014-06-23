@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model OnlineShopTime.Models.ManageUserViewModel
+@using OnlineShopTime.Utils
 
 @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
@@ -7,7 +7,7 @@
     </div>
     <br />
     <form>
-        @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
+        @Cloud.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "true" } })
     </form>
 
     <div class="progress progress-striped" style="width:40%" id="progress" hidden="hidden">

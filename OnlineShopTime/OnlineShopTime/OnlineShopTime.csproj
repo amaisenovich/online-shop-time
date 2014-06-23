@@ -253,6 +253,7 @@
       <DependentUpon>Home.ru.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\Cloud.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ShopDB.mdf" />
