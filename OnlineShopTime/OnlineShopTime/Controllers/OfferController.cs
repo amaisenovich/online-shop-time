@@ -27,6 +27,7 @@ namespace OnlineShopTime.Controllers
             newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo3URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
+            newOffer = WWO.CompleteOfferWithData(newOffer);
             WWO.AddNewOffer(newOffer);
             imageURLs.Clear();
             return RedirectToAction("Index", "Home");

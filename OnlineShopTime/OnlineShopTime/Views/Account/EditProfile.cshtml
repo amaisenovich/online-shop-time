@@ -1,5 +1,6 @@
 ﻿@model OnlineShopTime.Models.Users
 @using OnlineShopTime.Models
+@using OnlineShopTime.Utils
 
 @{
     ViewBag.Title = "EditProfile";
@@ -24,22 +25,22 @@
 
                         <div class="form-group">
                             <label class="col-lg-4">@Resources.Home.FirstName:</label>
-                            <input class="form-control" name="FirstName" maxlength="75" style="width: 100%; max-width: 100%" value="@Model.FirstName">
+                            <input class="form-control" name="FirstName" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" value="@Model.FirstName">
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-4">@Resources.Home.LastName:</label>
-                            <input name="LastName" maxlength="75" class="form-control" style="width: 100%; max-width: 100%" value="@Model.LastName">
+                            <input name="LastName" maxlength="75" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" value="@Model.LastName">
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-4">Email:</label>
-                            <input name="Email" maxlength="75" class="form-control" style="width: 100%; max-width: 100%" value="@Model.Email">
+                            <input name="Email" maxlength="75" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" value="@Model.Email">
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-4">@Resources.Home.PhoneNumber:</label>
-                            <input name="PhoneNumber" maxlength="75" style="width: 100%; max-width: 100%" class="form-control" value="@Model.PhoneNumber">
+                            <label class="col-lg-12">@Resources.Home.PhoneNumber:</label>
+                            <input name="PhoneNumber" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" class="form-control" value="@Model.PhoneNumber">
                         </div>
                     </div>
                 </div>
@@ -54,7 +55,7 @@
                 <hr />
                 @if (Model.AvatarURL != null)
                 {
-                    @Html.Partial("_ChangeAvatarPartial", new ManageUserViewModel(ViewBag.Cloudinary))
+                    @Html.Partial("_ChangeAvatarPartial")
                 }
                 else
                 {
@@ -69,7 +70,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-    @ViewBag.Cloudinary.GetCloudinaryJsConfig()
+    @Cloud.GetCloudinaryJsConfig()
 
     <script type="text/javascript">
         $(function () {
