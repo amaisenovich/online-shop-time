@@ -12,8 +12,10 @@
 @using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     <center>
-    <div class="jumbotron uploaded_info_holder">
+    <div class="jumbotron">
+        <div>
         @Model.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(460).Height(300).Crop("fill")).BuildImageTag(user.AvatarURL, "class=img-responsive")
+            </div>
     </div>
     </center>
     <form>

@@ -15,12 +15,18 @@
                     <li>
                         @Html.ActionLink(@Resources.Home.MyProfile, "EditProfile", "Account")
                     </li>
+                    <li role="presentation" class="divider"></li>
                     <li>
                         @Html.ActionLink(@Resources.Home.MyOrders, "UserOrdes", "Order")
                     </li>
+                    <li role="presentation" class="divider"></li>
                     <li>
                         @Html.ActionLink(@Resources.Home.MyOffers, "UserOffers", "Offer")
                     </li>
+                    <li>
+                        @Html.ActionLink(@Resources.Home.CreateOffer, "Create", "Offer")
+                    </li>
+                    <li role="presentation" class="divider"></li>
                     <li>
                         <a href="javascript:document.getElementById('logoutForm').submit()">@Resources.Home.Logout</a>
                     </li>

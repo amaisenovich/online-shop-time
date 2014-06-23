@@ -20,27 +20,27 @@
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.UserID)
                    
-                        <div class="jumbotron">
+                    <div class="jumbotron" style="height: 380px">
 
-                                <div class="form-group">
-                                    <label class="col-lg-4">@Resources.Home.FirstName:</label>
-                                    <input class="form-control" name="FirstName" maxlength="75" style="width: 100%; max-width: 100%" value="@Model.FirstName">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-lg-4">@Resources.Home.FirstName:</label>
+                            <input class="form-control" name="FirstName" maxlength="75" style="width: 100%; max-width: 100%" value="@Model.FirstName">
+                        </div>
 
-                                <div class="form-group">
-                                    <label class="col-lg-4">@Resources.Home.LastName:</label>
-                                    <input name="LastName" maxlength="75" class="form-control" style="width: 100%; max-width: 100%" value="@Model.LastName">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-lg-4">@Resources.Home.LastName:</label>
+                            <input name="LastName" maxlength="75" class="form-control" style="width: 100%; max-width: 100%" value="@Model.LastName">
+                        </div>
 
-                                <div class="form-group">
-                                    <label class="col-lg-4">Email:</label>
-                                    <input name="Email" maxlength="75" class="form-control" style="width: 100%; max-width: 100%" value="@Model.Email">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-lg-4">Email:</label>
+                            <input name="Email" maxlength="75" class="form-control" style="width: 100%; max-width: 100%" value="@Model.Email">
+                        </div>
 
-                                <div class="form-group">
-                                    <label class="col-lg-4">@Resources.Home.PhoneNumber:</label>
-                                    <input name="PhoneNumber" maxlength="75" style="width: 100%; max-width: 100%" class="form-control" value="@Model.PhoneNumber">
-                                </div>
+                        <div class="form-group">
+                            <label class="col-lg-4">@Resources.Home.PhoneNumber:</label>
+                            <input name="PhoneNumber" maxlength="75" style="width: 100%; max-width: 100%" class="form-control" value="@Model.PhoneNumber">
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -49,18 +49,18 @@
                     </div>
                 </div>
         </div>
-        <div class="col-md-6">
-            <h4>Avatar</h4>
-            <hr />
-            @if (Model.AvatarURL != null)
-            {
-                @Html.Partial("_ChangeAvatarPartial", new ManageUserViewModel(ViewBag.Cloudinary))
-            }
-            else
-            {
-                @Html.Partial("_SetAvatarPartial")
-            }
-        </div>
+            <div class="col-md-6">
+                <h4>Avatar</h4>
+                <hr />
+                @if (Model.AvatarURL != null)
+                {
+                    @Html.Partial("_ChangeAvatarPartial", new ManageUserViewModel(ViewBag.Cloudinary))
+                }
+                else
+                {
+                    @Html.Partial("_SetAvatarPartial")
+                }
+            </div>
     </div>
     </div>
 }
