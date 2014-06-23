@@ -9,8 +9,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using OnlineShopTime.Models;
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
 using Newtonsoft.Json.Linq;
 using System.IO;
 
@@ -19,7 +17,6 @@ namespace OnlineShopTime.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        static Cloudinary m_cloudinary;
         static ShopDBEntities m_db;
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
@@ -32,13 +29,6 @@ namespace OnlineShopTime.Controllers
 
             m_db = new ShopDBEntities();
             m_db.Database.Initialize(false);
-
-            Account acc = new Account(
-                    Properties.Settings.Default.CloudName,
-                    Properties.Settings.Default.ApiKey,
-                    Properties.Settings.Default.ApiSecret);
-
-            m_cloudinary = new Cloudinary(acc);
         }
 
         [HttpPost]
@@ -199,7 +189,7 @@ namespace OnlineShopTime.Controllers
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.HasAvatar = CurrentUser.AvatarURL != null;
             ViewBag.ReturnUrl = Url.Action("Manage");
-            return View(new ManageUserViewModel(m_cloudinary));
+            return View();
         }
 
         //
@@ -388,7 +378,6 @@ namespace OnlineShopTime.Controllers
         {
             WorkWithUsers WWU = new WorkWithUsers();
             Users ActiveUser = WWU.GetUserByName(User.Identity.Name);
-            ViewBag.Cloudinary = m_cloudinary;
             return View(ActiveUser);
         }
 

@@ -1,7 +1,7 @@
 ﻿@using OnlineShopTime.Models
 @using Microsoft.AspNet.Identity
 @using CloudinaryDotNet
-@model OnlineShopTime.Models.ManageUserViewModel
+@using OnlineShopTime.Utils
 
 @{
     ShopDBEntities db = new ShopDBEntities();
@@ -13,11 +13,11 @@
 {
     <center>
     <div class="jumbotron uploaded_info_holder">
-        @Model.Cloudinary.Api.UrlImgUp.Transform(new Transformation().Width(460).Height(300).Crop("fill")).BuildImageTag(user.AvatarURL, "class=img-responsive")
+        @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(460).Height(300).Crop("fill")).BuildImageTag(user.AvatarURL, "class=img-responsive")
     </div>
     </center>
     <form>
-        @Model.Cloudinary.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "false" } })
+        @Cloud.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "false" } })
     </form>
 
     <div class="progress progress-striped" style="" id="progress" hidden="hidden">
