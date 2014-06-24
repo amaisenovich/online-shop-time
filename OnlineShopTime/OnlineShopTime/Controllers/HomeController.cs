@@ -15,6 +15,7 @@ namespace OnlineShopTime.Controllers
         public ActionResult Index()
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
+
             if (IndexViewData == null)
             {
                 IndexViewData = new IndexDataModel();
@@ -24,7 +25,6 @@ namespace OnlineShopTime.Controllers
             }
 
             ViewBag.ViewData = IndexViewData;
-
             Session["IndexData"] = IndexViewData;
             return View();
         }
@@ -32,17 +32,17 @@ namespace OnlineShopTime.Controllers
         public ActionResult TabClick(int tabID)
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
-            if (IndexViewData == null)
-                return RedirectToAction("Index", "Home");
+
             WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
-            WorkWithUsers WWU = new WorkWithUsers();
             switch (tabID)
             {
-                case 1:
+
+                case 1:                    
                     //IndexViewData.ShowTopOffers();
                     //IndexViewData.TopOffers = WWO.GetTopOffers();
                     break;
                 case 2:
+                    WorkWithUsers WWU = new WorkWithUsers();
                     IndexViewData.ShowTopUsers();
                     IndexViewData.TopUsers = WWU.GetTopUsers();
                     break;
@@ -51,6 +51,7 @@ namespace OnlineShopTime.Controllers
                     IndexViewData.NewOffers = WWO.GetNewOffers();
                     break;
             }
+
             Session["IndexData"] = IndexViewData;
             return RedirectToAction("Index", "Home");
         }

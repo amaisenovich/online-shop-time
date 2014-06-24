@@ -383,8 +383,10 @@ namespace OnlineShopTime.Controllers
 
         [HttpPost]
         public ActionResult EditProfile(Users EditUser)
-        {      
-            return View();
+        {
+            WorkWithUsers WWU = new WorkWithUsers();
+            WWU.SetEditProfileData(EditUser);
+            return RedirectToAction("TabClick", "Home", new { tabID = 3 });
         }
 
 

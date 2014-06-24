@@ -20,11 +20,11 @@
                     <hr />
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.UserID)
-                   
+
                     <div class="jumbotron" style="height: 380px">
 
                         <div class="form-group">
-                            <label class="col-lg-4">@Resources.Home.FirstName:</label>
+                            <label class="col-lg-4" style="margin-top: -5%">@Resources.Home.FirstName:</label>
                             <input class="form-control" name="FirstName" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" value="@Model.FirstName">
                         </div>
 
@@ -43,13 +43,15 @@
                             <input name="PhoneNumber" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" class="form-control" value="@Model.PhoneNumber">
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Save" class="btn btn-default" />
+                        </div>
                     </div>
+
                 </div>
-        </div>
+            </div>
             <div class="col-md-6">
                 <h4>Avatar</h4>
                 <hr />
@@ -62,7 +64,7 @@
                     @Html.Partial("_SetAvatarPartial")
                 }
             </div>
-    </div>
+        </div>
     </div>
 }
 
