@@ -34,6 +34,8 @@ namespace OnlineShopTime.Controllers
             IndexViewData = (IndexDataModel)Session["IndexData"];
 
             WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
+            if (IndexViewData == null)
+                IndexViewData = new IndexDataModel();
             switch (tabID)
             {
 
