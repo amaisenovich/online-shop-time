@@ -82,5 +82,9 @@ namespace OnlineShopTime.Controllers
             Session["UserID"] = UserID;
             return View(UserOffers);
         }
+        public ActionResult OfferPage(String OfferID)
+        {
+            return View();
+        }
     }
 }
