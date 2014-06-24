@@ -189,6 +189,12 @@
   <data name="NewOffers" xml:space="preserve">
     <value>New offers</value>
   </data>
+  <data name="OfferDate" xml:space="preserve">
+    <value>Offered</value>
+  </data>
+  <data name="OfferedBy" xml:space="preserve">
+    <value>Offered by</value>
+  </data>
   <data name="OfferPageDescriptionLabel" xml:space="preserve">
     <value>Description</value>
   </data>
@@ -213,6 +219,12 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Raiting" xml:space="preserve">
+    <value>Raiting</value>
+  </data>
   <data name="Registration" xml:space="preserve">
     <value>Registration</value>
   </data>
@@ -230,5 +242,17 @@
   </data>
   <data name="YourOffers" xml:space="preserve">
     <value>Your offers</value>
+  </data>
+  <data name="OrderIT" xml:space="preserve">
+    <value>Order it</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ShopName" xml:space="preserve">
+    <value>Time</value>
   </data>
 </root>

@@ -189,6 +189,12 @@
   <data name="NewOffers" xml:space="preserve">
     <value>Новые предложения</value>
   </data>
+  <data name="OfferDate" xml:space="preserve">
+    <value>Предложено</value>
+  </data>
+  <data name="OfferedBy" xml:space="preserve">
+    <value>Предложил</value>
+  </data>
   <data name="OfferPageDescriptionLabel" xml:space="preserve">
     <value>Описание</value>
   </data>
@@ -213,6 +219,12 @@
   <data name="PhoneNumber" xml:space="preserve">
     <value>Номер телефона</value>
   </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Raiting" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
   <data name="Registration" xml:space="preserve">
     <value>Регистрация</value>
   </data>
@@ -230,5 +242,17 @@
   </data>
   <data name="YourOffers" xml:space="preserve">
     <value>Ваши предложения</value>
+  </data>
+  <data name="OrderIT" xml:space="preserve">
+    <value>Заказать</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="ShopName" xml:space="preserve">
+    <value>Время</value>
   </data>
 </root>
