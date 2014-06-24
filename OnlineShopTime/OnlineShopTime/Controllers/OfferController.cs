@@ -68,6 +68,7 @@ namespace OnlineShopTime.Controllers
         [HttpGet]
         public ActionResult ShowUserOffers()
         {
+
             return View();
         }
 

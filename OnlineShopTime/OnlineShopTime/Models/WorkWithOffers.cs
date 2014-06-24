@@ -44,11 +44,9 @@ namespace OnlineShopTime.Models
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
         }
-
-        //public IQueryable<Offers> GetUsersOffers()
-        //{
-        //    IQueryable<Offers> result == 
-            
-        //}
+        public IQueryable<Offers> GetUsersOffers(String UserName)
+        {
+            return (from OffersRecords in Db.Offers where OffersRecords.OfferedBy == GetActiveUserID(UserName) select OffersRecords);
+        }
     }
 }
