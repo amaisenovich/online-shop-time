@@ -1,10 +1,7 @@
 ﻿@model OnlineShopTime.Models.Offers
-@using OnlineShopTime.Utils
-@using CloudinaryDotNet
 
 @{
     ViewBag.Title = @Model.Name;
-    string defaultImage = "v6ac3uaxfe5gtlqtrbr7";
 }
 
 @using (Html.BeginForm())
@@ -15,69 +12,31 @@
     <br />
 
     <div class="container jumbotron">
-
-        <div class="row">
-            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8">
-                <h3>@Model.Name</h3>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4" style="text-align: right">
-                <h3>PRICE</h3>
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(400).Height(300).Crop("fill")).BuildImageTag(Model.Photo1URL ?? defaultImage, "id = image", "class=img-responsive")
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(400).Height(300).Crop("fill")).BuildImageTag(Model.Photo2URL ?? defaultImage, "id = image", "class=img-responsive")
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(400).Height(300).Crop("fill")).BuildImageTag(Model.Photo3URL ?? defaultImage, "id = image", "class=img-responsive")
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(400).Height(300).Crop("fill")).BuildImageTag(Model.Photo4URL ?? defaultImage, "id = image", "class=img-responsive")
-                </a>
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="row">
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                        </div>
-                    </div>
+        <center>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <h2>@Model.Name</h2>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <h2>PRICE</h2>
                 </div>
             </div>
+        </center>
+
+        <hr />
+
+        <div class="row">
+            @{ViewBag.URL = Model.Photo1URL;}
+            @Html.Partial("_GalleryItem")
+            @{ViewBag.URL = Model.Photo2URL;}
+            @Html.Partial("_GalleryItem")
+            @{ViewBag.URL = Model.Photo3URL;}
+            @Html.Partial("_GalleryItem")
+            @{ViewBag.URL = Model.Photo4URL;}
+            @Html.Partial("_GalleryItem")
         </div>
 
-    </div>
+        <hr />
 
-    @*<script>
-        $(document).ready(function () {
-            $('li img').on('click', function () {
-                var src = $(this).attr('src');
-                var img = '<img src="' + src + '" class="img-responsive"/>';
-                $('#myModal').modal();
-                $('#myModal').on('shown.bs.modal', function () {
-                    $('#myModal .modal-body').html(img);
-                });
-                $('#myModal').on('hidden.bs.modal', function () {
-                    $('#myModal .modal-body').html('');
-                });
-            });
-        })*@
-    </script>
+    </div>
 }

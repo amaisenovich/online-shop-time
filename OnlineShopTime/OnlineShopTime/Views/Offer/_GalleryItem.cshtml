@@ -1,0 +1,11 @@
+﻿@using OnlineShopTime.Utils
+@using CloudinaryDotNet
+
+@{string defaultImage = "v6ac3uaxfe5gtlqtrbr7";}
+
+<div class="col-lg-3 col-md-3 col-xs-6 thumb">
+    @{string imageURL = ViewBag.URL ?? defaultImage;}
+    <a class="thumbnail" href="http://res.cloudinary.com/itransition/image/upload/@imageURL" data-gallery>
+        @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(400).Height(300).Crop("fill")).BuildImageTag(imageURL, "id = image", "class=img-responsive")
+    </a>
+</div>
