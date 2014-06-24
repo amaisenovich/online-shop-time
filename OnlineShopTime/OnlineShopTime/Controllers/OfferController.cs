@@ -68,14 +68,9 @@ namespace OnlineShopTime.Controllers
         [HttpGet]
         public ActionResult ShowUserOffers()
         {
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult ShowUserOffers(int TabID)
-        {
-            return View();
+            WorkWithOffers WWO = new WorkWithOffers();
+            IQueryable<Offers> UserOffers = WWO.GetUsersOffers(User.Identity.Name);
+            return View(UserOffers);
         }
     }
 }

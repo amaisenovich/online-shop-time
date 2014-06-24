@@ -374,5 +374,14 @@ namespace Resources {
                 return ResourceManager.GetString("TopUsers", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Your offers.
+        /// </summary>
+        public static string YourOffers {
+            get {
+                return ResourceManager.GetString("YourOffers", resourceCulture);
+            }
+        }
     }
 }

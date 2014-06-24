@@ -222,4 +222,7 @@
   <data name="TopUsers" xml:space="preserve">
     <value>Top users</value>
   </data>
+  <data name="YourOffers" xml:space="preserve">
+    <value>Your offers</value>
+  </data>
 </root>

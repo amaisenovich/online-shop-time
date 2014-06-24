@@ -1,8 +1,18 @@
 ﻿@model IQueryable<OnlineShopTime.Models.Offers>
+@using OnlineShopTime.Models;
 
 @{
-    ViewBag.Title = "ShowUserOffers";
+    ViewBag.Title = @Resources.Home.YourOffers;
 }
 
-<h2>ShowUserOffers</h2>
+<div class="container">
+    <h2>@Resources.Home.YourOffers: </h2>
+    <hr/>
+    <div id="offers" class="row">
+        @foreach (Offers UserOffer in Model)
+        {
+            @Html.Partial("_OfferPartial", UserOffer);
+        }
+    </div>
+</div>
 

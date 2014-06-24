@@ -46,7 +46,8 @@ namespace OnlineShopTime.Models
         }
         public IQueryable<Offers> GetUsersOffers(String UserName)
         {
-            return (from OffersRecords in Db.Offers where OffersRecords.OfferedBy == GetActiveUserID(UserName) select OffersRecords);
+            string ActiveUserID = GetActiveUserID(UserName);
+            return (from OffersRecords in Db.Offers where OffersRecords.OfferedBy == ActiveUserID select OffersRecords);
         }
     }
 }

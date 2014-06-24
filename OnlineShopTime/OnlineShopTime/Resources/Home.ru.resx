@@ -222,4 +222,7 @@
   <data name="TopUsers" xml:space="preserve">
     <value>Лучшие пользователи</value>
   </data>
+  <data name="YourOffers" xml:space="preserve">
+    <value>Ваши предложения</value>
+  </data>
 </root>
