@@ -1,8 +1,39 @@
 ﻿@model OnlineShopTime.Models.Offers
+@using OnlineShopTime.Utils
+@using CloudinaryDotNet
 
 @{
-    ViewBag.Title = "OfferPage";
+    ViewBag.Title = @Model.Name;
+    string defaultImage = "v6ac3uaxfe5gtlqtrbr7";
 }
 
-<h2>OfferPage</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
 
+        <div class="row">
+            <div class="col-lg-10">
+                <h2>@Model.Name</h2>
+            </div>
+
+            <div class="col-lg-2" style="text-align: right">
+                <h2>PRICE</h2>
+            </div>
+        </div>
+
+    </div>
+
+    @Html.ValidationSummary(true)
+
+    <div class="container jumbotron">
+        <div class="center">
+            @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(180).Height(180).Crop("fill")).BuildImageTag(Model.Photo4URL ?? defaultImage, "id = image", "class=img-responsive")
+        </div>
+    </div>
+}
+
+
+@*<li class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+        @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(180).Height(180).Crop("fill")).BuildImageTag(Model.Photo4URL ?? defaultImage, "id = image", "class=img-responsive")
+    </li>*@

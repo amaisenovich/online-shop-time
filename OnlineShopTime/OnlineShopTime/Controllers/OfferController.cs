@@ -84,7 +84,9 @@ namespace OnlineShopTime.Controllers
         }
         public ActionResult OfferPage(String OfferID)
         {
-            return View();
+            WorkWithOffers WWO = new WorkWithOffers();
+            Offers ShowOffer = WWO.GetOfferByID(OfferID);
+            return View(ShowOffer);
         }
     }
 }

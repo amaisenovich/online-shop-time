@@ -39,6 +39,10 @@ namespace OnlineShopTime.Models
         {
             return (from OfferRecord in Db.Offers orderby OfferRecord.DateAndTime descending select OfferRecord).Take(12);
         }
+        public Offers GetOfferByID(String OfferID)
+        {   
+            return (from OfferRecods in Db.Offers where OfferRecods.OfferID == OfferID select OfferRecods).FirstOrDefault();
+        }
         public void AddNewOffer(Offers newOffer)
         {
             Db.Offers.Add(newOffer);
