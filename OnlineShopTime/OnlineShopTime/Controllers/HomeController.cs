@@ -20,7 +20,7 @@ namespace OnlineShopTime.Controllers
             {
                 IndexViewData = new IndexDataModel();
                 IndexViewData.ShowString = "NewOffers";
-                WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
+                WorkWithOffers WWO = new WorkWithOffers();
                 IndexViewData.NewOffers = WWO.GetNewOffers();
             }
 
@@ -29,14 +29,14 @@ namespace OnlineShopTime.Controllers
             return View();
         }
 
-        public ActionResult TabClick(int tabID)
+        public ActionResult TabClick(int TabID)
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
 
-            WorkWithOffers WWO = new WorkWithOffers(User.Identity.Name);
+            WorkWithOffers WWO = new WorkWithOffers();
             if (IndexViewData == null)
                 IndexViewData = new IndexDataModel();
-            switch (tabID)
+            switch (TabID)
             {
 
                 case 1:                    
