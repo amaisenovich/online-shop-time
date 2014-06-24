@@ -45,6 +45,11 @@ namespace OnlineShopTime.Models
             Db = new ShopDBEntities();
             return (from UserRecord in Db.Users where UserRecord.UserName == UserName select UserRecord).FirstOrDefault();
         }
+        public Users GetUserByID(string UserID)
+        {
+            Db = new ShopDBEntities();
+            return (from UserRecord in Db.Users where UserRecord.UserID == UserID select UserRecord).FirstOrDefault();
+        }
 
         public void SetEditProfileData(Users User)
         {

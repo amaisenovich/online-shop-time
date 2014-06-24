@@ -2,12 +2,12 @@
 @using OnlineShopTime.Models;
 
 @{
-    ViewBag.Title = @Resources.Home.YourOffers;
+    ViewBag.Title = @Resources.Home.UserOffers;
 }
 
 <div class="container">
-    <h2>@Resources.Home.YourOffers: </h2>
-    <hr/>
+    <h2>@ViewBag.UserName</h2>
+    <hr />
     <div id="offers" class="row">
         @foreach (Offers UserOffer in Model)
         {

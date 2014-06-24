@@ -66,10 +66,20 @@ namespace OnlineShopTime.Controllers
         }
 
         [HttpGet]
-        public ActionResult ShowUserOffers()
+        public ActionResult ShowUserOffers(String UserID)
         {
+            if (UserID == null)
+                UserID = (string)Session["UserID"];
+
             WorkWithOffers WWO = new WorkWithOffers();
-            IQueryable<Offers> UserOffers = WWO.GetUsersOffers(User.Identity.Name);
+            WorkWithUsers WWU = new WorkWithUsers();
+
+            IQueryable<Offers> UserOffers = WWO.GetUserOffers(UserID);
+
+            Users User = WWU.GetUserByID(UserID);
+            ViewBag.UserName = User.FirstName + " " + User.LastName;
+
+            Session["UserID"] = UserID;
             return View(UserOffers);
         }
     }

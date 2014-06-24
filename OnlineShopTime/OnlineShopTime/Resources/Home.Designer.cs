@@ -313,6 +313,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Offers.
+        /// </summary>
+        public static string Offers {
+            get {
+                return ResourceManager.GetString("Offers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Orders.
         /// </summary>
         public static string Orders {
@@ -372,6 +381,15 @@ namespace Resources {
         public static string TopUsers {
             get {
                 return ResourceManager.GetString("TopUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на User offers.
+        /// </summary>
+        public static string UserOffers {
+            get {
+                return ResourceManager.GetString("UserOffers", resourceCulture);
             }
         }
         

@@ -201,6 +201,9 @@
   <data name="OfferPageTitleLabel" xml:space="preserve">
     <value>Название</value>
   </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Предложения</value>
+  </data>
   <data name="Orders" xml:space="preserve">
     <value>Заказы</value>
   </data>
@@ -221,6 +224,9 @@
   </data>
   <data name="TopUsers" xml:space="preserve">
     <value>Лучшие пользователи</value>
+  </data>
+  <data name="UserOffers" xml:space="preserve">
+    <value>Предложения пользователя</value>
   </data>
   <data name="YourOffers" xml:space="preserve">
     <value>Ваши предложения</value>

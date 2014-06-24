@@ -10,8 +10,12 @@
             @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL, "id = image")
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <h3 style="line-height:1px">@Model.FirstName</h3>
-                <h3 style="line-height:1px">@Model.LastName</h3>
+            <h3 style="line-height:1px">
+                @Html.ActionLink(@Model.FirstName, "ShowUserOffers", "Offer", new { UserID = @Model.UserID }, null )
+            </h3>
+            <h3 style="line-height:1px">
+                @Html.ActionLink(@Model.LastName, "ShowUserOffers", "Offer", new { UserID = @Model.UserID }, null)               
+            </h3>
             <br />
             <h6>PLACE OF LIKES AND DISLIKES</h6>
         </div>

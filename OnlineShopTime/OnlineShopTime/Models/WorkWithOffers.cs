@@ -44,10 +44,9 @@ namespace OnlineShopTime.Models
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
         }
-        public IQueryable<Offers> GetUsersOffers(String UserName)
+        public IQueryable<Offers> GetUserOffers(String UserID, int PageNumber = 1)
         {
-            string ActiveUserID = GetActiveUserID(UserName);
-            return (from OffersRecords in Db.Offers where OffersRecords.OfferedBy == ActiveUserID select OffersRecords);
+            return (from OffersRecords in Db.Offers orderby OffersRecords.DateAndTime descending where OffersRecords.OfferedBy == UserID select OffersRecords).Skip((PageNumber - 1) * 20).Take(20);
         }
     }
 }

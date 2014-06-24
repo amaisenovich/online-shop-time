@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@using OnlineShopTime.Models
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -18,9 +20,14 @@
                     <li role="presentation" class="divider"></li>
                     <li>
                         @Html.ActionLink(@Resources.Home.CreateOffer, "Create", "Offer")
+
                     </li>
                     <li>
-                        @Html.ActionLink(@Resources.Home.MyOffers, "ShowUserOffers", "Offer")
+                        @{
+                            WorkWithUsers WWU = new WorkWithUsers();
+                            String ActiveUserID = WWU.GetUserByName(User.Identity.Name).UserID;
+                            @Html.ActionLink(@Resources.Home.MyOffers, "ShowUserOffers", "Offer", new { UserID = ActiveUserID }, null)
+                        }
                     </li>
                     <li role="presentation" class="divider"></li>
                     <li>

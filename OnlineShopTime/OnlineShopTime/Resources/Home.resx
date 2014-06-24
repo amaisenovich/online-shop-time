@@ -201,6 +201,9 @@
   <data name="OfferPageTitleLabel" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Offers</value>
+  </data>
   <data name="Orders" xml:space="preserve">
     <value>Orders</value>
   </data>
@@ -221,6 +224,9 @@
   </data>
   <data name="TopUsers" xml:space="preserve">
     <value>Top users</value>
+  </data>
+  <data name="UserOffers" xml:space="preserve">
+    <value>User offers</value>
   </data>
   <data name="YourOffers" xml:space="preserve">
     <value>Your offers</value>
