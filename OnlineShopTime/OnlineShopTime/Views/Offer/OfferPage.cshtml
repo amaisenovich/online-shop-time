@@ -119,7 +119,16 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <button type="submit" class="btn btn-default btn-success btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.OrderIT!</button>
+                        @{  WorkWithOrders WWOR = new WorkWithOrders(); }
+                        @{ bool Ordered = WWOR.UserHasThisOfferOrdered(ActiveUser.UserID, Model.OfferID); }
+                        @if (!true)
+                        {
+                            <a href="/Offer/Order?OfferID=@Model.OfferID" class="btn btn-default btn-success btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.OrderIT!</a>
+                        }
+                        else
+                        {
+                            <a href="#" class="btn btn-default btn-success btn-lg disabled" style="width: 100%; margin-top: 2%;">@Resources.Home.YouHasAlreadyOrderedIt!</a>
+                        }
                     </div>
 
                 }

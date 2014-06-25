@@ -484,6 +484,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на You Has Already Ordered It.
+        /// </summary>
+        public static string YouHasAlreadyOrderedIt {
+            get {
+                return ResourceManager.GetString("YouHasAlreadyOrderedIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Your offers.
         /// </summary>
         public static string YourOffers {

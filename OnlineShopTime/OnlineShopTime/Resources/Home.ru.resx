@@ -261,4 +261,7 @@
   <data name="AreYouSureOfferDelete" xml:space="preserve">
     <value>Вы уверены, что хотите удалить это предложение?</value>
   </data>
+  <data name="YouHasAlreadyOrderedIt" xml:space="preserve">
+    <value>Вы уже заказали это</value>
+  </data>
 </root>

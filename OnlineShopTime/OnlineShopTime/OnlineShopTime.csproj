@@ -232,6 +232,7 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkWithOrders.cs" />
     <Compile Include="Models\WorkWithUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexDataModel.cs" />
