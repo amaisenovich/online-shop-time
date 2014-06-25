@@ -37,5 +37,34 @@ namespace OnlineShopTime.Models
             Db.Orders.Add(Order);
             Db.SaveChanges();
         }
+        public IQueryable<Orders> GetUserOrders(string UserID)
+        {
+            return from OrdersRecords in Db.Orders where OrdersRecords.ClientID == UserID orderby OrdersRecords.DateAndTime select OrdersRecords;
+        }
+        public void CheckUserOrders(string UserID)
+        {
+            IQueryable<Orders> UserOrders = from OrderRecs in Db.Orders where OrderRecs.ClientID == UserID select OrderRecs;
+            foreach (Orders Ord in UserOrders)
+            {
+                if (Ord.OrderStatus == "Await")
+                {
+                    TimeSpan age = DateTime.Now.Subtract(Ord.DateAndTime.GetValueOrDefault());
+                    if (age.Days >= 1)
+                    {
+                        this.DelereOrder(Ord);
+                    }
+                }
+            }
+        }
+        public void DelereOrder(Orders Order)
+        {
+            Db.Orders.Remove(Order);
+            Db.SaveChanges();
+        }
+        public void DelereOrder(string OrderID)
+        {
+            Db.Orders.Remove((from OrdRecs in Db.Orders where OrdRecs.OrderID == OrderID select OrdRecs).FirstOrDefault());
+            Db.SaveChanges();
+        }
     }
 }

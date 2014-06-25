@@ -267,4 +267,7 @@
   <data name="AreYouSureOrderAdd" xml:space="preserve">
     <value>Do you want to buy this offer?</value>
   </data>
+  <data name="IncomingOrders" xml:space="preserve">
+    <value>Incoming Orders</value>
+  </data>
 </root>

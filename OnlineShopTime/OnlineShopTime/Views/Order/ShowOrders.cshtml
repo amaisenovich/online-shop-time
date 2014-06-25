@@ -1,0 +1,35 @@
+﻿@model IQueryable<OnlineShopTime.Models.Orders>
+
+@{
+    ViewBag.Title = "ShowOrders";
+}
+<br>
+<center>
+    @using (@Html.BeginForm("TabClick", "Order"))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <div class="btn-group">
+                        <button type="submit" name="TabID" class="btn btn-default" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.MyOrders</button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <h2 style="margin-top: 15px">@ViewBag.MyOffers</h2>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <div class="btn-group">
+                        <button type="submit" name="TabID" class="btn btn-default" value="2" style="width: 250px; margin-top: 10px">@Resources.Home.IncomingOrders</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</center>
+
+<hr />
+
+
+

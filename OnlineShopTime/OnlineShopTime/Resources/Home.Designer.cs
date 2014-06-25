@@ -223,6 +223,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Incoming Orders.
+        /// </summary>
+        public static string IncomingOrders {
+            get {
+                return ResourceManager.GetString("IncomingOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Course project in the Itransition company.
         /// </summary>
         public static string ItansitionCP {
