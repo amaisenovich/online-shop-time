@@ -15,6 +15,7 @@
         var styleBundle = styleCookie != null ? styleCookie.Value : "~/Content/light_css";
     }
     @Styles.Render(styleBundle)
+
 </head>
 @{
     bool IsLight = styleBundle.Contains("light");
