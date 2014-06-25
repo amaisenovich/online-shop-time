@@ -1,5 +1,6 @@
 ﻿@model OnlineShopTime.Models.Offers
 @using OnlineShopTime.Models
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = @Model.Name;
@@ -88,7 +89,8 @@
                 <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
                     <div class="panel-heading">@Resources.Home.Raiting</div>
                     <div class="panel-body" style="word-wrap: break-word">
-                        Place For Stars
+                        @{float? rating = Model.OfferRaiting.Where(m => m.OfferID == Model.OfferID).Average(m => m.Raiting);}
+                        <div data-rateit-value="@rating" data-rateit-ispreset="true" data-rateit-resetable="false" data-rateit-step="1" data-offerid="@Model.OfferID" data-userid="@User.Identity.GetUserId()" class=" rateit"></div>
                     </div>
                 </div>
             </div>
@@ -138,3 +140,35 @@
     </div>
 
 </div>
+
+<!-- RateIt Script -->
+@section Scripts {
+    <script type="text/javascript">
+        //we bind only to the rateit controls within the products div
+        $('.rateit').bind('rated reset', function (e) {
+            var ri = $(this);
+
+            //if the use pressed reset, it will get value: 0 (to be compatible with the HTML range control), we could check if e.type == 'reset', and then set the value to  null .
+            var value = ri.rateit('value');
+            var productID = ri.data('offerid'); // if the product id was in some hidden field: ri.closest('li').find('input[name="productid"]').val()
+            var userID = ri.data('userid');
+
+            //maybe we want to disable voting?
+            ri.rateit('readonly', false);
+
+            $.ajax({
+                url: '/Home/SetRating', //your server side script
+                data: { id: productID, value: value, userID: userID }, //our data
+                type: 'POST',
+                success: function (data) {
+                    //$('#response').append('<li>' + data + '</li>');
+
+                },
+                error: function (jxhr, msg, err) {
+                    //$('#response').append('<li style="color:red">' + msg + '</li>');
+                    alert("RateIt error!\n" + msg);
+                }
+            });
+        });
+    </script>
+}
