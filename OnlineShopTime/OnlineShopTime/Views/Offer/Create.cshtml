@@ -3,14 +3,30 @@
 @using OnlineShopTime.Utils
 
 @{
-    ViewBag.Title = "Create";
+    if (Model.OfferID == null)
+    {
+        ViewBag.Title = "Create";
+    }
+    else
+    {
+        ViewBag.Title = "Edit";
+    }
 }
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     <div class="container">
-        <h2>@Resources.Home.CreateOffer</h2>
+
+        @if (Model.OfferID == null)
+        {
+            <h2>@Resources.Home.CreateOffer</h2>
+        }
+        else
+        {
+            <h2>@Resources.Home.Edit</h2>
+        }
+
         @Html.ValidationSummary(true)
         <div class="jumbotron">
             <div class="row clearfix">
@@ -18,24 +34,43 @@
                     <form class="form-horizontal" role="form">
                         <div class="form-group">
                             <label for="inputTitle" class="control-label">@Resources.Home.OfferPageTitleLabel:</label>
-                            <input type="text" name="Name" maxlength="75" style="width: 100%; max-width: 100%" class="form-control" id="inputTitle" placeholder="@Resources.Home.OfferPageTitleLabel" style="max-width: 60%; margin-bottom:15px" />
+                            <input type="text" name="Name" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" class="form-control" id="inputTitle" placeholder="@Resources.Home.OfferPageTitleLabel" value="@Model.Name" />
                         </div>
                         <div class="form-group">
                             <label for="inputDescription" class="control-label">@Resources.Home.OfferPageDescriptionLabel:</label>
-                            <textarea class="form-control" name="Description" style="width: 100%; max-width: 100%; min-width: 100%" id="inputDescription" placeholder="@Resources.Home.OfferPageDescriptionLabel" style="max-width: 90%; resize: none; height: 160px; margin-bottom: 15px"></textarea>
+                            <textarea class="form-control" name="Description" style="width: 100%; max-width: 100%; min-width: 100%;" id="inputDescription" placeholder="@Resources.Home.OfferPageDescriptionLabel">@Model.Description</textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="inputTags" class="control-label">@Resources.Home.OfferPageTagsLabel:</label>
-                            <input type="text" name="Tags" class="form-control" style="width: 100%; max-width: 100%" id="inputTags" placeholder="@Resources.Home.TagsSeparator" style="max-width: 60%; margin-bottom: 15px" />
+
+                        <div class="row">
+
+                            <div class="col-lg-8 col-md-8">
+                                <label for="inputTags" class="control-label">@Resources.Home.OfferPageTagsLabel:</label>
+                                <input type="text" name="Tags" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.TagsSeparator" />
+                            </div>
+
+                            <div class="col-lg-4 col-md-4">
+                                <label for="inputTags" class="control-label">@Resources.Home.Price:</label>
+                                <input type="text" name="Price" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.Price" value="@Convert.ToDouble(Model.Price)" />
+                            </div>
+
                         </div>
-                        <div class="form-group">
+                        @if (Model.OfferID == null)
+                        {
+                            <div class="form-group" style="margin-top: 1em">
                                 <button type="submit" class="btn btn-default">@Resources.Home.CreateButton</button>
-                        </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group" style="margin-top: 1em">
+                                <button type="submit" class="btn btn-default">@Resources.Home.Edit</button>
+                            </div>
+                        }
                     </form>
                 </div>
                 <div class="col-md-4 column">
                     <form>
-                         @Cloud.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "false" } })
+                        @Cloud.Api.BuildUploadForm("test-field", "auto", new SortedDictionary<string, object>() { { "tags", (object)"direct_photo_album" } }, new Dictionary<string, string>() { { "multiple", "false" } })
                     </form>
                     <div class="progress progress-striped" style="width:70%" id="progress" hidden="hidden">
                         <div class="progress-bar" role="progressbar" style="width: 100%">
@@ -54,7 +89,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-     @Cloud.GetCloudinaryJsConfig()
+    @Cloud.GetCloudinaryJsConfig()
 
     <script type="text/javascript">
         $(function () {

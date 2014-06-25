@@ -52,14 +52,40 @@ namespace OnlineShopTime.Models
         {
             return (from OfferRecods in Db.Offers where OfferRecods.OfferID == OfferID select OfferRecods).FirstOrDefault();
         }
-        public void AddNewOffer(Offers newOffer)
+        public void AndNewOrModify(Offers Offer, string UserName)
         {
+            int count = (from OfferRecords in Db.Offers where OfferRecords.OfferID == Offer.OfferID select OfferRecords).Count();
+            if (count == 0)
+            {
+                AddNewOffer(Offer, UserName);
+            }
+            else
+                ModifyExistedOffer(Offer);
+        }
+        public void ModifyExistedOffer(Offers EditedOffer)
+        { 
+            Offers OldOne = (from OfferRecords in Db.Offers where OfferRecords.OfferID == EditedOffer.OfferID select OfferRecords).FirstOrDefault();
+            OldOne.Name = EditedOffer.Name;
+            OldOne.Description = EditedOffer.Description;
+            OldOne.Price = OldOne.Price;
+            Db.SaveChanges();
+        }
+        public void AddNewOffer(Offers newOffer, string UserName)
+        {
+            newOffer = this.CompleteOfferWithData(newOffer, UserName);
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
         }
         public IQueryable<Offers> GetUserOffers(String UserID, int PageNumber = 1)
         {
             return (from OffersRecords in Db.Offers orderby OffersRecords.DateAndTime descending where OffersRecords.OfferedBy == UserID select OffersRecords).Skip((PageNumber - 1) * 20).Take(20);
+        }
+
+        public void DeleteOffer(string OfferID)
+        {
+            Offers RemoveOffer = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords).FirstOrDefault();
+            Db.Offers.Remove(RemoveOffer);
+            Db.SaveChanges();
         }
     }
 }

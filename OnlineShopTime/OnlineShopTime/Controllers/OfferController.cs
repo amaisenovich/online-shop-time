@@ -13,9 +13,19 @@ namespace OnlineShopTime.Controllers
         WorkWithOffers WWO;
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(string OfferID)
         {
-            return View(new Offers());
+            Offers Offer;
+            if (OfferID == null)
+            {
+                Offer = new Offers();
+            }
+            else
+            {
+                WorkWithOffers WWO = new WorkWithOffers();
+                Offer = WWO.GetOfferByID(OfferID);
+            }
+            return View(Offer);
         }
 
         [HttpPost]
@@ -27,10 +37,9 @@ namespace OnlineShopTime.Controllers
             newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo3URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
             newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
-            newOffer = WWO.CompleteOfferWithData(newOffer, User.Identity.Name);
-            WWO.AddNewOffer(newOffer);
+            WWO.AndNewOrModify(newOffer, User.Identity.Name);
             imageURLs.Clear();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("TabClick", "Home", new { TabID = 3 });
         }
 
         static Queue<string> imageURLs = new Queue<string>();
@@ -94,6 +103,13 @@ namespace OnlineShopTime.Controllers
                 ShowOffer = WWO.GetOfferByID(OfferID);         
             Session["ShowOffer"] = ShowOffer;
             return View(ShowOffer);
+        }
+
+        public ActionResult Delete(string OfferID)
+        {
+            WorkWithOffers WWO = new WorkWithOffers();
+            WWO.DeleteOffer(OfferID);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

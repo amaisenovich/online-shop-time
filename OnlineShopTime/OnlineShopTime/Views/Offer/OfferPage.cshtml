@@ -5,130 +5,127 @@
     ViewBag.Title = @Model.Name;
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+@Html.AntiForgeryToken()
+@Html.ValidationSummary(true)
 
-    <br />
+<br />
 
-    <div class="container jumbotron">
+<div class="container jumbotron">
 
-        <div class="row">
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"> </div>
-            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-                <h2>@Model.Name</h2>
-            </div>
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"> </div>
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <h2>@Model.Name</h2>
         </div>
-
-        <hr />
-
-        <div class="row">
-            @{ViewBag.URL = Model.Photo1URL;}
-            @Html.Partial("_GalleryItem")
-            @{ViewBag.URL = Model.Photo2URL;}
-            @Html.Partial("_GalleryItem")
-            @{ViewBag.URL = Model.Photo3URL;}
-            @Html.Partial("_GalleryItem")
-            @{ViewBag.URL = Model.Photo4URL;}
-            @Html.Partial("_GalleryItem")
-        </div>
-
-        <hr />
-
-        <div class="row">
-            <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
-                <div class="panel-heading">@Resources.Home.OfferPageDescriptionLabel</div>
-                <div class="panel-body" style="word-wrap: break-word">
-                    @Model.Description;
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="row">
-            <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
-                <div class="panel-heading">@Resources.Home.Tags</div>
-                <div class="panel-body" style="word-wrap: break-word">
-                    Place For Tags
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <center>
-                <div class="col-lg-3 col-lg-3">
-                    <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
-                        <div class="panel-heading">@Resources.Home.OfferedBy</div>
-                        <div class="panel-body" style="word-wrap: break-word">
-                            @{String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName; }
-                            @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-lg-3">
-                    <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
-                        <div class="panel-heading">@Resources.Home.OfferDate</div>
-                        <div class="panel-body" style="word-wrap: break-word">
-                            @Model.DateAndTime
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-lg-3">
-                    <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
-                        <div class="panel-heading">@Resources.Home.Price</div>
-                        <div class="panel-body" style="word-wrap: break-word">
-                            @Model.Price
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-lg-3">
-                    <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
-                        <div class="panel-heading">@Resources.Home.Raiting</div>
-                        <div class="panel-body" style="word-wrap: break-word">
-                            Place For Stars
-                        </div>
-                    </div>
-                </div>
-
-            </center>
-        </div>
-
-
-
-        <div class="row">
-            <center>
-
-                @if (User.Identity.Name != "")
-                {
-                    WorkWithUsers WWU = new WorkWithUsers();
-                    Users ActiveUser = WWU.GetUserByName(User.Identity.Name);
-                    if ((Model.OfferedBy == ActiveUser.UserID) || (ActiveUser.UserRights == "Admin"))
-                    {
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <button class="btn btn-default btn-primary btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.Edit</button>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <button type="submit" class="btn btn-default btn-danger btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.Delete</button>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <button type="submit" class="btn btn-default btn-success btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.OrderIT!</button>
-                        </div>
-
-                    }
-                }
-
-            </center>
-        </div>
-
     </div>
-}
+
+    <hr />
+
+    <div class="row">
+        @{ViewBag.URL = Model.Photo1URL;}
+        @Html.Partial("_GalleryItem")
+        @{ViewBag.URL = Model.Photo2URL;}
+        @Html.Partial("_GalleryItem")
+        @{ViewBag.URL = Model.Photo3URL;}
+        @Html.Partial("_GalleryItem")
+        @{ViewBag.URL = Model.Photo4URL;}
+        @Html.Partial("_GalleryItem")
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
+            <div class="panel-heading">@Resources.Home.OfferPageDescriptionLabel</div>
+            <div class="panel-body" style="word-wrap: break-word">
+                @Model.Description;
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
+            <div class="panel-heading">@Resources.Home.Tags</div>
+            <div class="panel-body" style="word-wrap: break-word">
+                Place For Tags
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <center>
+            <div class="col-lg-3 col-lg-3">
+                <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
+                    <div class="panel-heading">@Resources.Home.OfferedBy</div>
+                    <div class="panel-body" style="word-wrap: break-word">
+                        @{String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName; }
+                        @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-lg-3">
+                <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
+                    <div class="panel-heading">@Resources.Home.OfferDate</div>
+                    <div class="panel-body" style="word-wrap: break-word">
+                        @Model.DateAndTime
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-lg-3">
+                <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
+                    <div class="panel-heading">@Resources.Home.Price</div>
+                    <div class="panel-body" style="word-wrap: break-word">
+                        @Convert.ToDouble(Model.Price)
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-lg-3">
+                <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
+                    <div class="panel-heading">@Resources.Home.Raiting</div>
+                    <div class="panel-body" style="word-wrap: break-word">
+                        Place For Stars
+                    </div>
+                </div>
+            </div>
+
+        </center>
+    </div>
+
+
+
+    <div class="row">
+        <center>
+
+            @if (User.Identity.Name != "")
+            {
+                WorkWithUsers WWU = new WorkWithUsers();
+                Users ActiveUser = WWU.GetUserByName(User.Identity.Name);
+                if ((Model.OfferedBy == ActiveUser.UserID) || (ActiveUser.UserRights == "Admin"))
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <a href="/Offer/Create?OfferID=@Model.OfferID" class="btn btn-default btn-primary btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.Edit</a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <a href="/Offer/Delete?OfferID=@Model.OfferID" class="btn btn-default btn-danger btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.Delete</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <button type="submit" class="btn btn-default btn-success btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.OrderIT!</button>
+                    </div>
+
+                }
+            }
+
+        </center>
+    </div>
+
+</div>
