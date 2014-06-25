@@ -264,4 +264,7 @@
   <data name="YouHasAlreadyOrderedIt" xml:space="preserve">
     <value>Вы уже заказали это</value>
   </data>
+  <data name="AreYouSureOrderAdd" xml:space="preserve">
+    <value>Вы уверены, что хотите купить это предложение?</value>
+  </data>
 </root>

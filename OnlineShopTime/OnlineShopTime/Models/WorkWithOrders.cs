@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineShopTime.Models
 {
@@ -24,6 +25,17 @@ namespace OnlineShopTime.Models
             }
             else
                 return false;
+        }
+        public void OrderOffer(string OfferID, string UserName)
+        {
+            WorkWithUsers WWU = new WorkWithUsers();
+            Orders Order = new Orders();
+            Order.ClientID = WWU.GetUserByName(UserName).UserID;
+            Order.DateAndTime = DateTime.Now;
+            Order.OfferID = OfferID;
+            Order.OrderID = Guid.NewGuid().ToString();
+            Db.Orders.Add(Order);
+            Db.SaveChanges();
         }
     }
 }

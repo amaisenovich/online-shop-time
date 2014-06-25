@@ -121,9 +121,9 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         @{  WorkWithOrders WWOR = new WorkWithOrders(); }
                         @{ bool Ordered = WWOR.UserHasThisOfferOrdered(ActiveUser.UserID, Model.OfferID); }
-                        @if (!true)
+                        @if (!Ordered)
                         {
-                            <a href="/Offer/Order?OfferID=@Model.OfferID" class="btn btn-default btn-success btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.OrderIT!</a>
+                            <a href="/Order/OrderConfirm?OfferID=@Model.OfferID" class="btn btn-default btn-success btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.OrderIT!</a>
                         }
                         else
                         {

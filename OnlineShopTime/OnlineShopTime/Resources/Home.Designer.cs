@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Do you want to buy this offer?.
+        /// </summary>
+        public static string AreYouSureOrderAdd {
+            get {
+                return ResourceManager.GetString("AreYouSureOrderAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Best offers.
         /// </summary>
         public static string BestOffers {
