@@ -84,7 +84,23 @@ namespace OnlineShopTime.Models
         public void DeleteOffer(string OfferID)
         {
             Offers RemoveOffer = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords).FirstOrDefault();
+            DeleteOfferRaiting(OfferID);
+            DeleteOfferComments(OfferID);
             Db.Offers.Remove(RemoveOffer);
+            Db.SaveChanges();
+        }
+        private void DeleteOfferComments(string OfferID)
+        {
+            IQueryable<Comments> Coments = from ComentRec in Db.Comments where ComentRec.OfferID == OfferID select ComentRec;
+            foreach (Comments Coment in Coments)
+                Db.Comments.Remove(Coment);
+            Db.SaveChanges();
+        }
+        private void DeleteOfferRaiting(string OfferID)
+        {
+            IQueryable<OfferRaiting> OfferRate = from RateRec in Db.OfferRaiting where RateRec.OfferID == OfferID select RateRec;
+            foreach (OfferRaiting OR in OfferRate)
+                Db.OfferRaiting.Remove(OR);
             Db.SaveChanges();
         }
     }

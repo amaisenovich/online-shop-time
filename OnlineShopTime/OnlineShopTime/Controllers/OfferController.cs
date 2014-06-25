@@ -108,8 +108,17 @@ namespace OnlineShopTime.Controllers
         public ActionResult Delete(string OfferID)
         {
             WorkWithOffers WWO = new WorkWithOffers();
-            WWO.DeleteOffer(OfferID);
+            WWO.DeleteOffer(OfferID);            
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult DeleteOffer(string OfferID)
+        {
+            if (OfferID == null)
+                OfferID = (string)Session["OfferID"];            
+            Session["OfferID"] = OfferID;
+            WorkWithOffers WWO = new WorkWithOffers();
+            return View(WWO.GetOfferByID(OfferID));
         }
     }
 }

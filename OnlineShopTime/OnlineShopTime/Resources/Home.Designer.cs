@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Are you sure you whant to delete this offer?.
+        /// </summary>
+        public static string AreYouSureOfferDelete {
+            get {
+                return ResourceManager.GetString("AreYouSureOfferDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Best offers.
         /// </summary>
         public static string BestOffers {

@@ -348,6 +348,7 @@
     <Content Include="Views\Offer\ShowUserOffers.cshtml" />
     <Content Include="Views\Offer\OfferPage.cshtml" />
     <Content Include="Views\Offer\_GalleryItem.cshtml" />
+    <Content Include="Views\Offer\DeleteOffer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
