@@ -40,8 +40,8 @@ namespace OnlineShopTime.Controllers
             {
 
                 case 1:                    
-                    //IndexViewData.ShowTopOffers();
-                    //IndexViewData.TopOffers = WWO.GetTopOffers();
+                    IndexViewData.ShowTopOffers();
+                    IndexViewData.TopOffers = WWO.GetTopOffers();
                     break;
                 case 2:
                     WorkWithUsers WWU = new WorkWithUsers();

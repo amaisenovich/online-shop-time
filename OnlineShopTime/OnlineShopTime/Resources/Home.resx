@@ -255,4 +255,7 @@
   <data name="ShopName" xml:space="preserve">
     <value>Time</value>
   </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
 </root>

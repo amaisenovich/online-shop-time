@@ -255,4 +255,7 @@
   <data name="ShopName" xml:space="preserve">
     <value>Время</value>
   </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Тэги</value>
+  </data>
 </root>

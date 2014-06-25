@@ -33,9 +33,9 @@
     <div class="row">
         @if (ViewBag.ViewData.ShowString == "TopOffers")
         {
-            for (int i = 0; i < 10; i++)
+            foreach (Offers TopOffer in ViewBag.ViewData.TopOffers)
             {
-                @Html.Partial("_OfferPartial");
+                @Html.Partial("_OfferPartial", TopOffer);
             }
         }
     </div>
@@ -70,14 +70,14 @@
 <!-- RateIt Script -->
 @section Scripts {
     <script type="text/javascript">
-    //we bind only to the rateit controls within the products div
-    $('#offers .rateit').bind('rated reset', function (e) {
-        var ri = $(this);
+        //we bind only to the rateit controls within the products div
+        $('#offers .rateit').bind('rated reset', function (e) {
+            var ri = $(this);
 
-        //if the use pressed reset, it will get value: 0 (to be compatible with the HTML range control), we could check if e.type == 'reset', and then set the value to  null .
-        var value = ri.rateit('value');
-        var productID = ri.data('offerid'); // if the product id was in some hidden field: ri.closest('li').find('input[name="productid"]').val()
-        var userID = ri.data('userid');
+            //if the use pressed reset, it will get value: 0 (to be compatible with the HTML range control), we could check if e.type == 'reset', and then set the value to  null .
+            var value = ri.rateit('value');
+            var productID = ri.data('offerid'); // if the product id was in some hidden field: ri.closest('li').find('input[name="productid"]').val()
+            var userID = ri.data('userid');
 
             //maybe we want to disable voting?
             ri.rateit('readonly', false);

@@ -22,9 +22,18 @@ namespace OnlineShopTime.Models
         {
             return (from rec in Db.Users where rec.UserName == UserName select rec.UserID).FirstOrDefault();
         }
-        public void GetTopOffers()
+        public IQueryable<Offers> GetTopOffers()
         {
-            //Empty for now.
+            var OfferRate = from RateRec in Db.OfferRaiting 
+                            group RateRec.Raiting by RateRec.OfferID into RecGroup 
+                            select new { Key = RecGroup.Key, Rate = RecGroup.ToList().Sum() / RecGroup.Count() };
+
+            IQueryable<Offers> TopOfferrs = (from OfferRec in Db.Offers 
+                      join RateRec in OfferRate on OfferRec.OfferID equals RateRec.Key 
+                      orderby RateRec.Rate descending 
+                      select OfferRec).Take(12);
+
+            return TopOfferrs;
         }
         public Offers CompleteOfferWithData(Offers newOffer, String UserName)
         {
@@ -40,7 +49,7 @@ namespace OnlineShopTime.Models
             return (from OfferRecord in Db.Offers orderby OfferRecord.DateAndTime descending select OfferRecord).Take(12);
         }
         public Offers GetOfferByID(String OfferID)
-        {   
+        {
             return (from OfferRecods in Db.Offers where OfferRecods.OfferID == OfferID select OfferRecods).FirstOrDefault();
         }
         public void AddNewOffer(Offers newOffer)
