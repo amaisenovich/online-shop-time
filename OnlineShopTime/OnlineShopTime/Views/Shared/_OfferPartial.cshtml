@@ -1,6 +1,7 @@
 ﻿@model OnlineShopTime.Models.Offers
 @using CloudinaryDotNet
 @using OnlineShopTime.Utils
+@using Microsoft.AspNet.Identity
 
 @{string defaultImage = "v6ac3uaxfe5gtlqtrbr7";}
 
@@ -12,10 +13,17 @@
                 @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(140).Height(140).Crop("fill")).BuildImageTag(Model.Photo1URL ?? defaultImage, "id = image", "class=img-responsive")
             </div>
             <div class="col-lg-7 col-md-7 col-sm-9 col-xs-8">
-                <h3>
-                    @Html.ActionLink(@Model.Name, "OfferPage", "Offer", new { OfferID = @Model.OfferID }, new { @style = "margin-top:0px" })
-                </h3>
-                @*<h3 style="margin-top:0px">@Model.Name</h3>*@
+                <div class="container">
+                    <div class="row">
+                        @{float? rating = Model.OfferRaiting.Where(m => m.OfferID == Model.OfferID).Average(m => m.Raiting);}
+                        <div data-rateit-value="@rating" data-rateit-ispreset="true" data-rateit-resetable="false" data-rateit-step="1" data-offerid="@Model.OfferID" data-userid="@User.Identity.GetUserId()" class=" rateit"></div>
+                    </div>
+                    <div class="row">
+                        <h3 style="margin-top:0px">
+                            @Html.ActionLink(@Model.Name, "OfferPage", "Offer", new { OfferID = @Model.OfferID })
+                        </h3>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -33,9 +41,9 @@
                         @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
                     }
                 </h3>
-                @*<h3>@Model.Users.FirstName @Model.Users.LastName</h3>*@
             </div>
         </div>
 
     </div>
 </div>
+

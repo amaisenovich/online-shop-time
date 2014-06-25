@@ -73,5 +73,20 @@ namespace OnlineShopTime.Controllers
             Response.AppendCookie(styleCookie);
             return Redirect(callbackUrl);
         }
+
+        public void SetRating()
+        {
+            float value = float.Parse(Request.Form["value"]);
+            string offerID = Request.Form["id"];
+            string userID = Request.Form["userID"];
+
+            using (ShopDBEntities db  =  new ShopDBEntities()) {
+                if (db.OfferRaiting.Any(m => m.OfferID == offerID && m.UserID == userID))
+                    db.OfferRaiting.First(m => m.OfferID == offerID && m.UserID == userID).Raiting = value;
+                else
+                    db.OfferRaiting.Add(new OfferRaiting() { OfferID = offerID, Raiting = value, UserID = userID });
+                db.SaveChanges();
+            }
+        }
     }
 }
