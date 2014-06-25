@@ -258,6 +258,7 @@
     <Compile Include="Utils\Cloud.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-image-gallery.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\cloudinary_cors.html" />
@@ -295,6 +296,7 @@
     </None>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
