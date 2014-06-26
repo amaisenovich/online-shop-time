@@ -33,6 +33,7 @@ else
                 @Html.ActionLink(@Model.LastName, "ShowUserOffers", "Offer", new { UserID = @Model.UserID }, null)
             </h3>
             <br />
+
             @{
                 float? likesCount = Model.UserRaiting.Where(m => m.UserID == Model.UserID && m.Rating == 1).Sum(m => m.Rating);
                 float? dislikesCount = Model.UserRaiting.Where(m => m.UserID == Model.UserID && m.Rating == -1).Sum(m => m.Rating) * -1;
@@ -63,7 +64,6 @@ else
                         </div>
                     </div>
                 </div>
-
             }
         </div>
     </div>

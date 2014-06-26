@@ -300,4 +300,31 @@
   <data name="NoItem" xml:space="preserve">
     <value>К сожалению у вас нет заказов в этом разделе</value>
   </data>
+  <data name="OrderCancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Seller" xml:space="preserve">
+    <value>Продавец</value>
+  </data>
+  <data name="TransactionIsСompleted" xml:space="preserve">
+    <value>Сделка завершена</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Статус заказа</value>
+  </data>
+  <data name="OrderActive" xml:space="preserve">
+    <value>Заказ подтвержден</value>
+  </data>
+  <data name="AwaitConfirmation" xml:space="preserve">
+    <value>Ожидает подтверждение</value>
+  </data>
+  <data name="OrderCancelConfurm" xml:space="preserve">
+    <value>Вы уверены, что хотите отменить этот заказ?</value>
+  </data>
+  <data name="TransactionIsСompletedConfurm" xml:space="preserve">
+    <value>Вы уверен, что ваш заказ выполнен?</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>Завершить</value>
+  </data>
 </root>

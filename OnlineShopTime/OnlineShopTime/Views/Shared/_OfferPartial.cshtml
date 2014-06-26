@@ -18,7 +18,7 @@
                         @{
                             float? rating = Model.OfferRaiting.Where(m => m.OfferID == Model.OfferID).Average(m => m.Raiting);
                             bool read_only = User.Identity.GetUserId() == null || User.Identity.GetUserId() == Model.OfferedBy;
-                         }
+                        }
                         <div data-rateit-readonly="@read_only.ToString().ToLower()" data-rateit-value="@rating" data-rateit-ispreset="true" data-rateit-resetable="false" data-rateit-step="1" data-offerid="@Model.OfferID" data-offeredby="@Model.OfferedBy" data-userid="@User.Identity.GetUserId()" class="rateit"></div>
                     </div>
                     <div class="row">
@@ -50,32 +50,79 @@
         @if (ViewBag.Buttons != null) //Only for Orders Page. Forget about everything that going down here.
         {
             <br>
-            if (ViewBag.Buttons == "IncomingOrdersAwait")
+
+            <div class="">
+                <div class="panel panel-default" style="width: 100%">
+                    <div class="panel-heading">@Resources.Home.OrderStatus</div>
+                    <div class="panel-body">
+                        <center>
+                            <h2 style="margin-top: -5px; margin-bottom: -5px"> @ViewBag.Status</h2>
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+            if (ViewBag.Buttons == "History")
             {
                 <div class="row">
-                    <div class="col-lg-4 col-md-4">
-                        <a href="ApplyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderApply</a>
+                    <a href="DenyOrder?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Delete</a>
+                </div>
+            }
+
+            if (ViewBag.Buttons == "OrderAwaitConfirmation")
+            {
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
                     </div>
-                    <div class="col-lg-4 col-md-4">
-                        <a href="DenyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderDeny</a>
-                    </div>
-                    <div class="col-lg-4 col-md-4">
-                        <a href="ShowUserInfo?ClientID=@ViewBag.ClientID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
+                    <div class="col-lg-6 col-md-6">
+                        <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Seller</a>
                     </div>
                 </div>
             }
+
+            if (ViewBag.Buttons == "ActiveOrderStatusActive")
+            {
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a href="TradeCompleteConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.End</a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Seller</a>
+                    </div>
+                </div>
+            }
+
+            if (ViewBag.Buttons == "IncomingOrdersActiveAwaitConfurm")
+            {
+                <div class="row">
+                    <div class="col-lg-4">
+                        <a href="ApplyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderApply</a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
+                    </div>
+                </div>                 
+            }
+
             if (ViewBag.Buttons == "IncomingOrdersActive")
             {
                 <div class="row">
-                    <div class="col-lg-4 col-md-4"></div>
-                    <div class="col-lg-4 col-md-4">
-                        <a href="DenyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderDeny</a>
+                    <div class="col-lg-6">
+                        <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
                     </div>
-                    <div class="col-lg-4 col-md-4">
-                        <a href="ShowUserInfo?ClientID=@ViewBag.ClientID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
+                    <div class="col-lg-6">
+                        <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
                     </div>
-                </div>
+                </div>                   
             }
         }
     </div>
 </div>
+

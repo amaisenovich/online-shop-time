@@ -42,7 +42,6 @@
                     {
                         <button type="submit" name="TabID" class="btn btn-default" value="3" style="width: 250px; margin-top: 10px">@Resources.Home.IncomingOrders</button>
                     }
-
                 </div>
             </div>
 
@@ -51,36 +50,95 @@
 </center>
 <br>
 <div class="container">
-    @{int count = 0;}
+    <hr />
     @foreach (Orders Order in @Model.Data)
     {
-        ViewBag.OrderID = Order.OrderID;
-        ViewBag.ClientID = Order.ClientID;
-        if (Model.DataToShow == "ActiveOrders")
-        {
-        }
         if (Model.DataToShow == "OrdersHistory")
         {
+            ViewBag.Buttons = "History";
+            ViewBag.Status = @Resources.Home.TransactionIsСompleted;
+        }
+        if (Model.DataToShow == "ActiveOrders")
+        {
+            ViewBag.UserID = Order.Offers.OfferedBy;
+            if (Order.OrderStatus == "Active")
+            {
+                ViewBag.Buttons = "ActiveOrderStatusActive";
+                ViewBag.Status = @Resources.Home.OrderActive;
+            }
+            if (Order.OrderStatus == "Await Confirmation")
+            {
+                ViewBag.Buttons = "OrderAwaitConfirmation";
+                ViewBag.Status = @Resources.Home.AwaitConfirmation;
+            }
         }
         if (Model.DataToShow == "IncomingOrders")
         {
-            <hr />
-            if (Order.OrderStatus == "Await")
-            {
-                ViewBag.Buttons = "IncomingOrdersAwait";
-            }
+            ViewBag.UserID = Order.ClientID;
             if (Order.OrderStatus == "Active")
             {
                 ViewBag.Buttons = "IncomingOrdersActive";
+                ViewBag.Status = @Resources.Home.OrderActive;
             }
-            @Html.Partial("_OfferPartial", Order.Offers);
+            if (Order.OrderStatus == "Await Confirmation")
+            {
+                ViewBag.Buttons = "IncomingOrdersActiveAwaitConfurm";
+                ViewBag.Status = @Resources.Home.AwaitConfirmation;
+            }
         }
-        count++;
+        ViewBag.OrderID = Order.OrderID;
+        @Html.Partial("_OfferPartial", Order.Offers);
     }
-    @if (count == 0)
+    @if (@Model.Data.Count() == 0)
     {
         <center>
             <h2>@Resources.Home.NoItems</h2>
         </center>
     }
 </div>
+
+
+@*<div class="container">
+        @{int count = 0;}
+        <hr />
+        @foreach (Orders Order in @Model.Data)
+        {
+            ViewBag.OrderID = Order.OrderID;
+            ViewBag.UserID = Order.ClientID;
+            ViewBag.OrderStatus = Order.OrderStatus;
+            if (Model.DataToShow == "ActiveOrders")
+            {
+                if (Order.OrderStatus == "Await Confirmation")
+                {
+                    ViewBag.Buttons = "ActiveOrdersAwait";
+                }
+                if (Order.OrderStatus == "Active")
+                {
+                    ViewBag.Buttons = "ActiveOrdersActive";
+                }
+            }
+            if (Model.DataToShow == "OrdersHistory")
+            {
+                ViewBag.Buttons = "History";
+            }
+            if (Model.DataToShow == "IncomingOrders")
+            {
+                if (Order.OrderStatus == "Await Confirmation")
+                {
+                    ViewBag.Buttons = "IncomingOrdersAwait";
+                }
+                if (Order.OrderStatus == "Active")
+                {
+                    ViewBag.Buttons = "IncomingOrdersActive";
+                }
+            }
+            @Html.Partial("_OfferPartial", Order.Offers);
+            count++;
+        }
+        @if (count == 0)
+        {
+            <center>
+                <h2>@Resources.Home.NoItems</h2>
+            </center>
+        }
+    </div>*@

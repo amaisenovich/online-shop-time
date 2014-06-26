@@ -300,4 +300,31 @@
   <data name="NoItems" xml:space="preserve">
     <value>Unfortunately you don't have orders in this section</value>
   </data>
+  <data name="OrderCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Seller" xml:space="preserve">
+    <value>Seller</value>
+  </data>
+  <data name="TransactionIsСompleted" xml:space="preserve">
+    <value>Transaction is completed</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Order status</value>
+  </data>
+  <data name="OrderActive" xml:space="preserve">
+    <value>Order confirmed</value>
+  </data>
+  <data name="AwaitConfirmation" xml:space="preserve">
+    <value>Awaiting confirmation</value>
+  </data>
+  <data name="OrderCancelConfurm" xml:space="preserve">
+    <value>Are you sure that you want to cancel this order?</value>
+  </data>
+  <data name="TransactionIsСompletedConfurm" xml:space="preserve">
+    <value>Are you sure that your order completed?</value>
+  </data>
+  <data name="End" xml:space="preserve">
+    <value>End</value>
+  </data>
 </root>

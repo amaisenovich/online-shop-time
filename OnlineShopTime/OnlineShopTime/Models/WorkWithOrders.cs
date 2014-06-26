@@ -34,34 +34,35 @@ namespace OnlineShopTime.Models
             Order.DateAndTime = DateTime.Now;
             Order.OfferID = OfferID;
             Order.OrderID = Guid.NewGuid().ToString();
-            Order.OrderStatus = "Await";
+            Order.OrderStatus = "Await Confirmation";
             Db.Orders.Add(Order);
             Db.SaveChanges();
         }
         public IQueryable<Orders> GetUserIncomingOrders(string UserID)
         {
             IQueryable<Orders> UserOrders = from OrdersRecords in Db.Orders where OrdersRecords.Offers.OfferedBy == UserID select OrdersRecords;
-            return (from EachRecord in UserOrders select EachRecord).Where(item => (item.OrderStatus == "Active") || (item.OrderStatus == "Await"));
+            return (from EachRecord in UserOrders orderby EachRecord.DateAndTime select EachRecord).Where(item => (item.OrderStatus == "Active") || (item.OrderStatus == "Await Confirmation"));
         }
         public IQueryable<Orders> GetUserOrdersHistory(string UserID)
         {
-            return from OrdersRecords in Db.Orders where OrdersRecords.ClientID == UserID where OrdersRecords.OrderStatus == "Сompleted" orderby OrdersRecords.DateAndTime select OrdersRecords;
+            return from OrdersRecords in Db.Orders where OrdersRecords.ClientID == UserID where OrdersRecords.OrderStatus == "Completed" orderby OrdersRecords.DateAndTime select OrdersRecords;
         }
         public IQueryable<Orders> GetUserActiveOrders(string UserID)
         {
-            return from OrdersRecords in Db.Orders where OrdersRecords.ClientID == UserID where OrdersRecords.OrderStatus == "Active" orderby OrdersRecords.DateAndTime select OrdersRecords;
+            IQueryable<Orders> UserOrders = (from OrdersRecords in Db.Orders orderby OrdersRecords.DateAndTime select OrdersRecords).Where(item => (item.OrderStatus == "Active") || (item.OrderStatus == "Await Confirmation"));
+            return from ItemRecords in UserOrders where ItemRecords.ClientID == UserID select ItemRecords;
         }
         public void CheckUserOrders(string UserID)
         {
             IQueryable<Orders> UserOrders = from OrderRecs in Db.Orders where OrderRecs.ClientID == UserID select OrderRecs;
             foreach (Orders Ord in UserOrders)
             {
-                if (Ord.OrderStatus == "Await")
+                if (Ord.OrderStatus == "Await Confirmation")
                 {
                     TimeSpan age = DateTime.Now.Subtract(Ord.DateAndTime.GetValueOrDefault());
                     if (age.Days >= 1)
                     {
-                        this.DelereOrder(Ord);
+                        this.DeleteOrder(Ord);
                     }
                 }
             }
@@ -78,7 +79,7 @@ namespace OnlineShopTime.Models
             Order.OrderStatus = "Active";
             Db.SaveChanges();
         }
-        public void DelereOrder(Orders Order)
+        public void DeleteOrder(Orders Order)
         {
             Db.Orders.Remove(Order);
             Db.SaveChanges();
@@ -86,6 +87,12 @@ namespace OnlineShopTime.Models
         public void DelereOrder(string OrderID)
         {
             Db.Orders.Remove((from OrdRecs in Db.Orders where OrdRecs.OrderID == OrderID select OrdRecs).FirstOrDefault());
+            Db.SaveChanges();
+        }
+        public void CompleteTrade(string OrderID)
+        {
+            Orders Order = (from OrderRecs in Db.Orders where OrderRecs.OrderID == OrderID select OrderRecs).FirstOrDefault();
+            Order.OrderStatus = "Completed";
             Db.SaveChanges();
         }
     }
