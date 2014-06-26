@@ -91,5 +91,15 @@ namespace OnlineShopTime.Controllers
             WWO.DenyOrder(OrderID);
             return RedirectToAction("TabClick", "Order", new { TabID = 3 });
         }
+        public ActionResult ApplyOrderConfirm(string OrderID)
+        {
+            ViewBag.OrderID = OrderID;
+            return View();
+        }
+        public ActionResult DenyOrderConfirm(string OrderID)
+        {
+            ViewBag.OrderID = OrderID;
+            return View();
+        }
     }
 }

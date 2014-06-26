@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Are you sure that you want to apply this order?.
+        /// </summary>
+        public static string ApplyOrderConfirm {
+            get {
+                return ResourceManager.GetString("ApplyOrderConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Online Shop &quot;Time&quot;.
         /// </summary>
         public static string AppName {
@@ -102,6 +111,15 @@ namespace Resources {
         public static string AreYouSureOrderAdd {
             get {
                 return ResourceManager.GetString("AreYouSureOrderAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
             }
         }
         
@@ -426,6 +444,15 @@ namespace Resources {
         public static string OrderDeny {
             get {
                 return ResourceManager.GetString("OrderDeny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Are you sure that you want to deny this order?.
+        /// </summary>
+        public static string OrderDenyConfurm {
+            get {
+                return ResourceManager.GetString("OrderDenyConfurm", resourceCulture);
             }
         }
         

@@ -288,4 +288,13 @@
   <data name="Client" xml:space="preserve">
     <value>Клиент</value>
   </data>
+  <data name="ApplyOrderConfirm" xml:space="preserve">
+    <value>Вы уверены, что хотите принять этот заказ?</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="OrderDenyConfurm" xml:space="preserve">
+    <value>Вы уверены, что хотите отказать?</value>
+  </data>
 </root>

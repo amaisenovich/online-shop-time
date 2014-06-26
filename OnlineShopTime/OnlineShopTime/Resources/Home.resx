@@ -288,4 +288,13 @@
   <data name="Client" xml:space="preserve">
     <value>Client</value>
   </data>
+  <data name="ApplyOrderConfirm" xml:space="preserve">
+    <value>Are you sure that you want to apply this order?</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="OrderDenyConfurm" xml:space="preserve">
+    <value>Are you sure that you want to deny this order?</value>
+  </data>
 </root>
