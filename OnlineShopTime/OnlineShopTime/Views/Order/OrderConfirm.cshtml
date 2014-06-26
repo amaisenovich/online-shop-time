@@ -5,27 +5,24 @@
 }
 
 <div class="container">
-    <div class="container">
-        <div class="row">
-            <center>
-                <h2 class="col-lg-8a">@Resources.Home.AreYouSureOrderAdd</h2>
-            </center>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-lg-3"></div>
-            @Html.Partial("_OfferPartial", Model)
-            <div class="col-lg-3"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-                <a href="/Order/OrderOffer?OfferID=@Model.OfferID" class="btn btn-default btn-success btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.OrderIT !</a>
-            </div>
-            <div class="col-lg-3"></div>
-        </div>
+    <div class="row">
+        <center>
+            <h2 class="col-lg-8a">@Resources.Home.AreYouSureOrderAdd</h2>
+        </center>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-lg-3"></div>
+        @Html.Partial("_OfferPartial", Model)
+        <div class="col-lg-3"></div>
     </div>
 
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <a href="/Order/OrderOffer?OfferID=@Model.OfferID" class="btn btn-default btn-success btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.OrderIT !</a>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
 </div>
 
