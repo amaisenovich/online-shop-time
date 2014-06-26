@@ -74,7 +74,7 @@ namespace OnlineShopTime.Controllers
             return Redirect(callbackUrl);
         }
 
-        public void SetRating()
+        public void SetOfferRating()
         {
             float value = float.Parse(Request.Form["value"]);
             string offerID = Request.Form["id"];
@@ -85,6 +85,45 @@ namespace OnlineShopTime.Controllers
                     db.OfferRaiting.First(m => m.OfferID == offerID && m.UserID == userID).Raiting = value;
                 else
                     db.OfferRaiting.Add(new OfferRaiting() { OfferID = offerID, Raiting = value, UserID = userID });
+                db.SaveChanges();
+            }
+        }
+
+        public void SetLike()
+        {
+            SetUserRating(1);
+        }
+
+        public void SetDislike()
+        {
+            SetUserRating(-1);
+        }
+
+        private void SetUserRating(float val)
+        {
+            string userID = Request.Form["userID"];
+            string voterID = Request.Form["voterID"];
+
+            using (ShopDBEntities db = new ShopDBEntities())
+            {
+                if (db.UserRaiting.Any(m => m.UserID == userID && m.VoterID == voterID))
+                {
+                    var userRaiting = db.UserRaiting.First(m => m.UserID == userID && m.VoterID == voterID);
+                    if (userRaiting.Rating != val)
+                    {
+                        Response.Write("raiting changed");
+                        userRaiting.Rating = val;
+                    }
+                    else
+                    {
+                        Response.Write("nothing changed");
+                    }
+                }
+                else
+                {
+                    Response.Write("new raiting");
+                    db.UserRaiting.Add(new UserRaiting() { UserID = userID, VoterID = voterID, Rating = val });
+                }
                 db.SaveChanges();
             }
         }

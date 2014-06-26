@@ -33,7 +33,15 @@ else
                 @Html.ActionLink(@Model.LastName, "ShowUserOffers", "Offer", new { UserID = @Model.UserID }, null)
             </h3>
             <br />
-            <h6>PLACE OF LIKES AND DISLIKES</h6>
+            @{
+                float? likesCount = Model.UserRaiting.Where(m => m.UserID == Model.UserID && m.Rating == 1).Sum(m => m.Rating);
+                float? dislikesCount = Model.UserRaiting.Where(m => m.UserID == Model.UserID && m.Rating == -1).Sum(m => m.Rating) * -1;
+            }
+            <div id="like-buttons">
+                <button class="btn btn-default btn-primary" data-userid="@Model.UserID" data-voterid="@User.Identity.GetUserId()" id="like"><span id="likenum">@likesCount</span>  <span class="glyphicon glyphicon-thumbs-up"></span></button>
+                <button class="btn btn-default btn-danger" data-userid=@Model.UserID data-voterid="@User.Identity.GetUserId()" id="dislike"><span class="glyphicon glyphicon-thumbs-down"></span><span id="dislikenum">@dislikesCount</span></button>
+            </div>
+
             @if (ViewBag.ShowContactInfo != null)
             {
                 <br>

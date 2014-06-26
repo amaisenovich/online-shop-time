@@ -89,8 +89,11 @@
                 <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
                     <div class="panel-heading">@Resources.Home.Raiting</div>
                     <div class="panel-body" style="word-wrap: break-word">
-                        @{float? rating = Model.OfferRaiting.Where(m => m.OfferID == Model.OfferID).Average(m => m.Raiting);}
-                        <div data-rateit-value="@rating" data-rateit-ispreset="true" data-rateit-resetable="false" data-rateit-step="1" data-offerid="@Model.OfferID" data-userid="@User.Identity.GetUserId()" class=" rateit"></div>
+                        @{
+                            float? rating = Model.OfferRaiting.Where(m => m.OfferID == Model.OfferID).Average(m => m.Raiting);
+                            bool read_only = User.Identity.GetUserId() == null || User.Identity.GetUserId() == Model.OfferedBy;
+                         }
+                        <div data-rateit-readonly="@read_only.ToString().ToLower()" data-rateit-value="@rating" data-rateit-ispreset="true" data-rateit-resetable="false" data-rateit-step="1" data-offerid="@Model.OfferID" data-userid="@User.Identity.GetUserId()" class=" rateit"></div>
                     </div>
                 </div>
             </div>
@@ -157,7 +160,7 @@
             ri.rateit('readonly', false);
 
             $.ajax({
-                url: '/Home/SetRating', //your server side script
+                url: '/Home/SetOfferRating', //your server side script
                 data: { id: productID, value: value, userID: userID }, //our data
                 type: 'POST',
                 success: function (data) {

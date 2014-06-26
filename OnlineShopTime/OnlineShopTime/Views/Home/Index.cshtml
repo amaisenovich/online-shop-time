@@ -1,4 +1,5 @@
 ﻿@using OnlineShopTime.Models;
+@using Microsoft.AspNet.Identity
 
 @{
     ViewBag.Title = @Resources.Home.ShopName;
@@ -56,7 +57,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid" id="users">
     <div class="row">
         <center>
             @if (ViewBag.ViewData.ShowString == "TopUsers")
@@ -82,8 +83,8 @@
     </div>
 </div>
 
-<!-- RateIt Script -->
 @section Scripts {
+    <!-- RateIt Script -->
     <script type="text/javascript">
         //we bind only to the rateit controls within the products div
         $('#offers .rateit').bind('rated reset', function (e) {
@@ -98,7 +99,7 @@
             ri.rateit('readonly', false);
 
             $.ajax({
-                url: '/Home/SetRating', //your server side script
+                url: '/Home/SetOfferRating', //your server side script
                 data: { id: productID, value: value, userID: userID }, //our data
                 type: 'POST',
                 success: function (data) {
@@ -112,4 +113,67 @@
             });
         });
     </script>
+
+    <!-- Likes Script -->
+    <script type="text/javascript">
+        $('#users #like-buttons').each(function (i, elem) {
+            if ($('#like', elem).data("voterid") === "" || $('#like', elem).data("voterid") === $('#like', elem).data("userid")) {
+                $('#like', elem).attr("disabled", "disabled");
+            }
+            if ($('#dislike', elem).data("voterid") === "" || $('#dislike', elem).data("voterid") === $('#dislike', elem).data("userid")) {
+                $('#dislike', elem).attr("disabled", "disabled");
+            }
+        });
+
+        $('#users #like').click(function (e) {
+            var button = $(this);
+            var userID = button.data("userid");
+            var voterID = button.data("voterid");
+            var button = $(this).parent("#like-buttons");
+
+            $.ajax({
+                url: '/Home/SetLike',
+                data: { userID: userID, voterID: voterID },
+                type: 'POST',
+                success: function (data) {
+                    var likeval = parseInt($('#likenum', button).text(), 10);
+                    var dislikeval = parseInt($('#dislikenum', button).text(), 10);
+                    if (data === "new raiting") {
+                        $('#likenum', button).text(likeval + 1);
+                    } else if (data === "raiting changed") {
+                        $('#likenum', button).text(likeval + 1);
+                        $('#dislikenum', button).text(dislikeval - 1);
+                    }
+                },
+                error: function (jxhr, msg, err) {
+                    alert("Like error!\n" + msg);
+                }
+            });
+        });
+        $('#users #dislike').click(function (e) {
+            var button = $(this);
+            var userID = button.data('userid');
+            var voterID = button.data('voterid');
+            var button = $(this).parent("#like-buttons");
+
+            $.ajax({
+                url: '/Home/SetDislike',
+                data: { userID: userID, voterID: voterID },
+                type: 'POST',
+                success: function (data) {
+                    var dislikeval = parseInt($('#dislikenum', button).text(), 10);
+                    var likeval = parseInt($('#likenum', button).text(), 10);
+                    if (data === "new raiting") {
+                        $('#dislikenum', button).text(dislikeval + 1);
+                    } else if (data === "raiting changed") {
+                        $('#dislikenum', button).text(dislikeval + 1);
+                        $('#likenum', button).text(likeval - 1);
+                    }
+                },
+                error: function (jxhr, msg, err) {
+                    alert("Like error!\n" + msg);
+                }
+            });
+        });
+</script>
 }
