@@ -4,20 +4,59 @@
 @using CloudinaryDotNet
 @using OnlineShopTime.Utils
 
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 container" style="padding-left: 0px; padding-right: 0px;">
-    <div class="jumbotron row" style="max-width: 260px; word-wrap: break-word; padding-left: 0px; padding-right: 0px">
+@{
+    string DivClass = null;
+    string MaxWidth = null;
+}
+
+@if (ViewBag.ShowContactInfo != null)
+{
+    DivClass = "";
+    MaxWidth = "300px";
+}
+else
+{
+    DivClass = "col-lg-3 col-md-4 col-sm-6 col-xs-12 containe";
+    MaxWidth = "260px";
+}
+
+<div class=@DivClass style="padding-left: 0px; padding-right: 0px;">
+    <div class="jumbotron row" style="max-width: @MaxWidth; word-wrap: break-word; padding-left: 0px; padding-right: 0px">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL, "id = image")
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h3 style="line-height:1px">
-                @Html.ActionLink(@Model.FirstName, "ShowUserOffers", "Offer", new { UserID = @Model.UserID }, null )
+                @Html.ActionLink(@Model.FirstName, "ShowUserOffers", "Offer", new { UserID = @Model.UserID }, null)
             </h3>
             <h3 style="line-height:1px">
-                @Html.ActionLink(@Model.LastName, "ShowUserOffers", "Offer", new { UserID = @Model.UserID }, null)               
+                @Html.ActionLink(@Model.LastName, "ShowUserOffers", "Offer", new { UserID = @Model.UserID }, null)
             </h3>
             <br />
             <h6>PLACE OF LIKES AND DISLIKES</h6>
+            @if (ViewBag.ShowContactInfo != null)
+            {
+                <br>
+                <div class="row" style="width: 90%">
+
+                    <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
+                        <div class="panel-heading">@Resources.Home.PhoneNumber</div>
+                        <div class="panel-body" style="word-wrap: break-word">
+                            @Model.PhoneNumber
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="width: 90%">
+                    <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
+                        <div class="panel-heading">Email</div>
+                        <div class="panel-body" style="word-wrap: break-word">
+                            @Model.Email
+                        </div>
+                    </div>
+                </div>
+
+            }
         </div>
     </div>
 </div>

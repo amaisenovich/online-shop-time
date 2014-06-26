@@ -297,4 +297,7 @@
   <data name="OrderDenyConfurm" xml:space="preserve">
     <value>Вы уверены, что хотите отказать?</value>
   </data>
+  <data name="NoItem" xml:space="preserve">
+    <value>К сожалению у вас нет заказов в этом разделе</value>
+  </data>
 </root>

@@ -9,30 +9,49 @@
     @using (@Html.BeginForm("TabClick", "Order"))
     {
         <div class="container">
+
             <div class="row">
                 <div class="col-lg-4 col-md-4">
-                    <div class="btn-group">
+                    @if (Model.DataToShow == "OrdersHistory")
+                    {
+                        <button type="submit" name="TabID" class="btn btn-default btn-success" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.OrdersHistory</button>
+                    }
+                    else
+                    {
                         <button type="submit" name="TabID" class="btn btn-default" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.OrdersHistory</button>
-                    </div>
+                    }
                 </div>
 
                 <div class="col-lg-4 col-md-4">
-                    <div class="btn-group">
+                    @if (Model.DataToShow == "ActiveOrders")
+                    {
+                        <button type="submit" name="TabID" class="btn btn-default btn-success" value="2" style="width: 250px; margin-top: 10px">@Resources.Home.OpenTrades</button>
+                    }
+                    else
+                    {
                         <button type="submit" name="TabID" class="btn btn-default" value="2" style="width: 250px; margin-top: 10px">@Resources.Home.OpenTrades</button>
-                    </div>
+                    }
                 </div>
 
                 <div class="col-lg-4 col-md-4">
-                    <div class="btn-group">
+                    @if (Model.DataToShow == "IncomingOrders")
+                    {
+                        <button type="submit" name="TabID" class="btn btn-default btn-success" value="3" style="width: 250px; margin-top: 10px">@Resources.Home.IncomingOrders</button>
+                    }
+                    else
+                    {
                         <button type="submit" name="TabID" class="btn btn-default" value="3" style="width: 250px; margin-top: 10px">@Resources.Home.IncomingOrders</button>
-                    </div>
+                    }
+
                 </div>
             </div>
+
         </div>
     }
 </center>
 <br>
 <div class="container">
+    @{int count = 0;}
     @foreach (Orders Order in @Model.Data)
     {
         ViewBag.OrderID = Order.OrderID;
@@ -45,16 +64,23 @@
         }
         if (Model.DataToShow == "IncomingOrders")
         {
-            <hr/>
+            <hr />
             if (Order.OrderStatus == "Await")
             {
-                ViewBag.Buttons = "IncomingOrdersAwait"; 
+                ViewBag.Buttons = "IncomingOrdersAwait";
             }
             if (Order.OrderStatus == "Active")
             {
                 ViewBag.Buttons = "IncomingOrdersActive";
-            }            
+            }
             @Html.Partial("_OfferPartial", Order.Offers);
-        }       
+        }
+        count++;
+    }
+    @if (count == 0)
+    {
+        <center>
+            <h2>@Resources.Home.NoItems</h2>
+        </center>
     }
 </div>

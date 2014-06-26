@@ -1,0 +1,12 @@
+﻿@model OnlineShopTime.Models.Users
+
+@{
+    ViewBag.Title = "ShowUserInfo";
+}
+
+@{ViewBag.ShowContactInfo = true;}
+<br>
+<center>
+    @Html.Partial("_UserPartial", Model)
+</center>
+

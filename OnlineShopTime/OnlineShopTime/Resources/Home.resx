@@ -297,4 +297,7 @@
   <data name="OrderDenyConfurm" xml:space="preserve">
     <value>Are you sure that you want to deny this order?</value>
   </data>
+  <data name="NoItems" xml:space="preserve">
+    <value>Unfortunately you don't have orders in this section</value>
+  </data>
 </root>

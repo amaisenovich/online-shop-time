@@ -101,5 +101,10 @@ namespace OnlineShopTime.Controllers
             ViewBag.OrderID = OrderID;
             return View();
         }
+        public ActionResult ShowUserInfo(string ClientID)
+        {
+            WorkWithUsers WWU = new WorkWithUsers();
+            return View(WWU.GetUserByID(ClientID));
+        }
     }
 }
