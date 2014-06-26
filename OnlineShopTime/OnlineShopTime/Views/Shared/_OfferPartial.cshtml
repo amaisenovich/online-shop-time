@@ -47,6 +47,35 @@
             </div>
         </div>
 
+        @if (ViewBag.Buttons != null) //Only for Orders Page. Forget about everything that going sown here.
+        {
+            <br>
+            if (ViewBag.Buttons == "IncomingOrdersAwait")
+            {
+                <div class="row">
+                    <div class="col-lg-4 col-md-4">
+                        <a href="ApplyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderApply</a>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <a href="DenyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderDeny</a>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <a href="ShowUserInfo?ClientID=@ViewBag.ClientID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
+                    </div>
+                </div>
+            }
+            if (ViewBag.Buttons == "IncomingOrdersActive")
+            {
+                <div class="row">
+                    <div class="col-lg-4 col-md-4"></div>
+                    <div class="col-lg-4 col-md-4">
+                        <a href="DenyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderDeny</a>
+                    </div>
+                    <div class="col-lg-4 col-md-4">
+                        <a href="ShowUserInfo?ClientID=@ViewBag.ClientID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
+                    </div>
+                </div>
+            }
+        }
     </div>
 </div>
-

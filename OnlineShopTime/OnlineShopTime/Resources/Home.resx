@@ -267,10 +267,34 @@
   <data name="AreYouSureOrderAdd" xml:space="preserve">
     <value>Do you want to buy this offer?</value>
   </data>
-  <data name="Dislike" xml:space="preserve">
-    <value>Dislike</value>
+  <data name="IncomingOrders" xml:space="preserve">
+    <value>Incoming Orders</value>
   </data>
-  <data name="Like" xml:space="preserve">
-    <value>Like</value>
+  <data name="ActiveOrders" xml:space="preserve">
+    <value>Active Orders</value>
+  </data>
+  <data name="OpenTrades" xml:space="preserve">
+    <value>Open Trades</value>
+  </data>
+  <data name="OrdersHistory" xml:space="preserve">
+    <value>Orders History</value>
+  </data>
+  <data name="OrderApply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="OrderDeny" xml:space="preserve">
+    <value>Deny</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="ApplyOrderConfirm" xml:space="preserve">
+    <value>Are you sure that you want to apply this order?</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="OrderDenyConfurm" xml:space="preserve">
+    <value>Are you sure that you want to deny this order?</value>
   </data>
 </root>

@@ -267,10 +267,34 @@
   <data name="AreYouSureOrderAdd" xml:space="preserve">
     <value>Вы уверены, что хотите купить это предложение?</value>
   </data>
-  <data name="Dislike" xml:space="preserve">
-    <value>Не нравится</value>
+  <data name="IncomingOrders" xml:space="preserve">
+    <value>Входящие заказы</value>
   </data>
-  <data name="Like" xml:space="preserve">
-    <value>Нравится</value>
+  <data name="ActiveOrders" xml:space="preserve">
+    <value>Активные заказы</value>
+  </data>
+  <data name="OpenTrades" xml:space="preserve">
+    <value>Незавершенные сделки</value>
+  </data>
+  <data name="OrdersHistory" xml:space="preserve">
+    <value>История заказов</value>
+  </data>
+  <data name="OrderApply" xml:space="preserve">
+    <value>Приянть</value>
+  </data>
+  <data name="OrderDeny" xml:space="preserve">
+    <value>Отказать</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
+  <data name="ApplyOrderConfirm" xml:space="preserve">
+    <value>Вы уверены, что хотите принять этот заказ?</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="OrderDenyConfurm" xml:space="preserve">
+    <value>Вы уверены, что хотите отказать?</value>
   </data>
 </root>

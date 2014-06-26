@@ -70,6 +70,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Active Orders.
+        /// </summary>
+        public static string ActiveOrders {
+            get {
+                return ResourceManager.GetString("ActiveOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Are you sure that you want to apply this order?.
+        /// </summary>
+        public static string ApplyOrderConfirm {
+            get {
+                return ResourceManager.GetString("ApplyOrderConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Online Shop &quot;Time&quot;.
         /// </summary>
         public static string AppName {
@@ -97,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Back.
+        /// </summary>
+        public static string Back {
+            get {
+                return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Best offers.
         /// </summary>
         public static string BestOffers {
@@ -111,6 +138,15 @@ namespace Resources {
         public static string BestUsers {
             get {
                 return ResourceManager.GetString("BestUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Client.
+        /// </summary>
+        public static string Client {
+            get {
+                return ResourceManager.GetString("Client", resourceCulture);
             }
         }
         
@@ -228,6 +264,15 @@ namespace Resources {
         public static string HomePage {
             get {
                 return ResourceManager.GetString("HomePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Incoming Orders.
+        /// </summary>
+        public static string IncomingOrders {
+            get {
+                return ResourceManager.GetString("IncomingOrders", resourceCulture);
             }
         }
         
@@ -394,6 +439,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Open Trades.
+        /// </summary>
+        public static string OpenTrades {
+            get {
+                return ResourceManager.GetString("OpenTrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Apply.
+        /// </summary>
+        public static string OrderApply {
+            get {
+                return ResourceManager.GetString("OrderApply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Deny.
+        /// </summary>
+        public static string OrderDeny {
+            get {
+                return ResourceManager.GetString("OrderDeny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Are you sure that you want to deny this order?.
+        /// </summary>
+        public static string OrderDenyConfurm {
+            get {
+                return ResourceManager.GetString("OrderDenyConfurm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Order it.
         /// </summary>
         public static string OrderIT {
@@ -408,6 +489,15 @@ namespace Resources {
         public static string Orders {
             get {
                 return ResourceManager.GetString("Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Orders History.
+        /// </summary>
+        public static string OrdersHistory {
+            get {
+                return ResourceManager.GetString("OrdersHistory", resourceCulture);
             }
         }
         
