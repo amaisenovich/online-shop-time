@@ -124,6 +124,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Client.
+        /// </summary>
+        public static string Client {
+            get {
+                return ResourceManager.GetString("Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Style.
         /// </summary>
         public static string ColorTheme {
@@ -394,6 +403,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Open Trades.
+        /// </summary>
+        public static string OpenTrades {
+            get {
+                return ResourceManager.GetString("OpenTrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Apply.
+        /// </summary>
+        public static string OrderApply {
+            get {
+                return ResourceManager.GetString("OrderApply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Deny.
+        /// </summary>
+        public static string OrderDeny {
+            get {
+                return ResourceManager.GetString("OrderDeny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Order it.
         /// </summary>
         public static string OrderIT {
@@ -408,6 +444,15 @@ namespace Resources {
         public static string Orders {
             get {
                 return ResourceManager.GetString("Orders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Orders History.
+        /// </summary>
+        public static string OrdersHistory {
+            get {
+                return ResourceManager.GetString("OrdersHistory", resourceCulture);
             }
         }
         

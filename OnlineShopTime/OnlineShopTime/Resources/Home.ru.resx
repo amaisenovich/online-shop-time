@@ -273,4 +273,19 @@
   <data name="ActiveOrders" xml:space="preserve">
     <value>Активные заказы</value>
   </data>
+  <data name="OpenTrades" xml:space="preserve">
+    <value>Незавершенные сделки</value>
+  </data>
+  <data name="OrdersHistory" xml:space="preserve">
+    <value>История заказов</value>
+  </data>
+  <data name="OrderApply" xml:space="preserve">
+    <value>Приянть</value>
+  </data>
+  <data name="OrderDeny" xml:space="preserve">
+    <value>Отказать</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Клиент</value>
+  </data>
 </root>

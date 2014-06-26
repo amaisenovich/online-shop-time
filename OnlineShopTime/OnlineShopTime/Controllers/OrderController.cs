@@ -26,20 +26,29 @@ namespace OnlineShopTime.Controllers
         }
         public ActionResult ShowOrders(string UserID)
         {
-            WorkWithOrders WWOR = new WorkWithOrders();
+            OrdersDataModel ViewData = (OrdersDataModel)Session["ViewData"];
 
             CheckUserOrders(UserID);
 
             if (UserID == null)
             {
-                ViewBag.DataToShow = "MyOrders";
-                ViewBag.Data = WWOR.GetUserOrders(UserID);
-                UserID = (string)Session["UserID"];
+                WorkWithUsers WWU = new WorkWithUsers();
+                UserID = WWU.GetUserByName(User.Identity.Name).UserID;
             }
 
-            ViewBag.MyOffers = Resources.Home.MyOrders;         
-            Session["UserID"] = UserID;
-            return View(WWOR.GetUserOrders(UserID));
+            if (ViewData == null)
+            {
+                ViewData = new OrdersDataModel(UserID);
+                ViewData.SetActiveOrders();
+            }
+
+            if (ViewData.ActiveUserID == null)
+            {
+                ViewData.ActiveUserID = UserID;
+            }
+
+            Session["ViewData"] = ViewData;
+            return View(ViewData);
         }
         private void CheckUserOrders(string UserID)
         {
@@ -52,7 +61,35 @@ namespace OnlineShopTime.Controllers
         }
         public ActionResult TabClick(int TabID)
         {
-            return RedirectToAction("ShowOrders", "Orders");
+            WorkWithOrders WWOR = new WorkWithOrders();
+            string ActiveUserID = (string)Session["UserID"];
+            OrdersDataModel ViewData = new OrdersDataModel(ActiveUserID);
+            switch (TabID)
+            {
+                case 1:
+                    ViewData.SetOrdersHistory();
+                    break;
+                case 2:
+                    ViewData.SetActiveOrders();
+                    break;
+                case 3:
+                    ViewData.SetUserIncomingOrders();
+                    break;
+            }
+            Session["ViewData"] = ViewData;
+            return RedirectToAction("ShowOrders", "Order", new { UserID = ActiveUserID });
+        }
+        public ActionResult ApplyOrder(string OrderID)
+        {
+            WorkWithOrders WWO = new WorkWithOrders();
+            WWO.ApplyOrder(OrderID);
+            return RedirectToAction("TabClick", "Order", new { TabID = 3 });
+        }
+        public ActionResult DenyOrder(string OrderID)
+        {
+            WorkWithOrders WWO = new WorkWithOrders();
+            WWO.DenyOrder(OrderID);
+            return RedirectToAction("TabClick", "Order", new { TabID = 3 });
         }
     }
 }

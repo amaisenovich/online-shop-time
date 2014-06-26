@@ -1,4 +1,5 @@
-﻿@model IQueryable<OnlineShopTime.Models.Orders>
+﻿@model OnlineShopTime.Models.OrdersDataModel
+@using OnlineShopTime.Models
 
 @{
     ViewBag.Title = "ShowOrders";
@@ -11,27 +12,49 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4">
                     <div class="btn-group">
-                        <button type="submit" name="TabID" class="btn btn-default" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.MyOrders</button>
+                        <button type="submit" name="TabID" class="btn btn-default" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.OrdersHistory</button>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4">
                     <div class="btn-group">
-                        <button type="submit" name="TabID" class="btn btn-default" value="2" style="width: 250px; margin-top: 10px">@Resources.Home.ActiveOrders</button>
+                        <button type="submit" name="TabID" class="btn btn-default" value="2" style="width: 250px; margin-top: 10px">@Resources.Home.OpenTrades</button>
                     </div>
                 </div>
 
                 <div class="col-lg-4 col-md-4">
                     <div class="btn-group">
-                        <button type="submit" name="TabID" class="btn btn-default" value="2" style="width: 250px; margin-top: 10px">@Resources.Home.IncomingOrders</button>
+                        <button type="submit" name="TabID" class="btn btn-default" value="3" style="width: 250px; margin-top: 10px">@Resources.Home.IncomingOrders</button>
                     </div>
                 </div>
             </div>
         </div>
     }
 </center>
-
-<hr />
-
-
-
+<br>
+<div class="container">
+    @foreach (Orders Order in @Model.Data)
+    {
+        ViewBag.OrderID = Order.OrderID;
+        ViewBag.ClientID = Order.ClientID;
+        if (Model.DataToShow == "ActiveOrders")
+        {
+        }
+        if (Model.DataToShow == "OrdersHistory")
+        {
+        }
+        if (Model.DataToShow == "IncomingOrders")
+        {
+            <hr/>
+            if (Order.OrderStatus == "Await")
+            {
+                ViewBag.Buttons = "IncomingOrdersAwait"; 
+            }
+            if (Order.OrderStatus == "Active")
+            {
+                ViewBag.Buttons = "IncomingOrdersActive";
+            }            
+            @Html.Partial("_OfferPartial", Order.Offers);
+        }       
+    }
+</div>

@@ -273,4 +273,19 @@
   <data name="ActiveOrders" xml:space="preserve">
     <value>Active Orders</value>
   </data>
+  <data name="OpenTrades" xml:space="preserve">
+    <value>Open Trades</value>
+  </data>
+  <data name="OrdersHistory" xml:space="preserve">
+    <value>Orders History</value>
+  </data>
+  <data name="OrderApply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="OrderDeny" xml:space="preserve">
+    <value>Deny</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
 </root>
