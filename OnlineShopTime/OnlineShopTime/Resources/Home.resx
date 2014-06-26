@@ -270,4 +270,7 @@
   <data name="IncomingOrders" xml:space="preserve">
     <value>Incoming Orders</value>
   </data>
+  <data name="ActiveOrders" xml:space="preserve">
+    <value>Active Orders</value>
+  </data>
 </root>

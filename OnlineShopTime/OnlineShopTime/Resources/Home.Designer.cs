@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Active Orders.
+        /// </summary>
+        public static string ActiveOrders {
+            get {
+                return ResourceManager.GetString("ActiveOrders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Online Shop &quot;Time&quot;.
         /// </summary>
         public static string AppName {

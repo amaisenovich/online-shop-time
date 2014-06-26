@@ -52,14 +52,6 @@ namespace OnlineShopTime.Controllers
         }
         public ActionResult TabClick(int TabID)
         {
-            switch (TabID)
-            {
-                case 1:
-
-                    break;
-                case 2:
-                    break;
-            }
             return RedirectToAction("ShowOrders", "Orders");
         }
     }

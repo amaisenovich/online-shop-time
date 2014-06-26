@@ -270,4 +270,7 @@
   <data name="IncomingOrders" xml:space="preserve">
     <value>Входящие заказы</value>
   </data>
+  <data name="ActiveOrders" xml:space="preserve">
+    <value>Активные заказы</value>
+  </data>
 </root>
