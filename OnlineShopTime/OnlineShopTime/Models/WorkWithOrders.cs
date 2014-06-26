@@ -15,28 +15,68 @@ namespace OnlineShopTime.Models
         }
         public bool UserHasThisOfferOrdered(string UserID, string OfferID)
         {
-            int count = (from FiltredOrders in
-                             (from OrdersRec in Db.Orders where OrdersRec.OfferID == OfferID select OrdersRec)
-                         where FiltredOrders.ClientID == UserID
-                         select FiltredOrders).Count();
-            if (count > 0)
+            IQueryable<Orders> UserOrders = from FiltredOrders in
+                                                (from OrdersRec in Db.Orders where OrdersRec.OfferID == OfferID select OrdersRec)
+                                            where FiltredOrders.ClientID == UserID
+                                            select FiltredOrders;
+            return IsOfferOrdered(UserOrders);
+        }
+        private bool IsOfferOrdered(IQueryable<Orders> UserOrders)
+        {
+            if (UserOrders.Count() == 0)
             {
-                return true;
+                return false;
             }
             else
-                return false;
+            {
+                Orders Order = UserOrders.FirstOrDefault();
+                if (Order.OrderStatus == "Completed")
+                {
+                    return false;
+                }
+                else
+                    return true;
+            }
         }
-        public void OrderOffer(string OfferID, string UserName)
+        private void AddToOrders(string OfferID, string UserID)
         {
-            WorkWithUsers WWU = new WorkWithUsers();
             Orders Order = new Orders();
-            Order.ClientID = WWU.GetUserByName(UserName).UserID;
+            Order.ClientID = UserID;
             Order.DateAndTime = DateTime.Now;
             Order.OfferID = OfferID;
             Order.OrderID = Guid.NewGuid().ToString();
             Order.OrderStatus = "Await Confirmation";
             Db.Orders.Add(Order);
             Db.SaveChanges();
+        }
+        private void ReorderOffer(Orders Order)
+        {
+            Order.DateAndTime = DateTime.Now;
+            Order.OrderStatus = "Await Confirmation";
+            Db.SaveChanges();
+        }
+        public void OrderOffer(string OfferID, string UserName)
+        {
+            WorkWithUsers WWU = new WorkWithUsers();
+            string UserID = WWU.GetUserByName(UserName).UserID;
+
+            IQueryable<Orders> UserOrders = from FiltredOrders in
+                                                (from OrdersRec in Db.Orders where OrdersRec.OfferID == OfferID select OrdersRec)
+                                            where FiltredOrders.ClientID == UserID
+                                            select FiltredOrders;
+            if (UserOrders.Count() == 0)
+            {
+                AddToOrders(OfferID, UserID);
+            }   
+            else
+            {
+                if (UserOrders.FirstOrDefault().OrderStatus == "Completed")
+                {
+                    ReorderOffer(UserOrders.FirstOrDefault());
+                }
+                else
+                    AddToOrders(OfferID, UserID);
+            }
         }
         public IQueryable<Orders> GetUserIncomingOrders(string UserID)
         {
