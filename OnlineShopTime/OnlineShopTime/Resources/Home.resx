@@ -267,4 +267,10 @@
   <data name="AreYouSureOrderAdd" xml:space="preserve">
     <value>Do you want to buy this offer?</value>
   </data>
+  <data name="Dislike" xml:space="preserve">
+    <value>Dislike</value>
+  </data>
+  <data name="Like" xml:space="preserve">
+    <value>Like</value>
+  </data>
 </root>

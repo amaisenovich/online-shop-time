@@ -157,7 +157,7 @@
             ri.rateit('readonly', false);
 
             $.ajax({
-                url: '/Home/SetRating', //your server side script
+                url: '/Home/SetOfferRating', //your server side script
                 data: { id: productID, value: value, userID: userID }, //our data
                 type: 'POST',
                 success: function (data) {
