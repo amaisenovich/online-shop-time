@@ -300,4 +300,7 @@
   <data name="NoItem" xml:space="preserve">
     <value>К сожалению у вас нет заказов в этом разделе</value>
   </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Час</value>
+  </data>
 </root>

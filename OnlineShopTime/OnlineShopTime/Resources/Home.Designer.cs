@@ -196,15 +196,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Dislike.
-        /// </summary>
-        public static string Dislike {
-            get {
-                return ResourceManager.GetString("Dislike", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на Edit.
         /// </summary>
         public static string Edit {
@@ -268,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Hour.
+        /// </summary>
+        public static string Hour {
+            get {
+                return ResourceManager.GetString("Hour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Incoming Orders.
         /// </summary>
         public static string IncomingOrders {
@@ -300,15 +300,6 @@ namespace Resources {
         public static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Like.
-        /// </summary>
-        public static string Like {
-            get {
-                return ResourceManager.GetString("Like", resourceCulture);
             }
         }
         

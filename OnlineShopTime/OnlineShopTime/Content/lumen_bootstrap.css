@@ -451,7 +451,7 @@ h2,
 }
 h3,
 .h3 {
-  font-size: 24px;
+  font-size: 25px;
 }
 h4,
 .h4 {
@@ -4366,7 +4366,7 @@ a.list-group-item.active > .badge,
   padding: 30px;
   margin-bottom: 30px;
   color: inherit;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -4374,7 +4374,7 @@ a.list-group-item.active > .badge,
 }
 .jumbotron p {
   margin-bottom: 15px;
-  font-size: 21px;
+  font-size: 23px;
   font-weight: 200;
 }
 .container .jumbotron {

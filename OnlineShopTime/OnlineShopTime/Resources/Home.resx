@@ -300,4 +300,7 @@
   <data name="NoItems" xml:space="preserve">
     <value>Unfortunately you don't have orders in this section</value>
   </data>
+  <data name="Hour" xml:space="preserve">
+    <value>Hour</value>
+  </data>
 </root>

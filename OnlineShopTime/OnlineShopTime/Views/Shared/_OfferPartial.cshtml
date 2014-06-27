@@ -6,11 +6,11 @@
 @{string defaultImage = "v6ac3uaxfe5gtlqtrbr7";}
 
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 container">
-    <div class="jumbotron" style=" word-wrap: break-word">
+    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px">
 
         <div class="row">
-            <div class="col-lg-5 col-md-5 col-sm-3 col-xs-4">
-                @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(140).Height(140).Crop("fill")).BuildImageTag(Model.Photo1URL ?? defaultImage, "id = image", "class=img-responsive")
+            <div class="col-lg-5 col-md-5 col-sm-3 col-xs-4" style="padding-bottom:10px">
+                @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(157).Height(140).Crop("fill")).BuildImageTag(Model.Photo1URL ?? defaultImage, "id = image", "class=img-responsive")
             </div>
             <div class="col-lg-7 col-md-7 col-sm-9 col-xs-8">
                 <div class="container">
@@ -18,8 +18,11 @@
                         @{
                             float? rating = Model.OfferRaiting.Where(m => m.OfferID == Model.OfferID).Average(m => m.Raiting);
                             bool read_only = User.Identity.GetUserId() == null || User.Identity.GetUserId() == Model.OfferedBy;
-                         }
-                        <div data-rateit-readonly="@read_only.ToString().ToLower()" data-rateit-value="@rating" data-rateit-ispreset="true" data-rateit-resetable="false" data-rateit-step="1" data-offerid="@Model.OfferID" data-offeredby="@Model.OfferedBy" data-userid="@User.Identity.GetUserId()" class="rateit"></div>
+                        }
+                        <span class="glyphicon glyphicon-star"></span>  <div data-rateit-readonly="@read_only.ToString().ToLower()" data-rateit-value="@rating" data-rateit-ispreset="true" data-rateit-resetable="false" data-rateit-step="1" data-offerid="@Model.OfferID" data-offeredby="@Model.OfferedBy" data-userid="@User.Identity.GetUserId()" class="rateit"></div>
+                    </div>
+                    <div class="row">
+                        <span class="glyphicon glyphicon-time"></span>  @Model.Price / @Resources.Home.Hour.ToLower()
                     </div>
                     <div class="row">
                         <h3 style="margin-top:0px">
@@ -30,20 +33,24 @@
             </div>
         </div>
 
+
+
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h5 style="text-overflow:ellipsis">@Model.Description</h5>
+                <div class="well">
+                    <h5 style="text-overflow:ellipsis">@Model.Description</h5>
+                </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h3>
+                <h4>
                     @{
                         String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
-                        @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
                     }
-                </h3>
+                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                </h4>
             </div>
         </div>
 
