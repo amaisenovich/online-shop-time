@@ -13,23 +13,16 @@ namespace OnlineShopTime.Models
         public string ActiveUserID;
 
         public IQueryable<Orders> Data;
-
-        private bool ChechDayPeriod; 
         public OrdersDataModel(string UserID)
         {
             DataToShow = "ActiveOrders";
             ActiveUserID = UserID;
-            ChechDayPeriod = false;
         }
         public void SetActiveOrders()
         {
             WorkWithOrders WWOR = new WorkWithOrders();
             DataToShow = "ActiveOrders";
-            if (!ChechDayPeriod)
-            {
-                WWOR.CheckDayPeriod(ActiveUserID);
-                ChechDayPeriod = true;
-            }
+            WWOR.CheckDayPeriod(ActiveUserID);
             Data = WWOR.GetUserActiveOrders(ActiveUserID);
         }
         public void SetOrdersHistory()
