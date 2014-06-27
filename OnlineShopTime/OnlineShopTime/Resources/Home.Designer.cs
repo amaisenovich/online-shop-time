@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Ban.
+        /// </summary>
+        public static string Ban {
+            get {
+                return ResourceManager.GetString("Ban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Best offers.
         /// </summary>
         public static string BestOffers {
@@ -178,6 +187,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Controls.
+        /// </summary>
+        public static string Controls {
+            get {
+                return ResourceManager.GetString("Controls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Create.
         /// </summary>
         public static string CreateButton {
@@ -201,6 +219,15 @@ namespace Resources {
         public static string Delete {
             get {
                 return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Demote.
+        /// </summary>
+        public static string Demote {
+            get {
+                return ResourceManager.GetString("Demote", resourceCulture);
             }
         }
         
@@ -232,11 +259,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Enter any text.
+        /// </summary>
+        public static string EnterAnyText {
+            get {
+                return ResourceManager.GetString("EnterAnyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Title is required.
         /// </summary>
         public static string ErroeNameInput {
             get {
                 return ResourceManager.GetString("ErroeNameInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
             }
         }
         
@@ -583,6 +628,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Promote.
+        /// </summary>
+        public static string Promote {
+            get {
+                return ResourceManager.GetString("Promote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Raiting.
         /// </summary>
         public static string Raiting {
@@ -597,6 +651,15 @@ namespace Resources {
         public static string Registration {
             get {
                 return ResourceManager.GetString("Registration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Role.
+        /// </summary>
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
             }
         }
         
@@ -673,11 +736,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Unban.
+        /// </summary>
+        public static string Unban {
+            get {
+                return ResourceManager.GetString("Unban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на User list.
+        /// </summary>
+        public static string UserList {
+            get {
+                return ResourceManager.GetString("UserList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на User Login.
+        /// </summary>
+        public static string UserLogin {
+            get {
+                return ResourceManager.GetString("UserLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на User offers.
         /// </summary>
         public static string UserOffers {
             get {
                 return ResourceManager.GetString("UserOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Users Rights.
+        /// </summary>
+        public static string UsersRights {
+            get {
+                return ResourceManager.GetString("UsersRights", resourceCulture);
             }
         }
         

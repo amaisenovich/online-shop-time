@@ -330,4 +330,40 @@
   <data name="End" xml:space="preserve">
     <value>Завершить</value>
   </data>
+  <data name="AdminPanel" xml:space="preserve">
+    <value>Панель администрирования</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роль</value>
+  </data>
+  <data name="EnterAnyText" xml:space="preserve">
+    <value>Введите любой текст</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Фильтр</value>
+  </data>
+  <data name="UserList" xml:space="preserve">
+    <value>Список пользователей</value>
+  </data>
+  <data name="Controls" xml:space="preserve">
+    <value>Управление</value>
+  </data>
+  <data name="UserLogin" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="UsersRights" xml:space="preserve">
+    <value>Права пользователей</value>
+  </data>
+  <data name="Demote" xml:space="preserve">
+    <value>Понизить</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>Забанить</value>
+  </data>
+  <data name="Promote" xml:space="preserve">
+    <value>Повысить </value>
+  </data>
+  <data name="Unban" xml:space="preserve">
+    <value>Разбанить</value>
+  </data>
 </root>

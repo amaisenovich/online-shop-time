@@ -12,6 +12,16 @@ namespace OnlineShopTime.Models
         {
             Db = new ShopDBEntities();
         }
+        public IQueryable<Users> GetUsersList()
+        {
+            return from UserRecords in Db.Users select UserRecords;
+        }
+        public void SetUserRights(string UserID, string Rights)
+        {
+            Users User = (from UserRecords in Db.Users where UserRecords.UserID == UserID select UserRecords).FirstOrDefault();
+            User.UserRights = Rights;
+            Db.SaveChanges();
+        }
         public int[] GetUserRaiting(string Id)
         {
             //Returns array. First element - number of likes, second - number of dislikes.            
@@ -35,9 +45,9 @@ namespace OnlineShopTime.Models
                                           into ResultTable
                                           select new { Key = ResultTable.Key, Raiting = ResultTable.Sum(value => value.Rating) };
             IQueryable<Users> TopUser = (from UserRecord in Db.Users
-                                        join EachRecord in UserRaitingArranged on UserRecord.UserID equals EachRecord.Key
-                                        orderby EachRecord.Raiting descending
-                                        select UserRecord).Take(12);
+                                         join EachRecord in UserRaitingArranged on UserRecord.UserID equals EachRecord.Key
+                                         orderby EachRecord.Raiting descending
+                                         select UserRecord).Take(12);
             return TopUser;
         }
         public Users GetUserByName(string UserName)
@@ -50,7 +60,10 @@ namespace OnlineShopTime.Models
             Db = new ShopDBEntities();
             return (from UserRecord in Db.Users where UserRecord.UserID == UserID select UserRecord).FirstOrDefault();
         }
-
+        public string GetUserRole(string UserID)
+        {
+            return (from Records in Db.Users where Records.UserID == UserID select Records).FirstOrDefault().UserRights;
+        }
         public void SetEditProfileData(Users User)
         {
             Users oldUser = (from UserRecords in Db.Users where UserRecords.UserID == User.UserID select UserRecords).FirstOrDefault();

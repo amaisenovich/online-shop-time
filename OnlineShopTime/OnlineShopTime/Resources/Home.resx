@@ -330,4 +330,37 @@
   <data name="End" xml:space="preserve">
     <value>End</value>
   </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="EnterAnyText" xml:space="preserve">
+    <value>Enter any text</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="UserList" xml:space="preserve">
+    <value>User list</value>
+  </data>
+  <data name="Controls" xml:space="preserve">
+    <value>Controls</value>
+  </data>
+  <data name="UserLogin" xml:space="preserve">
+    <value>User Login</value>
+  </data>
+  <data name="UsersRights" xml:space="preserve">
+    <value>Users Rights</value>
+  </data>
+  <data name="Demote" xml:space="preserve">
+    <value>Demote</value>
+  </data>
+  <data name="Ban" xml:space="preserve">
+    <value>Ban</value>
+  </data>
+  <data name="Promote" xml:space="preserve">
+    <value>Promote</value>
+  </data>
+  <data name="Unban" xml:space="preserve">
+    <value>Unban</value>
+  </data>
 </root>

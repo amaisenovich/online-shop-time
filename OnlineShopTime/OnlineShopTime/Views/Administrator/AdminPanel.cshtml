@@ -1,0 +1,97 @@
+﻿@model IQueryable<OnlineShopTime.Models.Users>
+@using OnlineShopTime.Models
+
+@{
+    ViewBag.Title = "Administrator Panel";
+}
+
+<br />
+
+<div class="jumbotron">
+
+    <div class="container">
+        <div class="rows">
+            <div class="col-lg-1 col-md-1 col-sm-2">
+                <h4 style="margin-top: 12%">@Resources.Home.Filter:</h4>
+            </div>
+            <div class="col-lg-11 col-md-11 col-sm-10">
+                <input type="text" name="FilterText" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" class="form-control" id="inputTitle" placeholder="@Resources.Home.EnterAnyText" />
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="container">
+        <center>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">@Resources.Home.UserList</div>
+                    <table class="table table-striped">
+
+                        <thead>
+                            <tr style="height: 45px">
+                                <th style="vertical-align: middle; text-align: center">#</th>
+                                <th style="vertical-align: middle; text-align: center">@Resources.Home.FirstName</th>
+                                <th style="vertical-align: middle; text-align: center">@Resources.Home.LastName</th>
+                                <th style="vertical-align: middle; text-align: center">@Resources.Home.UserLogin</th>
+                                <th style="vertical-align: middle; text-align: center">@Resources.Home.Role</th>
+                                <th style="vertical-align: middle; text-align: center">@Resources.Home.Controls</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @{
+                                int Count = 1;
+                                foreach (Users User in Model)
+                                {
+                                    <tr style="height: 45px">
+                                        <th style="vertical-align: middle; text-align: center">@Count</th>
+                                        <th style="vertical-align: middle; text-align: center">@User.FirstName</th>
+                                        <th style="vertical-align: middle; text-align: center">@User.LastName</th>
+                                        <th style="vertical-align: middle; text-align: center">@User.UserName</th>
+                                        <th style="vertical-align: middle; text-align: center">@User.UserRights</th>
+                                        <th style="text-align: center">
+
+
+                                            <div class="dropdown">
+                                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                                                    @Resources.Home.Controls
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <a style="text-decoration: none"></a>
+                                                <ul class="dropdown-menu dropdown-menu-right" style="margin: 0 auto; left: 0px; width: 50px">
+                                                    @if(User.UserRights == "Admin")
+                                                    {
+                                                        <li>@Html.ActionLink(Resources.Home.Ban, "SetRights", "Administrator", new { UserID = User.UserID, Rights = "Ban" }, htmlAttributes: new { style = "text-decoration: none" })</li>
+                                                        <li>@Html.ActionLink(Resources.Home.Unban, "SetRights", "Administrator", new { UserID = User.UserID, Rights = "User" }, htmlAttributes: new { style = "text-decoration: none" })</li>
+                                                        <li>@Html.ActionLink(Resources.Home.Demote, "SetRights", "Administrator", new { UserID = User.UserID, Rights = "User" }, htmlAttributes: new { style = "text-decoration: none" })</li>
+                                                        <li>@Html.ActionLink(Resources.Home.Promote, "SetRights", "Administrator", new { UserID = User.UserID, Rights = "Admin" }, htmlAttributes: new { style = "text-decoration: none" })</li>
+                                                    }
+                                                    @if (User.UserRights == "Admin")
+                                                    {
+                                                         
+                                                    }
+                                                    @if (User.UserRights == "Banned")
+                                                    {
+                                                         
+                                                    }
+                                                </ul>
+                                            </div>
+
+
+
+                                        </th>
+                                    </tr>
+                                    Count++;
+                                }
+                            }
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </center>
+
+    </div>
+</div>

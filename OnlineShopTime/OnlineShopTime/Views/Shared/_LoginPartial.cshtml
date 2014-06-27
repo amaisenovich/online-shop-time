@@ -17,17 +17,23 @@
                     <li>
                         @Html.ActionLink(@Resources.Home.MyProfile, "EditProfile", "Account")
                     </li>
+                    @{ WorkWithUsers WWU = new WorkWithUsers(); }
+
+                    @if (WWU.GetUserRole(IdentityExtensions.GetUserId(User.Identity)) == "Admin")
+                    {
+                        <li role="presentation" class="divider"></li>
+                        <li>
+                            @Html.ActionLink(@Resources.Home.UsersRights, "AdminPanel", "Administrator")
+                        </li>
+                    }
                     <li role="presentation" class="divider"></li>
                     <li>
                         @Html.ActionLink(@Resources.Home.CreateOffer, "Create", "Offer")
 
                     </li>
                     <li>
-                        @{
-                            WorkWithUsers WWU = new WorkWithUsers();
-                            String ActiveUserID = WWU.GetUserByName(User.Identity.Name).UserID;
-                            @Html.ActionLink(@Resources.Home.MyOffers, "ShowUserOffers", "Offer", new { UserID = ActiveUserID }, null)
-                        }
+                        @{ String ActiveUserID = IdentityExtensions.GetUserId(User.Identity); }
+                        @Html.ActionLink(@Resources.Home.MyOffers, "ShowUserOffers", "Offer", new { UserID = ActiveUserID }, null)
                     </li>
                     <li role="presentation" class="divider"></li>
                     <li>
