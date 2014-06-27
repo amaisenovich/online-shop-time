@@ -41,5 +41,10 @@ namespace OnlineShopTime.Controllers
                 Session["Users"] = WWU.GetWorseUsers();
             return RedirectToAction("AdminPanel");
         }
+        public ActionResult ShowAdminContacts(string UserID)
+        {
+            WorkWithUsers WWU = new WorkWithUsers();
+            return View(WWU.GetAdminsList());
+        }
     }
 }

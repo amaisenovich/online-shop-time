@@ -378,4 +378,7 @@
   <data name="ShowUserOffers" xml:space="preserve">
     <value>Show user offers</value>
   </data>
+  <data name="AdminsContacts" xml:space="preserve">
+    <value>Admins contacts</value>
+  </data>
 </root>

@@ -9,7 +9,7 @@
 
 @{ WorkWithUsers WWU = new WorkWithUsers(); }
 @{bool IsUserBanned = false; }
-@if(IdentityExtensions.GetUserId(User.Identity) != null)
+@if (IdentityExtensions.GetUserId(User.Identity) != null)
 {
     IsUserBanned = WWU.GetUserRole(IdentityExtensions.GetUserId(User.Identity)) == "Banned";
 }
@@ -95,7 +95,13 @@
 }
 else
 {
-    <center><div class="jumbotron"><h2>@Resources.Home.AccessDenied</h2></div></center>
+    <center>
+        <div class="jumbotron">
+            <h2>
+                @Resources.Home.AccessDenied
+            </h2>
+        </div>
+    </center>
 }
 
 @section Scripts {

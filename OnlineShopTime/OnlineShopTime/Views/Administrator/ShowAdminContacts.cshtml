@@ -1,0 +1,17 @@
+﻿@model IQueryable<OnlineShopTime.Models.Users>
+@using OnlineShopTime.Models
+
+@{
+    ViewBag.Title = "ShowAdminContacts";
+}
+
+<br>
+
+@{ViewBag.ShowContactInfo = true;}
+
+<center>
+    @foreach (Users User in Model)
+    {
+        @Html.Partial("_UserPartial", User)
+    }
+</center>

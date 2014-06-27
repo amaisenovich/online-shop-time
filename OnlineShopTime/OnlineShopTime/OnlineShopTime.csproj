@@ -362,6 +362,7 @@
     <Content Include="Views\Order\CancelOrderConfurm.cshtml" />
     <Content Include="Views\Order\TradeCompleteConfurm.cshtml" />
     <Content Include="Views\Administrator\AdminPanel.cshtml" />
+    <Content Include="Views\Administrator\ShowAdminContacts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

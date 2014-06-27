@@ -381,4 +381,7 @@
   <data name="ShowUserOffers" xml:space="preserve">
     <value>Показать предложения пользователя</value>
   </data>
+  <data name="AdminsContacts" xml:space="preserve">
+    <value>Контакты администрации</value>
+  </data>
 </root>

@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Admins contacts.
+        /// </summary>
+        public static string AdminsContacts {
+            get {
+                return ResourceManager.GetString("AdminsContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Are you sure that you want to apply this order?.
         /// </summary>
         public static string ApplyOrderConfirm {

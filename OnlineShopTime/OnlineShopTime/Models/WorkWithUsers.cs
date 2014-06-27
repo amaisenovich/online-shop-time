@@ -83,11 +83,14 @@ namespace OnlineShopTime.Models
                                          select UserRecord).Take(20);
             return WorstUsers;
         }
-
         public IQueryable<Users> SearchInUsers(string request)
         {
             IQueryable<Users> Result = (from UserRecords in Db.Users select UserRecords).Where(item => (item.FirstName.Contains(request) == true) || (item.LastName.Contains(request) == true) || (item.UserRights.Contains(request) == true) || (item.UserName.Contains(request) == true));
             return Result;
+        }
+        public IQueryable<Users> GetAdminsList()
+        {
+            return from UserRecords in Db.Users where UserRecords.UserRights == "Admin" select UserRecords;
         }
     }
 }
