@@ -13,13 +13,13 @@
         <div class="container">
             <div class="rows">
                 <div class="col-lg-1 col-md-1 col-sm-2">
-                    <center><h4 style="margin-top: 12%; margin-left: -5px">@Resources.Home.Search:</h4></center>
+                    <center><h4 style="margin-top: 13%; margin-left: -5px">@Resources.Home.Search:</h4></center>
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-8">
+                <div class="col-lg-9 col-md-9 col-sm-7">
                     <input type="text" name="SearchText" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" class="form-control" id="inputTitle" placeholder="@Resources.Home.EnterAnyText" />
                 </div>
-                <div class="col-lg-2 col-md-2 col-sm-2">
-                    <button type="submit" class="btn btn-default btn-primary" style="margin-top: 2%; width: 100%"><span class="glyphicon glyphicon-search"></span>@Resources.Home.Search</button>
+                <div class="col-lg-2 col-md-2 col-sm-3">
+                    <button type="submit" class="btn btn-default btn-primary" style="width: 100%"><span class="glyphicon glyphicon-search"></span>@Resources.Home.Search</button>
                 </div>
             </div>
         </div>
@@ -52,10 +52,10 @@
                                     <tr style="height: 45px">
                                         <th style="vertical-align: middle; text-align: center">@Count</th>
                                         <th style="vertical-align: middle; text-align: center">
-                                            @User.FirstName
+                                            @Html.ActionLink(User.FirstName, "ShowUserInfo", "Order", new { UserID = User.UserID }, htmlAttributes: new { style = "text-decoration: none", title = @Resources.Home.ShowUserContacts })
                                         </th>
                                         <th style="vertical-align: middle; text-align: center">
-                                            @User.LastName
+                                            @Html.ActionLink(User.LastName, "ShowUserOffers", "Offer", new { UserID = User.UserID }, htmlAttributes: new { style = "text-decoration: none", title = @Resources.Home.ShowUserOffers })
                                         </th>
                                         <th style="vertical-align: middle; text-align: center">@User.UserName</th>
                                         <th style="vertical-align: middle; text-align: center">@User.UserRights</th>

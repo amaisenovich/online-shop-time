@@ -372,4 +372,10 @@
   <data name="AccessDenied" xml:space="preserve">
     <value>Dear friend! Access to the site was restricted by the administrator!</value>
   </data>
+  <data name="ShowUserContacts" xml:space="preserve">
+    <value>Show user contacts</value>
+  </data>
+  <data name="ShowUserOffers" xml:space="preserve">
+    <value>Show user offers</value>
+  </data>
 </root>

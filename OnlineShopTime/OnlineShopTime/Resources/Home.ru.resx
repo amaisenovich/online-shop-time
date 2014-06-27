@@ -375,4 +375,10 @@
   <data name="AccessDenied" xml:space="preserve">
     <value>Дорогой друг! Доступ к сайту был ограничен администратором.</value>
   </data>
+  <data name="ShowUserContacts" xml:space="preserve">
+    <value>Показать контакты пользователя</value>
+  </data>
+  <data name="ShowUserOffers" xml:space="preserve">
+    <value>Показать предложения пользователя</value>
+  </data>
 </root>

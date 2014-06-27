@@ -709,6 +709,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Show user contacts.
+        /// </summary>
+        public static string ShowUserContacts {
+            get {
+                return ResourceManager.GetString("ShowUserContacts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Show user offers.
+        /// </summary>
+        public static string ShowUserOffers {
+            get {
+                return ResourceManager.GetString("ShowUserOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Tags.
         /// </summary>
         public static string Tags {
