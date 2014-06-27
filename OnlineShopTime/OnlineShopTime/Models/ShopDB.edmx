@@ -37,7 +37,7 @@
           <Property Name="Photo2URL" Type="nvarchar(max)" />
           <Property Name="Photo3URL" Type="nvarchar(max)" />
           <Property Name="Photo4URL" Type="nvarchar(max)" />
-          <Property Name="Price" Type="money" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="OfferTags">
           <Key>
@@ -300,7 +300,7 @@
           <Property Name="Photo2URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Photo3URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Photo4URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Offers" FromRole="Offers" ToRole="Comments" />
           <NavigationProperty Name="OfferRaiting" Relationship="Self.FK_OfferRaiting_Offers" FromRole="Offers" ToRole="OfferRaiting" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Offers_Users" FromRole="Offers" ToRole="Users" />

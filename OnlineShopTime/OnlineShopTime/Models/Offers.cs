@@ -31,7 +31,7 @@ namespace OnlineShopTime.Models
         public string Photo2URL { get; set; }
         public string Photo3URL { get; set; }
         public string Photo4URL { get; set; }
-        public Nullable<decimal> Price { get; set; }
+        public string Price { get; set; }
     
         public virtual ICollection<Comments> Comments { get; set; }
         public virtual ICollection<OfferRaiting> OfferRaiting { get; set; }
