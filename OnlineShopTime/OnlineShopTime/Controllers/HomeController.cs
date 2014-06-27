@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json.Linq;
 using OnlineShopTime.Models;
+using Microsoft.AspNet.Identity; 
 
 namespace OnlineShopTime.Controllers
 {
@@ -26,6 +27,13 @@ namespace OnlineShopTime.Controllers
 
             ViewBag.ViewData = IndexViewData;
             Session["IndexData"] = IndexViewData;
+
+            if (User.Identity.Name != "")
+            {
+                WorkWithUsers WWU = new WorkWithUsers();
+                if (WWU.GetUserRole(IdentityExtensions.GetUserId(User.Identity)) == "Banned")
+                   return RedirectToAction("UserBanned", "AccessDenied");
+            }
             return View();
         }
 

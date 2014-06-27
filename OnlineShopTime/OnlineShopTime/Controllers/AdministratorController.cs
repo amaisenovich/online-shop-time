@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OnlineShopTime.Models;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineShopTime.Controllers
 {
@@ -20,7 +21,11 @@ namespace OnlineShopTime.Controllers
                 Users = WWU.GetWorseUsers();
             }
             Session["Users"] = Users;
-            return View(Users);
+            if (User.Identity.Name != "")
+                if (WWU.GetUserRole(IdentityExtensions.GetUserId(User.Identity)) == "Admin")
+                    return View(Users);
+            return RedirectToAction("AccessDenied", "AccessDenied");
+
         }
         public ActionResult SetRights(string UserID, string Rights)
         {
@@ -30,7 +35,7 @@ namespace OnlineShopTime.Controllers
             return RedirectToAction("AdminPanel");
         }
         public ActionResult Search(string SearchText)
-        {            
+        {
             WorkWithUsers WWU = new WorkWithUsers();
             if (SearchText != "")
             {

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using OnlineShopTime.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineShopTime.Controllers
 {
@@ -25,21 +26,31 @@ namespace OnlineShopTime.Controllers
                 WorkWithOffers WWO = new WorkWithOffers();
                 Offer = WWO.GetOfferByID(OfferID);
             }
-            return View(Offer);
+            if (User.Identity.Name == "")
+            {
+                return RedirectToAction("AccessDenied", "AccessDenied");
+            }
+            else
+                return View(Offer);
         }
 
         [HttpPost]
         public ActionResult Create(Offers newOffer)
         {
-            WWO = new WorkWithOffers();
-            string defaultImage = null;
-            newOffer.Photo1URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
-            newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
-            newOffer.Photo3URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
-            newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
-            WWO.AndNewOrModify(newOffer, User.Identity.Name);
-            imageURLs.Clear();
-            return RedirectToAction("TabClick", "Home", new { TabID = 3 });
+            if (User.Identity.Name != "")
+            {
+                WWO = new WorkWithOffers();
+                string defaultImage = null;
+                newOffer.Photo1URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
+                newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
+                newOffer.Photo3URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
+                newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
+                WWO.AndNewOrModify(newOffer, User.Identity.Name);
+                imageURLs.Clear();
+                return RedirectToAction("TabClick", "Home", new { TabID = 3 });
+            }
+            else
+                return RedirectToAction("AccessDenied", "AccessDenied");
         }
 
         static Queue<string> imageURLs = new Queue<string>();
@@ -77,19 +88,24 @@ namespace OnlineShopTime.Controllers
         [HttpGet]
         public ActionResult ShowUserOffers(String UserID)
         {
-            if (UserID == null)
-                UserID = (string)Session["UserID"];
+            if (User.Identity.Name != "")
+            {
+                if (UserID == null)
+                    UserID = (string)Session["UserID"];
 
-            WorkWithOffers WWO = new WorkWithOffers();
-            WorkWithUsers WWU = new WorkWithUsers();
+                WorkWithOffers WWO = new WorkWithOffers();
+                WorkWithUsers WWU = new WorkWithUsers();
 
-            IQueryable<Offers> UserOffers = WWO.GetUserOffers(UserID);
+                IQueryable<Offers> UserOffers = WWO.GetUserOffers(UserID);
 
-            Users User = WWU.GetUserByID(UserID);
-            ViewBag.UserName = User.FirstName + " " + User.LastName;
+                Users ActiveUser = WWU.GetUserByID(UserID);
+                ViewBag.UserName = ActiveUser.FirstName + " " + ActiveUser.LastName;
 
-            Session["UserID"] = UserID;
-            return View(UserOffers);
+                Session["UserID"] = UserID;
+                return View(UserOffers);
+            }
+            else
+                return RedirectToAction("AccessDenied", "AccessDenied");
         }
         public ActionResult OfferPage(String OfferID)
         {
@@ -100,22 +116,29 @@ namespace OnlineShopTime.Controllers
                 ShowOffer = (Offers)Session["ShowOffer"];
             }
             else
-                ShowOffer = WWO.GetOfferByID(OfferID);         
+                ShowOffer = WWO.GetOfferByID(OfferID);
             Session["ShowOffer"] = ShowOffer;
+
+            if (User.Identity.Name != "")
+            {
+                WorkWithUsers WWU = new WorkWithUsers();
+                if (WWU.GetUserRole(IdentityExtensions.GetUserId(User.Identity)) == "Banned")
+                    return RedirectToAction("UserBanned", "AccessDenied");
+            }
             return View(ShowOffer);
         }
 
         public ActionResult Delete(string OfferID)
         {
             WorkWithOffers WWO = new WorkWithOffers();
-            WWO.DeleteOffer(OfferID);            
+            WWO.DeleteOffer(OfferID);
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult DeleteOffer(string OfferID)
         {
             if (OfferID == null)
-                OfferID = (string)Session["OfferID"];            
+                OfferID = (string)Session["OfferID"];
             Session["OfferID"] = OfferID;
             WorkWithOffers WWO = new WorkWithOffers();
             return View(WWO.GetOfferByID(OfferID));

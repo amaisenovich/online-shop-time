@@ -372,7 +372,7 @@
   <data name="NoSearchResults" xml:space="preserve">
     <value>Не найдено совпадений. Измените строку поиска</value>
   </data>
-  <data name="AccessDenied" xml:space="preserve">
+  <data name="UserBanned" xml:space="preserve">
     <value>Дорогой друг! Доступ к сайту был ограничен администратором.</value>
   </data>
   <data name="ShowUserContacts" xml:space="preserve">
@@ -383,5 +383,8 @@
   </data>
   <data name="AdminsContacts" xml:space="preserve">
     <value>Контакты администрации</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Недостаточно прав доступа</value>
   </data>
 </root>

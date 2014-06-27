@@ -1,4 +1,4 @@
-﻿@model IQueryable<OnlineShopTime.Models.Users>
+﻿@model OnlineShopTime.Models.Users
 @using OnlineShopTime.Models
 
 @{
@@ -10,8 +10,5 @@
 @{ViewBag.ShowContactInfo = true;}
 
 <center>
-    @foreach (Users User in Model)
-    {
-        @Html.Partial("_UserPartial", User)
-    }
+    @Html.Partial("_UserPartial", Model)
 </center>

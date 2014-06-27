@@ -88,9 +88,9 @@ namespace OnlineShopTime.Models
             IQueryable<Users> Result = (from UserRecords in Db.Users select UserRecords).Where(item => (item.FirstName.Contains(request) == true) || (item.LastName.Contains(request) == true) || (item.UserRights.Contains(request) == true) || (item.UserName.Contains(request) == true));
             return Result;
         }
-        public IQueryable<Users> GetAdminsList()
+        public Users GetAdminsList()
         {
-            return from UserRecords in Db.Users where UserRecords.UserRights == "Admin" select UserRecords;
+            return (from UserRecords in Db.Users where UserRecords.UserRights == "Admin" select UserRecords).FirstOrDefault();
         }
     }
 }

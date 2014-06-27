@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Dear friend! Access to the site was restricted by the administrator!.
+        ///   Ищет локализованную строку, похожую на Insufficient access rights.
         /// </summary>
         public static string AccessDenied {
             get {
@@ -795,6 +795,15 @@ namespace Resources {
         public static string Unban {
             get {
                 return ResourceManager.GetString("Unban", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Dear friend! Access to the site was restricted by the administrator!.
+        /// </summary>
+        public static string UserBanned {
+            get {
+                return ResourceManager.GetString("UserBanned", resourceCulture);
             }
         }
         

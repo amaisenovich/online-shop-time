@@ -8,101 +8,84 @@
 <br />
 
 @{ WorkWithUsers WWU = new WorkWithUsers(); }
-@{bool IsUserBanned = false; }
-@if (IdentityExtensions.GetUserId(User.Identity) != null)
-{
-    IsUserBanned = WWU.GetUserRole(IdentityExtensions.GetUserId(User.Identity)) == "Banned";
-}
 
-@if (!IsUserBanned)
-{
-    <center>
-        @using (@Html.BeginForm("TabClick", "Home"))
-        {
-            <div class="row">
-                <div class="col-lg-4">
-                    @if (ViewBag.ViewData.ShowString == "TopOffers")
-                    {
-                        <button type="submit" name="TabID" class="btn btn-default btn-success" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.TopOffers</button>
-                    }
-                    else
-                    {
-                        <button type="submit" name="TabID" class="btn btn-default" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.TopOffers</button>
-                    }
-                </div>
-                <div class="col-lg-4">
-                    @if (ViewBag.ViewData.ShowString == "NewOffers")
-                    {
-                        <button type="submit" class="btn btn-default btn-success" name="TabID" value="3" style="width: 250px; margin-top: 10px; ">@Resources.Home.NewOffers</button>
-                    }
-                    else
-                    {
-                        <button type="submit" class="btn btn-default" name="TabID" value="3" style="width: 250px; margin-top: 10px; ">@Resources.Home.NewOffers</button>
-                    }
-                </div>
-                <div class="col-lg-4">
-                    @if (ViewBag.ViewData.ShowString == "TopUsers")
-                    {
-                        <button type="submit" class="btn btn-default btn-success" name="TabID" value="2" style="width: 250px; margin-top: 10px; ">@Resources.Home.TopUsers</button>
-                    }
-                    else
-                    {
-                        <button type="submit" class="btn btn-default" name="TabID" value="2" style="width: 250px; margin-top: 10px; ">@Resources.Home.TopUsers</button>
-                    }
-                </div>
-            </div>
-        }
-    </center>
-    <br />
-
-    <div class="container-fluid" id="offers">
+<center>
+    @using (@Html.BeginForm("TabClick", "Home"))
+    {
         <div class="row">
-            @if (ViewBag.ViewData.ShowString == "TopOffers")
-            {
-                foreach (Offers TopOffer in ViewBag.ViewData.TopOffers)
+            <div class="col-lg-4">
+                @if (ViewBag.ViewData.ShowString == "TopOffers")
                 {
-                    @Html.Partial("_OfferPartial", TopOffer);
+                    <button type="submit" name="TabID" class="btn btn-default btn-success" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.TopOffers</button>
                 }
-            }
-        </div>
-    </div>
-
-    <div class="container-fluid" id="users">
-        <div class="row">
-            <center>
+                else
+                {
+                    <button type="submit" name="TabID" class="btn btn-default" value="1" style="width: 250px; margin-top: 10px">@Resources.Home.TopOffers</button>
+                }
+            </div>
+            <div class="col-lg-4">
+                @if (ViewBag.ViewData.ShowString == "NewOffers")
+                {
+                    <button type="submit" class="btn btn-default btn-success" name="TabID" value="3" style="width: 250px; margin-top: 10px; ">@Resources.Home.NewOffers</button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-default" name="TabID" value="3" style="width: 250px; margin-top: 10px; ">@Resources.Home.NewOffers</button>
+                }
+            </div>
+            <div class="col-lg-4">
                 @if (ViewBag.ViewData.ShowString == "TopUsers")
                 {
-                    foreach (Users TopUser in ViewBag.ViewData.TopUsers)
-                    {
-                        @Html.Partial("_UserPartial", TopUser);
-                    }
+                    <button type="submit" class="btn btn-default btn-success" name="TabID" value="2" style="width: 250px; margin-top: 10px; ">@Resources.Home.TopUsers</button>
                 }
-            </center>
-        </div>
-    </div>
-
-    <div class="container-fluid" id="offers">
-        <div class="row">
-            @if (ViewBag.ViewData.ShowString == "NewOffers")
-            {
-                foreach (Offers NewOffer in ViewBag.ViewData.NewOffers)
+                else
                 {
-                    @Html.Partial("_OfferPartial", NewOffer)
+                    <button type="submit" class="btn btn-default" name="TabID" value="2" style="width: 250px; margin-top: 10px; ">@Resources.Home.TopUsers</button>
+                }
+            </div>
+        </div>
+    }
+</center>
+<br />
+
+<div class="container-fluid" id="offers">
+    <div class="row">
+        @if (ViewBag.ViewData.ShowString == "TopOffers")
+        {
+            foreach (Offers TopOffer in ViewBag.ViewData.TopOffers)
+            {
+                @Html.Partial("_OfferPartial", TopOffer);
+            }
+        }
+    </div>
+</div>
+
+<div class="container-fluid" id="users">
+    <div class="row">
+        <center>
+            @if (ViewBag.ViewData.ShowString == "TopUsers")
+            {
+                foreach (Users TopUser in ViewBag.ViewData.TopUsers)
+                {
+                    @Html.Partial("_UserPartial", TopUser);
                 }
             }
-        </div>
+        </center>
     </div>
-}
-else
-{
-    <center>
-        <div class="jumbotron">
-            <h2>
-                @Resources.Home.AccessDenied
-            </h2>
-        </div>
-    </center>
-}
+</div>
+
+<div class="container-fluid" id="offers">
+    <div class="row">
+        @if (ViewBag.ViewData.ShowString == "NewOffers")
+        {
+            foreach (Offers NewOffer in ViewBag.ViewData.NewOffers)
+            {
+                @Html.Partial("_OfferPartial", NewOffer)
+            }
+        }
+    </div>
+</div>
+
 
 @section Scripts {
     <!-- RateIt Script -->
