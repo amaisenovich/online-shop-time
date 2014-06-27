@@ -67,7 +67,7 @@ namespace OnlineShopTime.Models
             if (UserOrders.Count() == 0)
             {
                 AddToOrders(OfferID, UserID);
-            }   
+            }
             else
             {
                 if (UserOrders.FirstOrDefault().OrderStatus == "Completed")
@@ -92,14 +92,17 @@ namespace OnlineShopTime.Models
             IQueryable<Orders> UserOrders = (from OrdersRecords in Db.Orders orderby OrdersRecords.DateAndTime select OrdersRecords).Where(item => (item.OrderStatus == "Active") || (item.OrderStatus == "Await Confirmation"));
             return from ItemRecords in UserOrders where ItemRecords.ClientID == UserID select ItemRecords;
         }
-        public bool IsDayDone(Orders Ord)
+        public void CheckDayPeriod(string UserID)
         {
-            TimeSpan age = DateTime.Now.Subtract(Ord.DateAndTime.GetValueOrDefault());
-            if (age.Milliseconds >= 1)
+            IQueryable<Orders> UserOrders = from OrdersRecords in Db.Orders where OrdersRecords.ClientID == UserID select OrdersRecords;
+            foreach (Orders Order in UserOrders)
             {
-                return true;
+                if (DateTime.Now.Subtract(Order.DateAndTime.GetValueOrDefault()).Days >= 1)
+                {
+                    Db.Orders.Remove(Order);
+                }
             }
-            return false;
+            Db.SaveChanges();
         }
         public void DenyOrder(string OrderID)
         {

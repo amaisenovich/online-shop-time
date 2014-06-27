@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
 
 namespace OnlineShopTime.Models
 {
@@ -12,15 +13,23 @@ namespace OnlineShopTime.Models
         public string ActiveUserID;
 
         public IQueryable<Orders> Data;
+
+        private bool ChechDayPeriod; 
         public OrdersDataModel(string UserID)
         {
             DataToShow = "ActiveOrders";
             ActiveUserID = UserID;
+            ChechDayPeriod = false;
         }
         public void SetActiveOrders()
         {
             WorkWithOrders WWOR = new WorkWithOrders();
             DataToShow = "ActiveOrders";
+            if (!ChechDayPeriod)
+            {
+                WWOR.CheckDayPeriod(ActiveUserID);
+                ChechDayPeriod = true;
+            }
             Data = WWOR.GetUserActiveOrders(ActiveUserID);
         }
         public void SetOrdersHistory()

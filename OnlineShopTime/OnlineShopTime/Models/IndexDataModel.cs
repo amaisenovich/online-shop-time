@@ -19,17 +19,14 @@ namespace OnlineShopTime.Models
         {
             ShowTopOffers();
         }
-
         public void ShowTopOffers()
         {
             ShowString = "TopOffers";
         }
-
         public void ShowTopUsers()
         {
             ShowString = "TopUsers";
         }
-
         public void ShowNewOffers()
         {
             ShowString = "NewOffers";
