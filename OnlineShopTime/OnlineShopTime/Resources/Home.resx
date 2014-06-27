@@ -363,4 +363,13 @@
   <data name="Unban" xml:space="preserve">
     <value>Unban</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="NoSearchResults" xml:space="preserve">
+    <value>No results found. Change the search string</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Dear friend! Access to the site was restricted by the administrator!</value>
+  </data>
 </root>

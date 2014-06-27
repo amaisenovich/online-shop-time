@@ -23,8 +23,7 @@ namespace OnlineShopTime.Models
             Db.SaveChanges();
         }
         public int[] GetUserRaiting(string Id)
-        {
-            //Returns array. First element - number of likes, second - number of dislikes.            
+        {        
             int likes = 0;
             int dislikes = 0;
             var UserRaitingRecords = from Record in Db.UserRaiting where Record.UserID == Id select Record;
@@ -39,7 +38,6 @@ namespace OnlineShopTime.Models
         }
         public IQueryable<Users> GetTopUsers()
         {
-            //Returns IQueryable of Users arranged by (likes - dislikes). Returns only top 12 records.
             var UserRaitingArranged = from RaitingRecords in Db.UserRaiting
                                       group RaitingRecords by RaitingRecords.UserID
                                           into ResultTable
@@ -72,6 +70,24 @@ namespace OnlineShopTime.Models
             oldUser.PhoneNumber = User.PhoneNumber;
             oldUser.Email = User.Email;
             Db.SaveChanges();
+        }
+        public IQueryable<Users> GetWorseUsers()
+        {
+            var UserRaitingArranged = from RaitingRecords in Db.UserRaiting
+                                      group RaitingRecords by RaitingRecords.UserID
+                                          into ResultTable
+                                          select new { Key = ResultTable.Key, Raiting = ResultTable.Sum(value => value.Rating) };
+            IQueryable<Users> WorstUsers = (from UserRecord in Db.Users
+                                         join EachRecord in UserRaitingArranged on UserRecord.UserID equals EachRecord.Key
+                                         orderby EachRecord.Raiting ascending
+                                         select UserRecord).Take(20);
+            return WorstUsers;
+        }
+
+        public IQueryable<Users> SearchInUsers(string request)
+        {
+            IQueryable<Users> Result = (from UserRecords in Db.Users select UserRecords).Where(item => (item.FirstName.Contains(request) == true) || (item.LastName.Contains(request) == true) || (item.UserRights.Contains(request) == true) || (item.UserName.Contains(request) == true));
+            return Result;
         }
     }
 }

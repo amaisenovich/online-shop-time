@@ -366,4 +366,13 @@
   <data name="Unban" xml:space="preserve">
     <value>Разбанить</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="NoSearchResults" xml:space="preserve">
+    <value>Не найдено совпадений. Измените строку поиска</value>
+  </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Дорогой друг! Доступ к сайту был ограничен администратором.</value>
+  </data>
 </root>
