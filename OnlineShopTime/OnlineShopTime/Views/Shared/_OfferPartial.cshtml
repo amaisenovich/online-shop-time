@@ -16,7 +16,7 @@
                 <div class="container">
                     <div class="row">
                         @{
-                            float? rating = Model.OfferRaiting.Where(m => m.OfferID == Model.OfferID).Average(m => m.Raiting);
+                            int rating = (int)Math.Round(Convert.ToDecimal(Model.OfferRaiting.Where(m => m.OfferID == Model.OfferID).Average(m => m.Raiting)));
                             bool read_only = User.Identity.GetUserId() == null || User.Identity.GetUserId() == Model.OfferedBy;
                         }
                         <span class="glyphicon glyphicon-star"></span>  <div data-rateit-readonly="@read_only.ToString().ToLower()" data-rateit-value="@rating" data-rateit-ispreset="true" data-rateit-resetable="false" data-rateit-step="1" data-offerid="@Model.OfferID" data-offeredby="@Model.OfferedBy" data-userid="@User.Identity.GetUserId()" class="rateit"></div>
