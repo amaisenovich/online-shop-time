@@ -302,6 +302,7 @@
   </data>
   <data name="Hour" xml:space="preserve">
     <value>Час</value>
+  </data>
   <data name="OrderCancel" xml:space="preserve">
     <value>Отмена</value>
   </data>
