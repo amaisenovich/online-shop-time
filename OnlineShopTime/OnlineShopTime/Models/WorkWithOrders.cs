@@ -92,20 +92,14 @@ namespace OnlineShopTime.Models
             IQueryable<Orders> UserOrders = (from OrdersRecords in Db.Orders orderby OrdersRecords.DateAndTime select OrdersRecords).Where(item => (item.OrderStatus == "Active") || (item.OrderStatus == "Await Confirmation"));
             return from ItemRecords in UserOrders where ItemRecords.ClientID == UserID select ItemRecords;
         }
-        public void CheckUserOrders(string UserID)
+        public bool IsDayDone(Orders Ord)
         {
-            IQueryable<Orders> UserOrders = from OrderRecs in Db.Orders where OrderRecs.ClientID == UserID select OrderRecs;
-            foreach (Orders Ord in UserOrders)
+            TimeSpan age = DateTime.Now.Subtract(Ord.DateAndTime.GetValueOrDefault());
+            if (age.Milliseconds >= 1)
             {
-                if (Ord.OrderStatus == "Await Confirmation")
-                {
-                    TimeSpan age = DateTime.Now.Subtract(Ord.DateAndTime.GetValueOrDefault());
-                    if (age.Days >= 1)
-                    {
-                        this.DeleteOrder(Ord);
-                    }
-                }
+                return true;
             }
+            return false;
         }
         public void DenyOrder(string OrderID)
         {
@@ -124,7 +118,7 @@ namespace OnlineShopTime.Models
             Db.Orders.Remove(Order);
             Db.SaveChanges();
         }
-        public void DelereOrder(string OrderID)
+        public void DeleteOrder(string OrderID)
         {
             Db.Orders.Remove((from OrdRecs in Db.Orders where OrdRecs.OrderID == OrderID select OrdRecs).FirstOrDefault());
             Db.SaveChanges();

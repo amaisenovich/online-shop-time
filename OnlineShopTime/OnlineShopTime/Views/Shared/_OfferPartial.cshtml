@@ -4,9 +4,15 @@
 @using Microsoft.AspNet.Identity
 
 @{string defaultImage = "v6ac3uaxfe5gtlqtrbr7";}
-
+@{
+    string MinMaxHeight = "399px";
+    if (ViewBag.Buttons != null)
+    {
+        MinMaxHeight = "452px";
+    }
+}
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 container">
-    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px; max-height: 399px; min-height:399px">
+    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px; min-height: @MinMaxHeight">
 
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-3 col-xs-4" style="padding-bottom:10px">
@@ -38,9 +44,9 @@
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 @*<div class="well">
-                    <h5 style="text-overflow:ellipsis">@Model.Description</h5>
-                </div>*@
-                <div class="panel panel-default" >
+                        <h5 style="text-overflow:ellipsis">@Model.Description</h5>
+                    </div>*@
+                <div class="panel panel-default">
                     @*<div class="panel-heading">@Resources.Home.OfferPageDescriptionLabel</div>*@
                     <div class="panel-body" style="max-height: 135px; min-height: 135px">
                         <div style="text-overflow: ellipsis; overflow: hidden; display: block; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; ">
@@ -52,31 +58,30 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg-5 col-md-6">
                 <h4>
                     @{
                         String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
                     }
-                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                    <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
                 </h4>
             </div>
+            @if (ViewBag.Buttons != null)
+            {
+                <div class="col-lg-7 col-md-6">
+                    <div class="panel panel-default" style="width: 100%">
+                        <div class="panel-body">
+                            <center>
+                                <h4 style="margin-top: -5px; margin-bottom: -5px"> @ViewBag.Status</h4>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
 
         @if (ViewBag.Buttons != null) //Only for Orders Page. Forget about everything that going down here.
         {
-            <br>
-
-            <div class="">
-                <div class="panel panel-default" style="width: 100%">
-                    <div class="panel-heading">@Resources.Home.OrderStatus</div>
-                    <div class="panel-body">
-                        <center>
-                            <h2 style="margin-top: -5px; margin-bottom: -5px"> @ViewBag.Status</h2>
-                        </center>
-                    </div>
-                </div>
-            </div>
-
             if (ViewBag.Buttons == "History")
             {
                 <div class="row">
@@ -87,10 +92,10 @@
             if (ViewBag.Buttons == "OrderAwaitConfirmation")
             {
                 <div class="row">
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6 col-md-6" style="margin-top: -10px">
                         <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
                     </div>
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-6 col-md-6" style="margin-top: -10px">
                         <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Seller</a>
                     </div>
                 </div>
@@ -99,13 +104,13 @@
             if (ViewBag.Buttons == "ActiveOrderStatusActive")
             {
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="margin-top: -10px">
                         <a href="TradeCompleteConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.End</a>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="margin-top: -10px">
                         <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="margin-top: -10px">
                         <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Seller</a>
                     </div>
                 </div>
@@ -114,30 +119,29 @@
             if (ViewBag.Buttons == "IncomingOrdersActiveAwaitConfurm")
             {
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="margin-top: -10px">
                         <a href="ApplyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderApply</a>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="margin-top: -10px">
                         <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" style="margin-top: -10px">
                         <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
                     </div>
-                </div>                 
+                </div>
             }
 
             if (ViewBag.Buttons == "IncomingOrdersActive")
             {
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" style="margin-top: -10px">
                         <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" style="margin-top: -10px">
                         <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
                     </div>
-                </div>                   
+                </div>
             }
         }
     </div>
 </div>
-

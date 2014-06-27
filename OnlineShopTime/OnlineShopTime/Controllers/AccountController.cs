@@ -55,23 +55,6 @@ namespace OnlineShopTime.Controllers
                 results.Add(splittedPair[0], splittedPair[1]);
             }
 
-            //Photo p = new Photo()
-            //{
-            //    Bytes = Int32.Parse(results["bytes"]),
-            //    CreatedAt = DateTime.ParseExact(HttpUtility.UrlDecode(results["created_at"]), "yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture),
-            //    Format = results["format"],
-            //    Height = Int32.Parse(results["height"]),
-            //    Path = results["path"],
-            //    PublicId = results["public_id"],
-            //    ResourceType = results["resource_type"],
-            //    SecureUrl = results["secure_url"],
-            //    Signature = results["signature"],
-            //    Type = results["type"],
-            //    Url = results["url"],
-            //    Version = Int32.Parse(results["version"]),
-            //    Width = Int32.Parse(results["width"]),
-            //};
-
             CurrentUser.AvatarURL = results["public_id"];
 
             m_db.SaveChanges();
@@ -459,7 +442,8 @@ namespace OnlineShopTime.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

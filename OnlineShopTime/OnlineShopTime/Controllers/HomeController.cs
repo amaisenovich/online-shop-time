@@ -34,6 +34,7 @@ namespace OnlineShopTime.Controllers
                 if (WWU.GetUserRole(IdentityExtensions.GetUserId(User.Identity)) == "Banned")
                    return RedirectToAction("UserBanned", "AccessDenied");
             }
+
             return View();
         }
 

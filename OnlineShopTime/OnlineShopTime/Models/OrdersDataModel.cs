@@ -21,7 +21,6 @@ namespace OnlineShopTime.Models
         {
             WorkWithOrders WWOR = new WorkWithOrders();
             DataToShow = "ActiveOrders";
-            Data = WWOR.GetUserActiveOrders(ActiveUserID);
         }
         public void SetOrdersHistory()
         {

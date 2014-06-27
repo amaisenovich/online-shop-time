@@ -17,7 +17,6 @@ namespace OnlineShopTime.Controllers
             WorkWithOffers WWO = new WorkWithOffers();
             return View(WWO.GetOfferByID(OfferID));
         }
-
         public ActionResult OrderOffer(string OfferID)
         {
             WorkWithOrders WWOR = new WorkWithOrders();
@@ -27,8 +26,6 @@ namespace OnlineShopTime.Controllers
         public ActionResult ShowOrders(string UserID)
         {
             OrdersDataModel ViewData = (OrdersDataModel)Session["ViewData"];
-
-            CheckUserOrders(UserID);
 
             if (UserID == null)
             {
@@ -49,15 +46,6 @@ namespace OnlineShopTime.Controllers
 
             Session["ViewData"] = ViewData;
             return View(ViewData);
-        }
-        private void CheckUserOrders(string UserID)
-        {
-            if ((string)Session["UserID"] != UserID)
-            {
-                WorkWithOrders WWOR = new WorkWithOrders();
-                WWOR.CheckUserOrders(UserID);
-                Session["UserID"] = UserID;
-            }
         }
         public ActionResult TabClick(int TabID)
         {
