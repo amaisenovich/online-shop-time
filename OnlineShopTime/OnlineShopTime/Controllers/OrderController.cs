@@ -62,7 +62,8 @@ namespace OnlineShopTime.Controllers
         public ActionResult TabClick(int TabID)
         {
             WorkWithOrders WWOR = new WorkWithOrders();
-            string ActiveUserID = (string)Session["UserID"];
+            WorkWithUsers WWU = new WorkWithUsers();
+            string ActiveUserID = WWU.GetUserByName(User.Identity.Name).UserID;
             OrdersDataModel ViewData = new OrdersDataModel(ActiveUserID);
             switch (TabID)
             {
@@ -89,22 +90,53 @@ namespace OnlineShopTime.Controllers
         {
             WorkWithOrders WWO = new WorkWithOrders();
             WWO.DenyOrder(OrderID);
-            return RedirectToAction("TabClick", "Order", new { TabID = 3 });
+            return RedirectToAction("TabClick", "Order", new { TabID = 2 });
         }
         public ActionResult ApplyOrderConfirm(string OrderID)
         {
+            if (OrderID == null)
+                OrderID = (string)Session["OrderID"];           
             ViewBag.OrderID = OrderID;
+            Session["OrderID"] = OrderID;
             return View();
         }
         public ActionResult DenyOrderConfirm(string OrderID)
         {
+            if (OrderID == null)
+                OrderID = (string)Session["OrderID"];
             ViewBag.OrderID = OrderID;
+            Session["OrderID"] = OrderID;
             return View();
         }
-        public ActionResult ShowUserInfo(string ClientID)
+        public ActionResult ShowUserInfo(string UserID)
         {
+            if (UserID == null)
+                UserID = (string)Session["UserID"];
             WorkWithUsers WWU = new WorkWithUsers();
-            return View(WWU.GetUserByID(ClientID));
+            Session["UserID"] = UserID;
+            return View(WWU.GetUserByID(UserID));
+        }
+        public ActionResult CancelOrderConfurm(string OrderID)
+        {
+            if (OrderID == null)
+                OrderID = (string)Session["OrderID"];
+            ViewBag.OrderID = OrderID;
+            Session["OrderID"] = OrderID;
+            return View();
+        }
+        public ActionResult TradeCompleteConfurm(string OrderID)
+        {
+            if (OrderID == null)
+                OrderID = (string)Session["OrderID"];
+            ViewBag.OrderID = OrderID;
+            Session["OrderID"] = OrderID;
+            return View(); 
+        }
+        public ActionResult CompleteTrade(string OrderID)
+        {
+            WorkWithOrders WWOR = new WorkWithOrders();
+            WWOR.CompleteTrade(OrderID);
+            return RedirectToAction("TabClick", "Order", new { TabID = 1 });
         }
     }
 }
