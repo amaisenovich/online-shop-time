@@ -97,7 +97,15 @@ namespace OnlineShopTime.Controllers
                 db.SaveChanges();
             }
         }
-
+        public ActionResult Search(string TagID)
+        {
+            if (TagID == null)
+                TagID = (string)Session["TagID"];
+            SearchTools ST = new SearchTools();
+            ICollection<Offers> FiltredOffers = ST.GetOffersByTag(TagID);
+            Session["TagID"] = TagID;
+            return View(FiltredOffers);
+        }
         public void SetLike()
         {
             SetUserRating(1);

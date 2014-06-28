@@ -393,4 +393,7 @@
   <data name="EmptyNameError" xml:space="preserve">
     <value>Empty name not allowed</value>
   </data>
+  <data name="SearchResults" xml:space="preserve">
+    <value>Search results</value>
+  </data>
 </root>

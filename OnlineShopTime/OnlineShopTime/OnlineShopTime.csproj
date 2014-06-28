@@ -213,6 +213,7 @@
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrdersDataModel.cs" />
+    <Compile Include="Models\SearchTools.cs" />
     <Compile Include="Models\ShopDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -238,7 +239,6 @@
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WorkWithOrders.cs" />
-    <Compile Include="Models\WorkWithTags.cs" />
     <Compile Include="Models\WorkWithUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexDataModel.cs" />
@@ -367,10 +367,11 @@
     <Content Include="Views\Administrator\ShowAdminContacts.cshtml" />
     <Content Include="Views\AccessDenied\AccessDenied.cshtml" />
     <Content Include="Views\AccessDenied\UserBanned.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Shared\_NoSearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\WorkWithTags\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

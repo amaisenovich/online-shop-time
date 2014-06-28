@@ -49,10 +49,13 @@ namespace OnlineShopTime.Models
 
             return TopOfferrs;
         }
+        public void AddTagsToOffer(string OfferID, string TagsString)
+        {
+            this.AddTagsToOffer((from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords).FirstOrDefault(), TagsString);
+        }
         public void AddTagsToOffer(Offers Offer, string TagsString)
         {
             string[] InputedTags = TagsString.Split(' ', '#');
-            WorkWithTags WWT = new WorkWithTags();
             foreach (string str in InputedTags)
             {
                 if (str != "")
@@ -88,29 +91,33 @@ namespace OnlineShopTime.Models
         {
             return (from OfferRecods in Db.Offers where OfferRecods.OfferID == OfferID select OfferRecods).FirstOrDefault();
         }
-        public void AndNewOrModify(Offers Offer, string UserName)
+        public string AndNewOrModify(Offers Offer, string UserName)
         {
+            string Result = null;
             int count = (from OfferRecords in Db.Offers where OfferRecords.OfferID == Offer.OfferID select OfferRecords).Count();
             if (count == 0)
             {
-                AddNewOffer(Offer, UserName);
+                Result = AddNewOffer(Offer, UserName);
             }
             else
-                ModifyExistedOffer(Offer);
+                Result = ModifyExistedOffer(Offer);
+            return Result;
         }
-        public void ModifyExistedOffer(Offers EditedOffer)
+        public string ModifyExistedOffer(Offers EditedOffer)
         {
             Offers OldOne = (from OfferRecords in Db.Offers where OfferRecords.OfferID == EditedOffer.OfferID select OfferRecords).FirstOrDefault();
             OldOne.Name = EditedOffer.Name;
             OldOne.Description = EditedOffer.Description;
             OldOne.Price = EditedOffer.Price;
             Db.SaveChanges();
+            return OldOne.OfferID;
         }
-        public void AddNewOffer(Offers newOffer, string UserName)
+        public string AddNewOffer(Offers newOffer, string UserName)
         {
             newOffer = this.CompleteOfferWithData(newOffer, UserName);
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
+            return newOffer.OfferID;
         }
         public IQueryable<Offers> GetUserOffers(String UserID, int PageNumber = 1)
         {
@@ -126,7 +133,7 @@ namespace OnlineShopTime.Models
             Db.Offers.Remove(RemoveOffer);
             Db.SaveChanges();
         }
-        private void DeleteOfferTags(string OfferID)
+        public void DeleteOfferTags(string OfferID)
         {
             Offers Offer = (from OffersRecords in Db.Offers where OffersRecords.OfferID == OfferID select OffersRecords).FirstOrDefault();
             ICollection<Tags> OfferTags = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords.Tags).FirstOrDefault();

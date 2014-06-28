@@ -51,17 +51,10 @@ namespace OnlineShopTime.Controllers
                 newOffer.Photo3URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Price = newOffer.Price + ' ' + Currency;
-                WWO.AndNewOrModify(newOffer, User.Identity.Name);
-                WWO.AddTagsToOffer(newOffer, TagsString);
+                string OfferID = WWO.AndNewOrModify(newOffer, User.Identity.Name);
+                WWO.DeleteOfferTags(OfferID);
+                WWO.AddTagsToOffer(OfferID, TagsString);
                 imageURLs.Clear();
-                //if (ModelState.IsValid)
-                //{
-                //    return RedirectToAction("TabClick", "Home", new { TabID = 3 });
-                //}
-                //else
-                //{
-                //    return View();
-                //}
                 return RedirectToAction("TabClick", "Home", new { TabID = 3 });
             }
             else

@@ -1,0 +1,17 @@
+﻿@model ICollection<OnlineShopTime.Models.Offers>
+@using OnlineShopTime.Models
+
+@{
+    ViewBag.Title = "Search Results";
+}
+
+<div class="container">
+        <h2>@Resources.Home.SearchResults:</h2>
+</div>
+
+<hr />
+
+@foreach (Offers Offer in Model)
+{
+    @Html.Partial("_OfferPartial", Offer);
+}

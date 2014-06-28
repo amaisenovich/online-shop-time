@@ -396,4 +396,7 @@
   <data name="EmptyNameError" xml:space="preserve">
     <value>Пустое имя не допускается</value>
   </data>
+  <data name="SearchResults" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
 </root>
