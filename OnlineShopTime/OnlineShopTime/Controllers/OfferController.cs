@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using OnlineShopTime.Models;
+using OnlineShopTime.Utils;
+using SimpleLucene.Impl;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +25,7 @@ namespace OnlineShopTime.Controllers
             }
             else
             {
-                WorkWithOffers WWO = new WorkWithOffers();
+                WorkWithOffers WWO = new WorkWithOffers(Server);
                 Offer = WWO.GetOfferByID(OfferID);
                 ViewBag.Currency = WWO.GetAndDeleteCurrency(Offer);
 
@@ -50,7 +52,7 @@ namespace OnlineShopTime.Controllers
         {
             if (User.Identity.Name != "")
             {
-                WWO = new WorkWithOffers();
+                WWO = new WorkWithOffers(Server);
                 string defaultImage = null;
                 newOffer.Photo1URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
@@ -124,7 +126,7 @@ namespace OnlineShopTime.Controllers
                 if (UserID == null)
                     UserID = (string)Session["UserID"];
 
-                WorkWithOffers WWO = new WorkWithOffers();
+                WorkWithOffers WWO = new WorkWithOffers(Server);
                 WorkWithUsers WWU = new WorkWithUsers();
 
                 IQueryable<Offers> UserOffers = WWO.GetUserOffers(UserID);
@@ -140,7 +142,7 @@ namespace OnlineShopTime.Controllers
         }
         public ActionResult OfferPage(String OfferID)
         {
-            WorkWithOffers WWO = new WorkWithOffers();
+            WorkWithOffers WWO = new WorkWithOffers(Server);
             Offers ShowOffer = new Offers();
             if (OfferID == null)
             {
@@ -161,7 +163,7 @@ namespace OnlineShopTime.Controllers
 
         public ActionResult Delete(string OfferID)
         {
-            WorkWithOffers WWO = new WorkWithOffers();
+            WorkWithOffers WWO = new WorkWithOffers(Server);
             WWO.DeleteOffer(OfferID);
             return RedirectToAction("Index", "Home");
         }
@@ -171,8 +173,25 @@ namespace OnlineShopTime.Controllers
             if (OfferID == null)
                 OfferID = (string)Session["OfferID"];
             Session["OfferID"] = OfferID;
-            WorkWithOffers WWO = new WorkWithOffers();
+            WorkWithOffers WWO = new WorkWithOffers(Server);
             return View(WWO.GetOfferByID(OfferID));
+        }
+
+        public ActionResult Search(string searchText, bool? orderByDate)
+        {
+            string IndexPath = Server.MapPath("~/Index");
+            var indexSearcher = new DirectoryIndexSearcher(new DirectoryInfo(IndexPath), true);
+            using (var searchService = new SearchService(indexSearcher))
+            {
+                var query = new OfferQuery().WithKeywords(searchText);
+                var result = searchService.SearchIndex<Offers>(query.Query, new OfferResultDefinition());
+
+                if (orderByDate.HasValue)
+                {
+                    return View(result.Results.OrderBy(x => x.DateAndTime).ToList());
+                }
+                return View(result.Results.ToList());
+            }
         }
     }
 }

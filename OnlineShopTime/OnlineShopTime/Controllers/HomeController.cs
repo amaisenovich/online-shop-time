@@ -19,7 +19,7 @@ namespace OnlineShopTime.Controllers
             {
                 IndexViewData = new IndexDataModel();
                 IndexViewData.ShowString = "NewOffers";
-                WorkWithOffers WWO = new WorkWithOffers();
+                WorkWithOffers WWO = new WorkWithOffers(Server);
                 IndexViewData.NewOffers = WWO.GetNewOffers();
             }
 
@@ -40,7 +40,7 @@ namespace OnlineShopTime.Controllers
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
 
-            WorkWithOffers WWO = new WorkWithOffers();
+            WorkWithOffers WWO = new WorkWithOffers(Server);
             if (IndexViewData == null)
                 IndexViewData = new IndexDataModel();
             switch (TabID)

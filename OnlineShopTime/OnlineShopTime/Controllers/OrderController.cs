@@ -14,7 +14,7 @@ namespace OnlineShopTime.Controllers
             if (OfferID == null)
                 OfferID = (string)Session["OfferID"];
             Session["OfferID"] = OfferID;
-            WorkWithOffers WWO = new WorkWithOffers();
+            WorkWithOffers WWO = new WorkWithOffers(Server);
             return View(WWO.GetOfferByID(OfferID));
         }
         public ActionResult OrderOffer(string OfferID)

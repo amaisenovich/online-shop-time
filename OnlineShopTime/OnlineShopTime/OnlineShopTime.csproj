@@ -271,6 +271,9 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Cloud.cs" />
+    <Compile Include="Utils\OfferIndexDefinition.cs" />
+    <Compile Include="Utils\OfferQuery.cs" />
+    <Compile Include="Utils\OfferResultDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

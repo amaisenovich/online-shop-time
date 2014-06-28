@@ -1,6 +1,11 @@
-﻿using System;
+﻿using OnlineShopTime.Utils;
+using SimpleLucene.Impl;
+using SimpleLucene.IndexManagement;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Web;
 
 
 namespace OnlineShopTime.Models
@@ -8,9 +13,11 @@ namespace OnlineShopTime.Models
     public class WorkWithOffers
     {
         ShopDBEntities Db;
+        HttpServerUtilityBase Server;
 
-        public WorkWithOffers()
+        public WorkWithOffers(HttpServerUtilityBase Server)
         {
+            this.Server = Server;
             Db = new ShopDBEntities();
         }
         public string GetActiveUserID(string UserName)
@@ -109,6 +116,7 @@ namespace OnlineShopTime.Models
             OldOne.Photo3URL = EditedOffer.Photo3URL;
             OldOne.Photo4URL = EditedOffer.Photo4URL;
             Db.SaveChanges();
+            CreateIndex(OldOne);
             return OldOne.OfferID;
         }
         public string AddNewOffer(Offers newOffer, string UserName)
@@ -116,7 +124,25 @@ namespace OnlineShopTime.Models
             newOffer = this.CompleteOfferWithData(newOffer, UserName);
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
+            CreateIndex(newOffer);
             return newOffer.OfferID;
+        }
+
+        private void CreateIndex(Offers newOffer)
+        {
+            // index location
+            var indexLocation = new FileSystemIndexLocation(new DirectoryInfo(Server.MapPath("~/Index")));
+            var definition = new OfferIndexDefinition();
+            var task = new EntityUpdateTask<Offers>(newOffer, definition, indexLocation);
+            task.IndexOptions.RecreateIndex = false;
+            task.IndexOptions.OptimizeIndex = true;
+            //IndexQueue.Instance.Queue(task);
+            var indexWriter = new DirectoryIndexWriter(new DirectoryInfo(Server.MapPath("~/Index")), false);
+
+            using (var indexService = new IndexService(indexWriter))
+            {
+                task.Execute(indexService);
+            }
         }
         public IQueryable<Offers> GetUserOffers(String UserID, int PageNumber = 1)
         {
