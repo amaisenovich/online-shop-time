@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using OnlineShopTime.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using OnlineShopTime.Models;
-using System.IO;
-using Microsoft.AspNet.Identity;
 
 namespace OnlineShopTime.Controllers
 {
@@ -26,6 +26,12 @@ namespace OnlineShopTime.Controllers
                 WorkWithOffers WWO = new WorkWithOffers();
                 Offer = WWO.GetOfferByID(OfferID);
                 ViewBag.Currency = WWO.GetAndDeleteCurrency(Offer);
+
+                imageURLs.Clear();
+                if (Offer.Photo1URL != null) imageURLs.Enqueue(Offer.Photo1URL);
+                if (Offer.Photo2URL != null) imageURLs.Enqueue(Offer.Photo2URL);
+                if (Offer.Photo3URL != null) imageURLs.Enqueue(Offer.Photo3URL);
+                if (Offer.Photo4URL != null) imageURLs.Enqueue(Offer.Photo4URL);
             }
 
             if (ViewBag.Currency == null)
@@ -94,6 +100,20 @@ namespace OnlineShopTime.Controllers
             }
 
             imageURLs.Enqueue(results["public_id"]);
+        }
+
+        [HttpPost]
+        [AcceptVerbs(HttpVerbs.Post)]
+        public void DeleteImageFromOffer()
+        {
+            string content;
+            using (StreamReader reader = new StreamReader(HttpContext.Request.InputStream))
+            {
+                content = reader.ReadToEnd();
+            }
+            var tmp = imageURLs.ToList();
+            tmp.Remove(content);
+            imageURLs = new Queue<string>(tmp);
         }
 
         [HttpGet]

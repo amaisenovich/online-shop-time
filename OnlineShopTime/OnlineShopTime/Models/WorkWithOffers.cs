@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using OnlineShopTime.Models;
-using Microsoft.AspNet.Identity;
-using System.Web.Security;
 
 
 namespace OnlineShopTime.Models
@@ -109,6 +103,10 @@ namespace OnlineShopTime.Models
             OldOne.Name = EditedOffer.Name;
             OldOne.Description = EditedOffer.Description;
             OldOne.Price = EditedOffer.Price;
+            OldOne.Photo1URL = EditedOffer.Photo1URL;
+            OldOne.Photo2URL = EditedOffer.Photo2URL;
+            OldOne.Photo3URL = EditedOffer.Photo3URL;
+            OldOne.Photo4URL = EditedOffer.Photo4URL;
             Db.SaveChanges();
             return OldOne.OfferID;
         }

@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json.Linq;
-using System.IO;
 
 namespace OnlineShopTime.Models
 {

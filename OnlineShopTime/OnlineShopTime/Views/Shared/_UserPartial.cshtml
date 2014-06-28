@@ -42,7 +42,7 @@ else
             }
             <div id="like-buttons">
                 <button class="btn btn-default btn-primary" data-userid="@Model.UserID" data-voterid="@User.Identity.GetUserId()" id="like"><span id="likenum">@likesCount</span>  <span class="glyphicon glyphicon-thumbs-up"></span></button>
-                <button class="btn btn-default btn-danger" data-userid=@Model.UserID data-voterid="@User.Identity.GetUserId()" id="dislike"><span class="glyphicon glyphicon-thumbs-down"></span><span id="dislikenum">@dislikesCount</span></button>
+                <button class="btn btn-default btn-danger" data-userid=@Model.UserID data-voterid="@User.Identity.GetUserId()" id="dislike"><span class="glyphicon glyphicon-thumbs-down"></span> <span id="dislikenum">@dislikesCount</span></button>
             </div>
 
             @if (ViewBag.ShowContactInfo != null)
