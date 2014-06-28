@@ -20,7 +20,9 @@ namespace OnlineShopTime.Controllers
                 IndexViewData = new IndexDataModel();
                 IndexViewData.ShowString = "NewOffers";
                 WorkWithOffers WWO = new WorkWithOffers(Server);
+                WorkWithTags WWT = new WorkWithTags();
                 IndexViewData.NewOffers = WWO.GetNewOffers();
+                IndexViewData.WeightTags = WWT.GetWeightTags();
             }
 
             ViewBag.ViewData = IndexViewData;

@@ -1,0 +1,61 @@
+div.jqcloud {
+  font-family: "Helvetica", "Arial", sans-serif; #00c804
+  color: #09f;
+  overflow: hidden;
+  position: relative;
+  line-height: normal;
+}
+div.jqcloud a {
+  color: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+div.jqcloud a:hover {
+  color: #009b1f;
+}
+div.jqcloud a:hover {
+  color: #04a925;
+}
+div.jqcloud span {
+  padding: 0;
+}
+div.jqcloud span.w10 {
+  font-size: 54px;
+  color: #28b62c;
+}
+div.jqcloud span.w9 {
+  font-size: 50px;
+  color: #3dba40;
+}
+div.jqcloud span.w8 {
+  font-size: 44px;
+  color: #4dba50;
+}
+div.jqcloud span.w7 {
+  font-size: 40px;
+  color: #5abd5d;
+}
+div.jqcloud span.w6 {
+  font-size: 34px;
+  color: #65bd68;
+}
+div.jqcloud span.w5 {
+  font-size: 30px;
+  color: #6dba70;
+}
+div.jqcloud span.w4 {
+  font-size: 24px;
+  color: #7ab97c;
+}
+div.jqcloud span.w3 {
+  font-size: 20px;
+  color: #71c274;
+}
+div.jqcloud span.w2 {
+  font-size: 14px;
+  color: #71aa73;
+}
+div.jqcloud span.w1 {
+  font-size: 10px;
+  color: #6f9370;
+}

@@ -15,6 +15,8 @@ namespace OnlineShopTime.Models
 
         public IQueryable<Offers> TopOffers;
 
+        public ICollection<WeightTags> WeightTags;
+
         public IndexDataModel()
         {
             ShowTopOffers();

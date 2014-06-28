@@ -209,6 +209,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406181026543_InitialCreate.cs" />
+    <Compile Include="Migrations\201406181026543_InitialCreate.Designer.cs">
+      <DependentUpon>201406181026543_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406282212181_Update1.cs" />
+    <Compile Include="Migrations\201406282212181_Update1.Designer.cs">
+      <DependentUpon>201406282212181_Update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comments.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
@@ -248,7 +257,9 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WeightTags.cs" />
     <Compile Include="Models\WorkWithOrders.cs" />
+    <Compile Include="Models\WorkWithTags.cs" />
     <Compile Include="Models\WorkWithUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexDataModel.cs" />
@@ -282,8 +293,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cloudinary_cors.html" />
     <Content Include="Content\darkly_bootstrap.css" />
+    <Content Include="Content\darkly_jqcloud.css" />
     <Content Include="Content\delete.gif" />
     <Content Include="Content\lumen_bootstrap.css" />
+    <Content Include="Content\lumen_jqcloud.css" />
     <Content Include="Content\rateit.css" />
     <Content Include="Content\star.gif" />
     <Content Include="favicon.ico" />
@@ -319,6 +332,7 @@
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jqcloud-1.0.0.min.js" />
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -398,6 +412,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406181026543_InitialCreate.resx">
+      <DependentUpon>201406181026543_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406282212181_Update1.resx">
+      <DependentUpon>201406282212181_Update1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Home.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Home.Designer.cs</LastGenOutput>

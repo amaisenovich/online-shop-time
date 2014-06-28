@@ -45,8 +45,15 @@
             </div>
         </div>
     }
+
+    <br />
+
+    <div id="TagCloud" class="jumbotron" style="width: 97%; height: 180px; padding: 0px">
+    </div>
+
 </center>
-<br />
+
+
 
 <div class="container-fluid" id="offers">
     <div class="row">
@@ -178,6 +185,26 @@
                     alert("Like error!\n" + msg);
                 }
             });
+        });
+
+        var TagList = new Array();
+
+        var Weight = 0.0;
+
+        @foreach(WeightTags WT in ViewBag.ViewData.WeightTags)
+        {
+            <text>
+                var tag = new Object({
+                    text: '@WT.TagName',
+                    weight: Number("@WT.Weight"),
+                    link: "Home/Search?TagID=@WT.TagID"
+                });
+                TagList.push(tag);
+            </text>
+        }
+
+        $(function () {
+            $("#TagCloud").jQCloud(TagList);
         });
     </script>
 }
