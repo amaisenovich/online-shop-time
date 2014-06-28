@@ -10,7 +10,6 @@ namespace OnlineShopTime.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "OnlineShopTime.Models.ApplicationDbContext";
         }
 
         protected override void Seed(OnlineShopTime.Models.ApplicationDbContext context)

@@ -7,34 +7,81 @@ namespace OnlineShopTime.Migrations
     {
         public override void Up()
         {
-            DropForeignKey("dbo.Claim", "User_Id", "dbo.Users");
-            DropForeignKey("dbo.ExternalLogins", "UserId", "dbo.Users");
-            DropForeignKey("dbo.UsersRoles", "UserId", "dbo.Users");
-            DropIndex("dbo.ExternalLogins", new[] { "UserId" });
-            DropIndex("dbo.UsersRoles", new[] { "UserId" });
-            DropIndex("dbo.Claim", new[] { "User_Id" });
-            RenameColumn(table: "dbo.Claim", name: "User_Id", newName: "IdentityUser_Id");
-            DropPrimaryKey("dbo.ExternalLogins");
-            AddColumn("dbo.Users", "EmailConfirmed", c => c.Boolean(nullable: false));
-            AddColumn("dbo.Users", "PhoneNumberConfirmed", c => c.Boolean(nullable: false));
-            AddColumn("dbo.Users", "TwoFactorEnabled", c => c.Boolean(nullable: false));
-            AddColumn("dbo.Users", "LockoutEndDateUtc", c => c.DateTime());
-            AddColumn("dbo.Users", "LockoutEnabled", c => c.Boolean(nullable: false));
-            AddColumn("dbo.Users", "AccessFailedCount", c => c.Int(nullable: false));
-            AddColumn("dbo.Claim", "UserId", c => c.String());
-            AddColumn("dbo.ExternalLogins", "IdentityUser_Id", c => c.String(maxLength: 128));
-            AddColumn("dbo.UsersRoles", "IdentityUser_Id", c => c.String(maxLength: 128));
-            AlterColumn("dbo.Roles", "Name", c => c.String(nullable: false, maxLength: 256));
-            AlterColumn("dbo.Users", "Email", c => c.String(maxLength: 256));
-            AlterColumn("dbo.Claim", "IdentityUser_Id", c => c.String(maxLength: 128));
-            AddPrimaryKey("dbo.ExternalLogins", new[] { "LoginProvider", "ProviderKey", "UserId" });
-            CreateIndex("dbo.Roles", "Name", unique: true, name: "RoleNameIndex");
-            CreateIndex("dbo.UsersRoles", "IdentityUser_Id");
-            CreateIndex("dbo.Claim", "IdentityUser_Id");
-            CreateIndex("dbo.ExternalLogins", "IdentityUser_Id");
-            AddForeignKey("dbo.Claim", "IdentityUser_Id", "dbo.Users", "UserID");
-            AddForeignKey("dbo.ExternalLogins", "IdentityUser_Id", "dbo.Users", "UserID");
-            AddForeignKey("dbo.UsersRoles", "IdentityUser_Id", "dbo.Users", "UserID");
+            CreateTable(
+                "dbo.Roles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
+            CreateTable(
+                "dbo.UsersRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                        IdentityUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.Roles", t => t.RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.IdentityUser_Id)
+                .Index(t => t.RoleId)
+                .Index(t => t.IdentityUser_Id);
+            
+            CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        UserID = c.String(nullable: false, maxLength: 128),
+                        Email = c.String(),
+                        EmailConfirmed = c.Boolean(nullable: false),
+                        PasswordHash = c.String(),
+                        SecurityStamp = c.String(),
+                        PhoneNumber = c.String(),
+                        PhoneNumberConfirmed = c.Boolean(nullable: false),
+                        TwoFactorEnabled = c.Boolean(nullable: false),
+                        LockoutEndDateUtc = c.DateTime(),
+                        LockoutEnabled = c.Boolean(nullable: false),
+                        AccessFailedCount = c.Int(nullable: false),
+                        UserName = c.String(),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        UserRights = c.String(),
+                        AvatarURL = c.String(),
+                        Discriminator = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => t.UserID);
+            
+            CreateTable(
+                "dbo.Claim",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.String(),
+                        ClaimType = c.String(),
+                        ClaimValue = c.String(),
+                        IdentityUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Users", t => t.IdentityUser_Id)
+                .Index(t => t.IdentityUser_Id);
+            
+            CreateTable(
+                "dbo.ExternalLogins",
+                c => new
+                    {
+                        LoginProvider = c.String(nullable: false, maxLength: 128),
+                        ProviderKey = c.String(nullable: false, maxLength: 128),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        IdentityUser_Id = c.String(maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
+                .ForeignKey("dbo.Users", t => t.IdentityUser_Id)
+                .Index(t => t.IdentityUser_Id);
+            
         }
         
         public override void Down()
@@ -42,31 +89,17 @@ namespace OnlineShopTime.Migrations
             DropForeignKey("dbo.UsersRoles", "IdentityUser_Id", "dbo.Users");
             DropForeignKey("dbo.ExternalLogins", "IdentityUser_Id", "dbo.Users");
             DropForeignKey("dbo.Claim", "IdentityUser_Id", "dbo.Users");
+            DropForeignKey("dbo.UsersRoles", "RoleId", "dbo.Roles");
             DropIndex("dbo.ExternalLogins", new[] { "IdentityUser_Id" });
             DropIndex("dbo.Claim", new[] { "IdentityUser_Id" });
             DropIndex("dbo.UsersRoles", new[] { "IdentityUser_Id" });
+            DropIndex("dbo.UsersRoles", new[] { "RoleId" });
             DropIndex("dbo.Roles", "RoleNameIndex");
-            DropPrimaryKey("dbo.ExternalLogins");
-            AlterColumn("dbo.Claim", "IdentityUser_Id", c => c.String(nullable: false, maxLength: 128));
-            AlterColumn("dbo.Users", "Email", c => c.String());
-            AlterColumn("dbo.Roles", "Name", c => c.String(nullable: false));
-            DropColumn("dbo.UsersRoles", "IdentityUser_Id");
-            DropColumn("dbo.ExternalLogins", "IdentityUser_Id");
-            DropColumn("dbo.Claim", "UserId");
-            DropColumn("dbo.Users", "AccessFailedCount");
-            DropColumn("dbo.Users", "LockoutEnabled");
-            DropColumn("dbo.Users", "LockoutEndDateUtc");
-            DropColumn("dbo.Users", "TwoFactorEnabled");
-            DropColumn("dbo.Users", "PhoneNumberConfirmed");
-            DropColumn("dbo.Users", "EmailConfirmed");
-            AddPrimaryKey("dbo.ExternalLogins", new[] { "UserId", "LoginProvider", "ProviderKey" });
-            RenameColumn(table: "dbo.Claim", name: "IdentityUser_Id", newName: "User_Id");
-            CreateIndex("dbo.Claim", "User_Id");
-            CreateIndex("dbo.UsersRoles", "UserId");
-            CreateIndex("dbo.ExternalLogins", "UserId");
-            AddForeignKey("dbo.UsersRoles", "UserId", "dbo.Users", "UserID", cascadeDelete: true);
-            AddForeignKey("dbo.ExternalLogins", "UserId", "dbo.Users", "UserID", cascadeDelete: true);
-            AddForeignKey("dbo.Claim", "User_Id", "dbo.Users", "UserID", cascadeDelete: true);
+            DropTable("dbo.ExternalLogins");
+            DropTable("dbo.Claim");
+            DropTable("dbo.Users");
+            DropTable("dbo.UsersRoles");
+            DropTable("dbo.Roles");
         }
     }
 }
