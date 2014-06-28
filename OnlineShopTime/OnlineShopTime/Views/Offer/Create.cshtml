@@ -50,7 +50,7 @@
 
                             <div class="col-lg-4 col-md-4">
                                 <label class="control-label">@Resources.Home.Price:</label>
-                                <input type="text" name="Price" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.Price" value="@Model.Price" />
+                                <input type="text" name="Price" pattern="^[ 0-9]+$" oninvalid="setCustomValidity('ДОРОГОЙ ДРУГ')" onchange="try{setCustomValidity('')}catch(e){}" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.Price" value="@Model.Price" />
                             </div>
 
                             <div class="col-lg-2 col-md-2">
