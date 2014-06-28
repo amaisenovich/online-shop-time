@@ -209,6 +209,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406181026543_InitialCreate.cs" />
+    <Compile Include="Migrations\201406181026543_InitialCreate.Designer.cs">
+      <DependentUpon>201406181026543_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406282212181_Update1.cs" />
+    <Compile Include="Migrations\201406282212181_Update1.Designer.cs">
+      <DependentUpon>201406282212181_Update1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comments.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
@@ -400,6 +409,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406181026543_InitialCreate.resx">
+      <DependentUpon>201406181026543_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406282212181_Update1.resx">
+      <DependentUpon>201406282212181_Update1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Home.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Home.Designer.cs</LastGenOutput>
