@@ -137,12 +137,58 @@
                     </div>
                     <br />
                     <div class="uploaded_info_holder" style="max-width: 310px; max-height: 310px; min-width: 310px; min-height: 310px; ">
+                        @if (Model.Photo1URL != null)
+                        {
+                            <div class="uploaded_info" id="@Model.Photo1URL" style="float: left">
+                                @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.Photo1URL)
+                                <a href="#" class="delete_img" id="@Model.Photo1URL"><span class="glyphicon glyphicon-remove-circle" style="font-size:20px"></span></a>
+                            </div>
+                        }
+                        @if (Model.Photo2URL != null)
+                        {
+                            <div class="uploaded_info" id="@Model.Photo2URL" style="float: right">
+                                @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.Photo2URL)
+                                <a href="#" class="delete_img" id="@Model.Photo2URL"><span class="glyphicon glyphicon-remove-circle" style="font-size:20px"></span></a>
+                            </div>
+                        }
+                        @if (Model.Photo3URL != null)
+                        {
+                            <div class="uploaded_info" id="@Model.Photo3URL" style="float: left">
+                                @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.Photo3URL)
+                                <a href="#" class="delete_img" id="@Model.Photo3URL"><span class="glyphicon glyphicon-remove-circle" style="font-size:20px"></span></a>
+                            </div>
+                        }
+                        @if (Model.Photo4URL != null)
+                        {
+                            <div class="uploaded_info" id="@Model.Photo4URL" style="float: right">
+                                @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.Photo4URL)
+                                <a href="#" class="delete_img" id="@Model.Photo4URL"><span class="glyphicon glyphicon-remove-circle" style="font-size:20px"></span></a>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 }
+
+<style>
+    div.uploaded_info {
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+        div.uploaded_info:hover a {
+            display: block;
+        }
+
+        div.uploaded_info a {
+            position: absolute;
+            top: 0%;
+            left: 85%;
+            display: none;
+        }
+</style>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -152,7 +198,10 @@
 
     <script type="text/javascript">
         $(function () {
-            var count = 0;
+            var count = $('.uploaded_info').length;
+            if (count >= 4) {
+                $('.cloudinary-fileupload').hide();
+            }
             $('.cloudinary-fileupload')
             .fileupload({
                 dropZone: '#direct_upload',
@@ -170,22 +219,48 @@
                 $('#progress').hide();
                 $('#progress').removeClass('active');
                 $.post('/Offer/AddImageToOffer', data.result);
-                var style = "style=\"float: right; margin-bottom: 10px\"";
+                var style = "style=\"float: right\"";
                 if (count % 2 == 0)
-                    style = "style=\"float: left; margin-bottom: 10px\"";
-                var info = $('<div class="uploaded_info" ' + style + '/>');
+                    style = "style=\"float: left\"";
+                var id = data.result.public_id;
+                var info = $('<div class="uploaded_info" ' + style + 'id="' + id + '"/>');
                 $(info).append($('<div class="image"/>').append(
                   $.cloudinary.image(data.result.public_id, {
                       format: data.result.format, width: 150, height: 150, crop: "fill"
                   })
                 ));
+                $(info).append($('<a href="#" class="delete_img" id="' + id + '"><span class="glyphicon glyphicon-remove-circle" style="font-size:20px"></span></a>'));
                 $('.uploaded_info_holder').append(info);
+
+                $('.delete_img').unbind().click(function (event) {
+                    event.preventDefault();
+                    var id = $(this).attr("id");
+                    $.post('/Offer/DeleteImageFromOffer', id);
+                    count--;
+                    $('.uploaded_info').remove('#' + id);
+                    if (count < 4) {
+                        $('.cloudinary-fileupload').show();
+                    }
+                });
+
                 count++;
                 if (count >= 4) {
                     $('.cloudinary-fileupload').hide();
-                    $('#progress').hide();
+                } else {
+                    $('.cloudinary-fileupload').show();
+                }
+            });
+            $('.delete_img').unbind().click(function (event) {
+                event.preventDefault();
+                var id = $(this).attr("id");
+                $.post('/Offer/DeleteImageFromOffer', id);
+                count--;
+                $('.uploaded_info').remove('#' + id);
+                if (count < 4) {
+                    $('.cloudinary-fileupload').show();
                 }
             });
         });
     </script>
+
 }

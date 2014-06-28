@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using OnlineShopTime.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
-using Newtonsoft.Json.Linq;
-using OnlineShopTime.Models;
-using Microsoft.AspNet.Identity; 
+using System.Web.Mvc; 
 
 namespace OnlineShopTime.Controllers
 {
