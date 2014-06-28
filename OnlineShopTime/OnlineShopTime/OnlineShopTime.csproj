@@ -281,8 +281,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cloudinary_cors.html" />
     <Content Include="Content\darkly_bootstrap.css" />
+    <Content Include="Content\darkly_jqcloud.css" />
     <Content Include="Content\delete.gif" />
     <Content Include="Content\lumen_bootstrap.css" />
+    <Content Include="Content\lumen_jqcloud.css" />
     <Content Include="Content\rateit.css" />
     <Content Include="Content\star.gif" />
     <Content Include="favicon.ico" />
@@ -319,8 +321,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jqcloud-1.0.0.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />

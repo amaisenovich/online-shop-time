@@ -19,7 +19,7 @@ namespace OnlineShopTime.Models
             foreach (Tags Tag in Tags)
             {
                 WeightTags WeightTag = new WeightTags();
-                WeightTag.TagName = Tag.Name;
+                WeightTag.TagName = '#' + Tag.Name;
                 WeightTag.Weight = Tag.Offers.Count;
                 WeightTag.TagID = Tag.TagID;
                 Result.Add(WeightTag);                
