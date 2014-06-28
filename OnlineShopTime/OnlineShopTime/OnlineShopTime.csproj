@@ -238,7 +238,9 @@
     <Compile Include="Models\Users.cs">
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WeightTags.cs" />
     <Compile Include="Models\WorkWithOrders.cs" />
+    <Compile Include="Models\WorkWithTags.cs" />
     <Compile Include="Models\WorkWithUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexDataModel.cs" />
@@ -302,6 +304,7 @@
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jqcloud-1.0.0.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
