@@ -475,6 +475,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на No tags.
+        /// </summary>
+        public static string NoTags {
+            get {
+                return ResourceManager.GetString("NoTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Offered.
         /// </summary>
         public static string OfferDate {

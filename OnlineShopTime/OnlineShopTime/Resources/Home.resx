@@ -396,4 +396,7 @@
   <data name="SearchResults" xml:space="preserve">
     <value>Search results</value>
   </data>
+  <data name="NoTags" xml:space="preserve">
+    <value>No tags</value>
+  </data>
 </root>

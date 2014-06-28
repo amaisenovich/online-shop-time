@@ -2,11 +2,20 @@
 @using CloudinaryDotNet
 @using OnlineShopTime.Utils
 @using Microsoft.AspNet.Identity
+@using OnlineShopTime.Models
 
-@{string defaultImage = "v6ac3uaxfe5gtlqtrbr7";}
+@{
+    string defaultImage = "v6ac3uaxfe5gtlqtrbr7";
+    string jumboSize = "425px";
+}
+
+@if (ViewBag.Buttons != null)
+{
+    jumboSize = "468px"; 
+}
 
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 container">
-    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px;">
+    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px; max-height: @jumboSize; min-height: @jumboSize;">
 
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-3 col-xs-4" style="padding-bottom:10px">
@@ -47,20 +56,34 @@
             </div>
         </div>
 
+        <div class="row" style="max-height: 28px; margin-left: 1%; margin-right: 1%; overflow: hidden; display: block; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;">
+            @if (Model.Tags.Count != 0)
+            {
+                foreach (Tags Tag in Model.Tags)
+                {
+                    @Html.ActionLink('#' + Tag.Name, "Search", "Home", new { TagID = Tag.TagID }, null); <label>&nbsp</label>
+                }
+            }
+            else
+            {
+                <label> @Resources.Home.NoTags </label>
+            }
+        </div>
+
         <div class="row">
             <div class="col-lg-7 col-md-7">
-                    <h4>
-                        @{
-                            String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
-                        }
-                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
-                    </h4>
+                <h4>
+                    @{
+                        String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
+                    }
+                    <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                </h4>
             </div>
 
             @if (ViewBag.Buttons != null)
             {
                 <div class="col-lg-5 col-md-5" style="text-align: right">
-                   <h4 style="margin-top: 14px"> @ViewBag.Status</h4>
+                    <h4 style="margin-top: 14px"> @ViewBag.Status</h4>
                 </div>
             }
         </div>

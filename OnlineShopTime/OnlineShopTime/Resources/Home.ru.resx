@@ -399,4 +399,7 @@
   <data name="SearchResults" xml:space="preserve">
     <value>Результаты поиска</value>
   </data>
+  <data name="NoTags" xml:space="preserve">
+    <value>Нет тэгов</value>
+  </data>
 </root>
