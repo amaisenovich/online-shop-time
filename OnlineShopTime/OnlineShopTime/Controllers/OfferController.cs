@@ -40,7 +40,7 @@ namespace OnlineShopTime.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Offers newOffer, string Currency)
+        public ActionResult Create(Offers newOffer, string Currency, string TagsString)
         {
             if (User.Identity.Name != "")
             {
@@ -52,11 +52,23 @@ namespace OnlineShopTime.Controllers
                 newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Price = newOffer.Price + ' ' + Currency;
                 WWO.AndNewOrModify(newOffer, User.Identity.Name);
+                WWO.AddTagsToOffer(newOffer, TagsString);
                 imageURLs.Clear();
+                //if (ModelState.IsValid)
+                //{
+                //    return RedirectToAction("TabClick", "Home", new { TabID = 3 });
+                //}
+                //else
+                //{
+                //    return View();
+                //}
                 return RedirectToAction("TabClick", "Home", new { TabID = 3 });
             }
             else
+            {
+                Session["Error"] = true;
                 return RedirectToAction("AccessDenied", "AccessDenied");
+            }
         }
 
         static Queue<string> imageURLs = new Queue<string>();

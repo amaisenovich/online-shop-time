@@ -238,6 +238,7 @@
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WorkWithOrders.cs" />
+    <Compile Include="Models\WorkWithTags.cs" />
     <Compile Include="Models\WorkWithUsers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IndexDataModel.cs" />
@@ -369,6 +370,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\WorkWithTags\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

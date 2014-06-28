@@ -38,16 +38,38 @@ namespace OnlineShopTime.Models
         }
         public IQueryable<Offers> GetTopOffers()
         {
-            var OfferRate = from RateRec in Db.OfferRaiting 
-                            group RateRec.Raiting by RateRec.OfferID into RecGroup 
+            var OfferRate = from RateRec in Db.OfferRaiting
+                            group RateRec.Raiting by RateRec.OfferID into RecGroup
                             select new { Key = RecGroup.Key, Rate = RecGroup.ToList().Sum() / RecGroup.Count() };
 
-            IQueryable<Offers> TopOfferrs = (from OfferRec in Db.Offers 
-                      join RateRec in OfferRate on OfferRec.OfferID equals RateRec.Key 
-                      orderby RateRec.Rate descending 
-                      select OfferRec).Take(12);
+            IQueryable<Offers> TopOfferrs = (from OfferRec in Db.Offers
+                                             join RateRec in OfferRate on OfferRec.OfferID equals RateRec.Key
+                                             orderby RateRec.Rate descending
+                                             select OfferRec).Take(12);
 
             return TopOfferrs;
+        }
+        public void AddTagsToOffer(Offers Offer, string TagsString)
+        {
+            string[] InputedTags = TagsString.Split(' ', '#');
+            WorkWithTags WWT = new WorkWithTags();
+            foreach (string str in InputedTags)
+            {
+                if (str != "")
+                {
+                    Tags Tag = null;
+                    Tag = (from TagsRecords in Db.Tags where TagsRecords.Name == str select TagsRecords).FirstOrDefault();
+                    if (Tag == null)
+                    {
+                        Tag = new Tags();
+                        Tag.TagID = Guid.NewGuid().ToString();
+                        Tag.Name = str;
+                    }
+                    Tag.Offers.Add(Offer);
+                    Offer.Tags.Add(Tag);
+                }
+            }
+            Db.SaveChanges();
         }
         public Offers CompleteOfferWithData(Offers newOffer, String UserName)
         {
@@ -77,7 +99,7 @@ namespace OnlineShopTime.Models
                 ModifyExistedOffer(Offer);
         }
         public void ModifyExistedOffer(Offers EditedOffer)
-        { 
+        {
             Offers OldOne = (from OfferRecords in Db.Offers where OfferRecords.OfferID == EditedOffer.OfferID select OfferRecords).FirstOrDefault();
             OldOne.Name = EditedOffer.Name;
             OldOne.Description = EditedOffer.Description;
@@ -100,7 +122,19 @@ namespace OnlineShopTime.Models
             Offers RemoveOffer = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords).FirstOrDefault();
             DeleteOfferRaiting(OfferID);
             DeleteOfferComments(OfferID);
+            DeleteOfferTags(OfferID);
             Db.Offers.Remove(RemoveOffer);
+            Db.SaveChanges();
+        }
+        private void DeleteOfferTags(string OfferID)
+        {
+            Offers Offer = (from OffersRecords in Db.Offers where OffersRecords.OfferID == OfferID select OffersRecords).FirstOrDefault();
+            ICollection<Tags> OfferTags = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords.Tags).FirstOrDefault();
+            foreach (Tags Tag in OfferTags)
+            {
+                Offer.Tags.Remove(Tag);
+                Tag.Offers.Remove(Offer);
+            }
             Db.SaveChanges();
         }
         private void DeleteOfferComments(string OfferID)

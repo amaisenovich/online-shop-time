@@ -268,6 +268,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Empty name not allowed.
+        /// </summary>
+        public static string EmptyNameError {
+            get {
+                return ResourceManager.GetString("EmptyNameError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на End.
         /// </summary>
         public static string End {
@@ -448,7 +457,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Unfortunately you don&apos;t have orders in this section.
+        ///   Ищет локализованную строку, похожую на Unfortunately you have no orders in this section.
         /// </summary>
         public static string NoItems {
             get {
@@ -651,6 +660,15 @@ namespace Resources {
         public static string Price {
             get {
                 return ResourceManager.GetString("Price", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Please use only numbers.
+        /// </summary>
+        public static string PriceValidationError {
+            get {
+                return ResourceManager.GetString("PriceValidationError", resourceCulture);
             }
         }
         

@@ -11,6 +11,7 @@ namespace OnlineShopTime.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Offers
     {
@@ -23,6 +24,7 @@ namespace OnlineShopTime.Models
         }
     
         public string OfferID { get; set; }
+        [Required(ErrorMessage = "BLA BLA BLA")]
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> DateAndTime { get; set; }

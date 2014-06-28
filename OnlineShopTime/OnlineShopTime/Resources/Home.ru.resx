@@ -319,7 +319,7 @@
     <value>Заказ подтвержден</value>
   </data>
   <data name="AwaitConfirmation" xml:space="preserve">
-    <value>Ожидает согласия</value>
+    <value>Ждет подтверждение</value>
   </data>
   <data name="OrderCancelConfurm" xml:space="preserve">
     <value>Вы уверены, что хотите отменить этот заказ?</value>
@@ -389,5 +389,11 @@
   </data>
   <data name="Сurrency" xml:space="preserve">
     <value>Валюта</value>
+  </data>
+  <data name="PriceValidationError" xml:space="preserve">
+    <value>Используйте только цифры</value>
+  </data>
+  <data name="EmptyNameError" xml:space="preserve">
+    <value>Пустое имя не допускается</value>
   </data>
 </root>

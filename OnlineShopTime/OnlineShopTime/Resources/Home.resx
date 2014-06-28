@@ -387,4 +387,10 @@
   <data name="Сurrency" xml:space="preserve">
     <value>Сurrency</value>
   </data>
+  <data name="PriceValidationError" xml:space="preserve">
+    <value>Please use only numbers</value>
+  </data>
+  <data name="EmptyNameError" xml:space="preserve">
+    <value>Empty name not allowed</value>
+  </data>
 </root>
