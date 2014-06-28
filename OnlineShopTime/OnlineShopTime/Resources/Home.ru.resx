@@ -319,7 +319,7 @@
     <value>Заказ подтвержден</value>
   </data>
   <data name="AwaitConfirmation" xml:space="preserve">
-    <value>Ожидает подтверждение</value>
+    <value>Ожидает согласия</value>
   </data>
   <data name="OrderCancelConfurm" xml:space="preserve">
     <value>Вы уверены, что хотите отменить этот заказ?</value>
