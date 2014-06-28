@@ -22,6 +22,20 @@ namespace OnlineShopTime.Models
         {
             return (from rec in Db.Users where rec.UserName == UserName select rec.UserID).FirstOrDefault();
         }
+        public string GetAndDeleteCurrency(Offers Offer)
+        {
+            string Result = null;
+            if (Offer.Price.Contains("RUB"))
+                Result = "RUB";
+            if (Offer.Price.Contains("EUR"))
+                Result = "EUR";
+            if (Offer.Price.Contains("CNY"))
+                Result = "CNY";
+            if (Offer.Price.Contains("USD"))
+                Result = "USD";
+            Offer.Price = Offer.Price.Substring(0, Offer.Price.Length - 4);
+            return Result;
+        }
         public IQueryable<Offers> GetTopOffers()
         {
             var OfferRate = from RateRec in Db.OfferRaiting 
@@ -67,7 +81,7 @@ namespace OnlineShopTime.Models
             Offers OldOne = (from OfferRecords in Db.Offers where OfferRecords.OfferID == EditedOffer.OfferID select OfferRecords).FirstOrDefault();
             OldOne.Name = EditedOffer.Name;
             OldOne.Description = EditedOffer.Description;
-            OldOne.Price = OldOne.Price;
+            OldOne.Price = EditedOffer.Price;
             Db.SaveChanges();
         }
         public void AddNewOffer(Offers newOffer, string UserName)

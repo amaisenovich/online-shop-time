@@ -860,5 +860,14 @@ namespace Resources {
                 return ResourceManager.GetString("YourOffers", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Сurrency.
+        /// </summary>
+        public static string Сurrency {
+            get {
+                return ResourceManager.GetString("Сurrency", resourceCulture);
+            }
+        }
     }
 }

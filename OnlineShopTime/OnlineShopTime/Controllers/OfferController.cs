@@ -25,7 +25,12 @@ namespace OnlineShopTime.Controllers
             {
                 WorkWithOffers WWO = new WorkWithOffers();
                 Offer = WWO.GetOfferByID(OfferID);
+                ViewBag.Currency = WWO.GetAndDeleteCurrency(Offer);
             }
+
+            if (ViewBag.Currency == null)
+                ViewBag.Currency = "USA";
+
             if (User.Identity.Name == "")
             {
                 return RedirectToAction("AccessDenied", "AccessDenied");
@@ -35,7 +40,7 @@ namespace OnlineShopTime.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Offers newOffer)
+        public ActionResult Create(Offers newOffer, string Currency)
         {
             if (User.Identity.Name != "")
             {
@@ -45,6 +50,7 @@ namespace OnlineShopTime.Controllers
                 newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Photo3URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
+                newOffer.Price = newOffer.Price + ' ' + Currency;
                 WWO.AndNewOrModify(newOffer, User.Identity.Name);
                 imageURLs.Clear();
                 return RedirectToAction("TabClick", "Home", new { TabID = 3 });

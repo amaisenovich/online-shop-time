@@ -92,53 +92,9 @@
     @if (@Model.Data.Count() == 0)
     {
         <center>
-            <h2>@Resources.Home.NoItems</h2>
+            <div class="jumbotron"><h2>@Resources.Home.NoItems</h2></div>
         </center>
     }
 </div>
 
 
-@*<div class="container">
-        @{int count = 0;}
-        <hr />
-        @foreach (Orders Order in @Model.Data)
-        {
-            ViewBag.OrderID = Order.OrderID;
-            ViewBag.UserID = Order.ClientID;
-            ViewBag.OrderStatus = Order.OrderStatus;
-            if (Model.DataToShow == "ActiveOrders")
-            {
-                if (Order.OrderStatus == "Await Confirmation")
-                {
-                    ViewBag.Buttons = "ActiveOrdersAwait";
-                }
-                if (Order.OrderStatus == "Active")
-                {
-                    ViewBag.Buttons = "ActiveOrdersActive";
-                }
-            }
-            if (Model.DataToShow == "OrdersHistory")
-            {
-                ViewBag.Buttons = "History";
-            }
-            if (Model.DataToShow == "IncomingOrders")
-            {
-                if (Order.OrderStatus == "Await Confirmation")
-                {
-                    ViewBag.Buttons = "IncomingOrdersAwait";
-                }
-                if (Order.OrderStatus == "Active")
-                {
-                    ViewBag.Buttons = "IncomingOrdersActive";
-                }
-            }
-            @Html.Partial("_OfferPartial", Order.Offers);
-            count++;
-        }
-        @if (count == 0)
-        {
-            <center>
-                <h2>@Resources.Home.NoItems</h2>
-            </center>
-        }
-    </div>*@

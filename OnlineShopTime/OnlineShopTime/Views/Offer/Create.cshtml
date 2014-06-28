@@ -43,14 +43,62 @@
 
                         <div class="row">
 
-                            <div class="col-lg-8 col-md-8">
-                                <label for="inputTags" class="control-label">@Resources.Home.OfferPageTagsLabel:</label>
+                            <div class="col-lg-6 col-md-6">
+                                <label class="control-label">@Resources.Home.OfferPageTagsLabel:</label>
                                 <input type="text" name="Tags" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.TagsSeparator" />
                             </div>
 
                             <div class="col-lg-4 col-md-4">
-                                <label for="inputTags" class="control-label">@Resources.Home.Price:</label>
-                                <input type="text" name="Price" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.Price" value="@Convert.ToDouble(Model.Price)" />
+                                <label class="control-label">@Resources.Home.Price:</label>
+                                <input type="text" name="Price" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.Price" value="@Model.Price" />
+                            </div>
+
+                            <div class="col-lg-2 col-md-2">
+                                <label class="control-label">@Resources.Home.Сurrency:</label>
+
+
+                                <select class="form-control" name="Currency" style="max-height: 35px; padding: 0px; padding-left: 5px; width: 100%; max-width: 100%">
+                                    @if (ViewBag.Currency == "USD")
+                                    {
+                                        <option selected value="USD" style="margin-top: 0px">USD</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="USD" style="margin-top: 0px">USD</option>
+                                    }
+                                    @if (ViewBag.Currency == "EUR")
+                                    {
+                                        <option selected value="EUR">EUR</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="EUR">EUR</option>
+                                    }
+                                    @if (ViewBag.Currency == "RUB")
+                                    {
+                                        <option selected value="RUB">RUB</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="RUB">RUB</option>
+                                    }
+                                    @if (ViewBag.Currency == "CNY")
+                                    {
+                                        <option selected value="CNY">CNY</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="CNY">CNY</option>
+                                    }
+                                </select>
+
+
+
+
+                                <div class="dropdown">
+                                    <ul class="dropdown-menu dropdown-menu-right" style="margin: 0 auto; left: 0px; width: 50px"></ul>
+                                </div>
+
                             </div>
 
                         </div>

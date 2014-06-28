@@ -4,15 +4,9 @@
 @using Microsoft.AspNet.Identity
 
 @{string defaultImage = "v6ac3uaxfe5gtlqtrbr7";}
-@{
-    string MinMaxHeight = "399px";
-    if (ViewBag.Buttons != null)
-    {
-        MinMaxHeight = "452px";
-    }
-}
+
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 container">
-    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px; min-height: @MinMaxHeight">
+    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px;">
 
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-3 col-xs-4" style="padding-bottom:10px">
@@ -58,17 +52,20 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-5 col-md-6">
-                <h4>
-                    @{
-                        String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
-                    }
-                    <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
-                </h4>
+            <div class="col-lg-6 col-md-6">
+                <center>
+                    <h4>
+                        @{
+                            String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
+                        }
+                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                    </h4>
+                </center>
             </div>
+
             @if (ViewBag.Buttons != null)
             {
-                <div class="col-lg-7 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="panel panel-default" style="width: 100%">
                         <div class="panel-body">
                             <center>
@@ -79,6 +76,7 @@
                 </div>
             }
         </div>
+
 
         @if (ViewBag.Buttons != null) //Only for Orders Page. Forget about everything that going down here.
         {

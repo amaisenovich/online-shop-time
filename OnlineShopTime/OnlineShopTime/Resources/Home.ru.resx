@@ -387,4 +387,7 @@
   <data name="AccessDenied" xml:space="preserve">
     <value>Недостаточно прав доступа</value>
   </data>
+  <data name="Сurrency" xml:space="preserve">
+    <value>Валюта</value>
+  </data>
 </root>

@@ -384,4 +384,7 @@
   <data name="AccessDenied" xml:space="preserve">
     <value>Insufficient access rights</value>
   </data>
+  <data name="Сurrency" xml:space="preserve">
+    <value>Сurrency</value>
+  </data>
 </root>
