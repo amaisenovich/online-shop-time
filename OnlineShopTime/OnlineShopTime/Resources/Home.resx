@@ -298,7 +298,7 @@
     <value>Are you sure that you want to deny this order?</value>
   </data>
   <data name="NoItems" xml:space="preserve">
-    <value>Unfortunately you don't have orders in this section</value>
+    <value>Unfortunately you have no orders in this section</value>
   </data>
   <data name="Hour" xml:space="preserve">
     <value>Hour</value>
