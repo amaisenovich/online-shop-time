@@ -193,14 +193,17 @@
 
         @foreach(WeightTags WT in ViewBag.ViewData.WeightTags)
         {
-            <text>
-                var tag = new Object({
+            if(WT.Weight != 0)
+            {
+                <text>
+                    var tag = new Object({
                     text: '@WT.TagName',
                     weight: Number("@WT.Weight"),
                     link: "Home/Search?TagID=@WT.TagID"
-                });
-                TagList.push(tag);
-            </text>
+                    });
+                    TagList.push(tag);
+                </text>
+            }
         }
 
         $(function () {
