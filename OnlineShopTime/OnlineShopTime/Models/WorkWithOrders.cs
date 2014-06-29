@@ -96,7 +96,7 @@ namespace OnlineShopTime.Models
         public void DenyOrder(string OrderID)
         {
             Orders Order = (from OrderRecords in Db.Orders where OrderRecords.OrderID == OrderID select OrderRecords).FirstOrDefault();
-            Db.Orders.Remove(Order);
+            Order.OrderStatus = "Completed";
             Db.SaveChanges();
         }
         public void ApplyOrder(string OrderID)

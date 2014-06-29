@@ -15,12 +15,13 @@ namespace OnlineShopTime.Controllers
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
             WorkWithTags WWT = new WorkWithTags();
+            WorkWithOffers WWO = new WorkWithOffers(Server);
+            WorkWithUsers WWU = new WorkWithUsers();
 
             if (IndexViewData == null)
             {
                 IndexViewData = new IndexDataModel();
                 IndexViewData.ShowString = "NewOffers";
-                WorkWithOffers WWO = new WorkWithOffers(Server);
                 IndexViewData.NewOffers = WWO.GetNewOffers();
             }
 
@@ -30,10 +31,16 @@ namespace OnlineShopTime.Controllers
 
             if (User.Identity.Name != "")
             {
-                WorkWithUsers WWU = new WorkWithUsers();
                 if (WWU.GetUserRole(IdentityExtensions.GetUserId(User.Identity)) == "Banned")
                    return RedirectToAction("UserBanned", "AccessDenied");
             }
+
+            if (IndexViewData.ShowString == "NewOffers")
+                IndexViewData.NewOffers = WWO.GetNewOffers();
+            if (IndexViewData.ShowString == "TopUsers")
+                IndexViewData.TopUsers = WWU.GetTopUsers();
+            if (IndexViewData.ShowString == "TopOffers")
+                IndexViewData.NewOffers = WWO.GetTopOffers();
 
             return View();
         }
@@ -41,8 +48,7 @@ namespace OnlineShopTime.Controllers
         public ActionResult TabClick(int TabID)
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
-
-            WorkWithOffers WWO = new WorkWithOffers(Server);
+            WorkWithOffers WWO = new WorkWithOffers(Server);            
             if (IndexViewData == null)
                 IndexViewData = new IndexDataModel();
             switch (TabID)

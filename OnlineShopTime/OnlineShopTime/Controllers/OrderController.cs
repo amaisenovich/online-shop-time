@@ -44,6 +44,13 @@ namespace OnlineShopTime.Controllers
                 ViewData.ActiveUserID = UserID;
             }
 
+            if (ViewData.DataToShow == "ActiveOrders")
+                ViewData.SetActiveOrders();
+            if (ViewData.DataToShow == "OrdersHistory")
+                ViewData.SetOrdersHistory();
+            if (ViewData.DataToShow == "IncomingOrders")
+                ViewData.SetUserIncomingOrders();
+
             Session["ViewData"] = ViewData;
             return View(ViewData);
         }
@@ -74,7 +81,13 @@ namespace OnlineShopTime.Controllers
             WWO.ApplyOrder(OrderID);
             return RedirectToAction("TabClick", "Order", new { TabID = 3 });
         }
-        public ActionResult DenyOrder(string OrderID)
+        public ActionResult DeleteOrder(string OrderID)
+        {
+            WorkWithOrders WWO = new WorkWithOrders();
+            WWO.DeleteOrder(OrderID);
+            return RedirectToAction("TabClick", "Order", new { TabID = 2 });
+        }
+        public ActionResult CancellOrder(string OrderID)
         {
             WorkWithOrders WWO = new WorkWithOrders();
             WWO.DenyOrder(OrderID);

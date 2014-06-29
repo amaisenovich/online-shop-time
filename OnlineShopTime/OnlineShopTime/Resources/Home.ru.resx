@@ -280,7 +280,7 @@
     <value>История заказов</value>
   </data>
   <data name="OrderApply" xml:space="preserve">
-    <value>Приянть</value>
+    <value>Принять</value>
   </data>
   <data name="OrderDeny" xml:space="preserve">
     <value>Отказать</value>
