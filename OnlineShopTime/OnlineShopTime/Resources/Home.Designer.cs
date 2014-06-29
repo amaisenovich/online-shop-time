@@ -277,6 +277,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Title can&apos;t be empty.
+        /// </summary>
+        public static string EmptyTitleMessage {
+            get {
+                return ResourceManager.GetString("EmptyTitleMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на End.
         /// </summary>
         public static string End {
@@ -768,6 +777,15 @@ namespace Resources {
         public static string ShowUserOffers {
             get {
                 return ResourceManager.GetString("ShowUserOffers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sign in.
+        /// </summary>
+        public static string SignIn {
+            get {
+                return ResourceManager.GetString("SignIn", resourceCulture);
             }
         }
         

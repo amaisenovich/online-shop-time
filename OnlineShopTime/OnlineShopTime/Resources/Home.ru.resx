@@ -402,4 +402,10 @@
   <data name="NoTags" xml:space="preserve">
     <value>Нет тэгов</value>
   </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Войти на сайт</value>
+  </data>
+  <data name="EmptyTitleMessage" xml:space="preserve">
+    <value>Название предложения не может быть пустым</value>
+  </data>
 </root>

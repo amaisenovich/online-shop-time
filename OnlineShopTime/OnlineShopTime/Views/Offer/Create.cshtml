@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label for="inputTitle" class="control-label">@Resources.Home.OfferPageTitleLabel:</label>
                             <input type="text" name="Name" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" class="form-control" id="inputTitle" placeholder="@Resources.Home.OfferPageTitleLabel" value="@Model.Name" />
-                            @Html.ValidationMessageFor(model => model.Name)
+                            <span class="field-validation-error" data-valmsg-for="Name" data-valmsg-replace="true">@Resources.Home.EmptyNameError</span>
                         </div>
 
                         <div class="form-group">

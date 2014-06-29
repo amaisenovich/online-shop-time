@@ -56,22 +56,33 @@ namespace OnlineShopTime.Controllers
         {
             if (User.Identity.Name != "")
             {
+
                 WWO = new WorkWithOffers(Server);
                 string defaultImage = null;
                 newOffer.Photo1URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Photo2URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Photo3URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
                 newOffer.Photo4URL = imageURLs.Count > 0 ? imageURLs.Dequeue() : defaultImage;
-                newOffer.Price = newOffer.Price + ' ' + Currency;
+                newOffer.Price = newOffer.Price + ' ' + Currency;              
+                imageURLs.Clear();
+                if((newOffer.Name == "") || (newOffer.Name == null))
+                {
+                    if (newOffer.OfferID != null)
+                    {
+                        WWO.DeleteOfferTags(newOffer.OfferID);
+                        WWO.AddTagsToOffer(newOffer.OfferID, TagsString);
+                    }
+                    WorkWithTags WWT = new WorkWithTags();
+                    ViewBag.Tags = WWT.GetTagsNamesList();
+                    return View(newOffer);
+                }
                 string OfferID = WWO.AndNewOrModify(newOffer, User.Identity.Name);
                 WWO.DeleteOfferTags(OfferID);
                 WWO.AddTagsToOffer(OfferID, TagsString);
-                imageURLs.Clear();
                 return RedirectToAction("TabClick", "Home", new { TabID = 3 });
             }
             else
             {
-                Session["Error"] = true;
                 return RedirectToAction("AccessDenied", "AccessDenied");
             }
         }
