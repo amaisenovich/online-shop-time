@@ -453,4 +453,10 @@
   <data name="YouHaveNoOffers" xml:space="preserve">
     <value>You have no offers</value>
   </data>
+  <data name="NoEmail" xml:space="preserve">
+    <value>No email</value>
+  </data>
+  <data name="NoNumber" xml:space="preserve">
+    <value>No phone number</value>
+  </data>
 </root>

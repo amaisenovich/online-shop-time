@@ -529,11 +529,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на No email.
+        /// </summary>
+        public static string NoEmail {
+            get {
+                return ResourceManager.GetString("NoEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Unfortunately you have no orders in this section.
         /// </summary>
         public static string NoItems {
             get {
                 return ResourceManager.GetString("NoItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на No phone number.
+        /// </summary>
+        public static string NoNumber {
+            get {
+                return ResourceManager.GetString("NoNumber", resourceCulture);
             }
         }
         

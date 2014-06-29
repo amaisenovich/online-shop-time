@@ -456,4 +456,10 @@
   <data name="YouHaveNoOffers" xml:space="preserve">
     <value>У вас нет предложений</value>
   </data>
+  <data name="NoEmail" xml:space="preserve">
+    <value>Email не указан</value>
+  </data>
+  <data name="NoNumber" xml:space="preserve">
+    <value>Нет номера телефона</value>
+  </data>
 </root>

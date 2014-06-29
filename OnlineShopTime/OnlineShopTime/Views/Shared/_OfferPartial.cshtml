@@ -11,7 +11,7 @@
 
 @if (ViewBag.Buttons != null)
 {
-    jumboSize = "468px"; 
+    jumboSize = "468px";
 }
 
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 container">
@@ -73,10 +73,15 @@
         <div class="row">
             <div class="col-lg-7 col-md-7">
                 <h4>
-                    @{
+                    @if ((Model.Users.FirstName != null) || (Model.Users.LastName != null))
+                    {
                         String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
+                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
                     }
-                    <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                    else
+                    {
+                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink(Model.Users.UserName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })                         
+                    }
                 </h4>
             </div>
 
