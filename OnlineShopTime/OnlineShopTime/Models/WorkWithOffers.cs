@@ -27,15 +27,18 @@ namespace OnlineShopTime.Models
         public string GetAndDeleteCurrency(Offers Offer)
         {
             string Result = null;
-            if (Offer.Price.Contains("RUB"))
-                Result = "RUB";
-            if (Offer.Price.Contains("EUR"))
-                Result = "EUR";
-            if (Offer.Price.Contains("CNY"))
-                Result = "CNY";
-            if (Offer.Price.Contains("USD"))
-                Result = "USD";
-            Offer.Price = Offer.Price.Substring(0, Offer.Price.Length - 4);
+            if (Offer.Price != null)
+            {
+                if (Offer.Price.Contains("RUB"))
+                    Result = "RUB";
+                if (Offer.Price.Contains("EUR"))
+                    Result = "EUR";
+                if (Offer.Price.Contains("CNY"))
+                    Result = "CNY";
+                if (Offer.Price.Contains("USD"))
+                    Result = "USD";
+                Offer.Price = Offer.Price.Substring(0, Offer.Price.Length - 4);                
+            }
             return Result;
         }
         public IQueryable<Offers> GetTopOffers()
