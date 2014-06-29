@@ -258,6 +258,7 @@
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WeightTags.cs" />
+    <Compile Include="Models\WorkWithComments.cs" />
     <Compile Include="Models\WorkWithOrders.cs" />
     <Compile Include="Models\WorkWithTags.cs" />
     <Compile Include="Models\WorkWithUsers.cs" />
