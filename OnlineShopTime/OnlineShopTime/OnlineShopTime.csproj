@@ -70,8 +70,9 @@
     <Reference Include="Jurassic">
       <HintPath>..\packages\CoffeeSharp.0.5\lib\Jurassic.dll</HintPath>
     </Reference>
-    <Reference Include="Lucene.Net">
-      <HintPath>..\packages\Lucene.Net.3.0.3\lib\NET40\Lucene.Net.dll</HintPath>
+    <Reference Include="Lucene.Net, Version=2.9.4.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Lucene.Net.2.9.4.1\lib\net40\Lucene.Net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -134,7 +135,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
-    <Reference Include="SimpleLucene">
+    <Reference Include="SimpleLucene, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\SimpleLucene.1.0.0.1\lib\4.0\SimpleLucene.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -407,7 +409,7 @@
     <Content Include="Views\Administrator\ShowAdminContacts.cshtml" />
     <Content Include="Views\AccessDenied\AccessDenied.cshtml" />
     <Content Include="Views\AccessDenied\UserBanned.cshtml" />
-    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Shared\Search.cshtml" />
     <Content Include="Views\Shared\_NoSearchResults.cshtml" />
     <Content Include="Views\Shared\_NoUserOffers.cshtml" />
   </ItemGroup>

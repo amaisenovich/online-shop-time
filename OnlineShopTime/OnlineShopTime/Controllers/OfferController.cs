@@ -79,6 +79,8 @@ namespace OnlineShopTime.Controllers
                 string OfferID = WWO.AndNewOrModify(newOffer, User.Identity.Name);
                 WWO.DeleteOfferTags(OfferID);
                 WWO.AddTagsToOffer(OfferID, TagsString);
+                WWO.CreateIndex(newOffer);
+                imageURLs.Clear();
                 return RedirectToAction("TabClick", "Home", new { TabID = 3 });
             }
             else
@@ -205,7 +207,7 @@ namespace OnlineShopTime.Controllers
                 {
                     return View(result.Results.OrderBy(x => x.DateAndTime).ToList());
                 }
-                return View(result.Results.ToList());
+                return View("Search", result.Results.ToList());
             }
         }
     }

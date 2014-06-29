@@ -119,7 +119,6 @@ namespace OnlineShopTime.Models
             OldOne.Photo3URL = EditedOffer.Photo3URL;
             OldOne.Photo4URL = EditedOffer.Photo4URL;
             Db.SaveChanges();
-            //CreateIndex(OldOne);
             return OldOne.OfferID;
         }
         public string AddNewOffer(Offers newOffer, string UserName)
@@ -127,11 +126,11 @@ namespace OnlineShopTime.Models
             newOffer = this.CompleteOfferWithData(newOffer, UserName);
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
-            //CreateIndex(newOffer);
             return newOffer.OfferID;
         }
 
-        private void CreкateIndex(Offers newOffer)
+
+        public void CreateIndex(Offers newOffer)
         {
             // index location
             var indexLocation = new FileSystemIndexLocation(new DirectoryInfo(Server.MapPath("~/Index")));
