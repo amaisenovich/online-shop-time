@@ -196,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Confurm.
+        /// </summary>
+        public static string Confurm {
+            get {
+                return ResourceManager.GetString("Confurm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Contacts.
         /// </summary>
         public static string Contacts {
@@ -927,9 +936,9 @@ namespace Resources {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Username.
         /// </summary>
-        public static string Username {
+        public static string UserName {
             get {
-                return ResourceManager.GetString("Username", resourceCulture);
+                return ResourceManager.GetString("UserName", resourceCulture);
             }
         }
         

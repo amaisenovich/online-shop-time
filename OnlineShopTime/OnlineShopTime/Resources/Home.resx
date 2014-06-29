@@ -405,7 +405,7 @@
   <data name="EmptyTitleMessage" xml:space="preserve">
     <value>Title can't be empty</value>
   </data>
-  <data name="Username" xml:space="preserve">
+  <data name="UserName" xml:space="preserve">
     <value>Username</value>
   </data>
   <data name="Password" xml:space="preserve">
@@ -422,5 +422,8 @@
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Sign up</value>
+  </data>
+  <data name="Confurm" xml:space="preserve">
+    <value>Confurm</value>
   </data>
 </root>

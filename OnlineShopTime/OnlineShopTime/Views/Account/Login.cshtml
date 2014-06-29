@@ -18,7 +18,7 @@
                 @Html.AntiForgeryToken()
                 @Html.ValidationSummary(true)
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="UserName" style="margin-top: 0px">@Resources.Home.Username:</label>
+                    <label class="col-md-2 control-label" for="UserName" style="margin-top: 0px">@Resources.Home.UserName:</label>
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.UserName)

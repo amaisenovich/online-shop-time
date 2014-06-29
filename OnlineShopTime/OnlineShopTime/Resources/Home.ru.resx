@@ -408,7 +408,7 @@
   <data name="EmptyTitleMessage" xml:space="preserve">
     <value>Название предложения не может быть пустым</value>
   </data>
-  <data name="Username" xml:space="preserve">
+  <data name="UserName" xml:space="preserve">
     <value>Логин</value>
   </data>
   <data name="Password" xml:space="preserve">
@@ -425,5 +425,8 @@
   </data>
   <data name="SignUp" xml:space="preserve">
     <value>Зарегистрируйтесь</value>
+  </data>
+  <data name="Confurm" xml:space="preserve">
+    <value>Подтверждение</value>
   </data>
 </root>
