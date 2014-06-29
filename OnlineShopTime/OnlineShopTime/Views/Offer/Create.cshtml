@@ -6,11 +6,11 @@
 @{
     if (Model.OfferID == null)
     {
-        ViewBag.Title = "Create";
+        ViewBag.Title = Resources.Home.CreateOffer;
     }
     else
     {
-        ViewBag.Title = "Edit";
+        ViewBag.Title = Resources.Home.Edit;
     }
 }
 
@@ -33,42 +33,53 @@
             <div class="row clearfix">
                 <div class="col-md-8 column">
                     <form class="form-horizontal" role="form">
+
                         <div class="form-group">
                             <label for="inputTitle" class="control-label">@Resources.Home.OfferPageTitleLabel:</label>
                             <input type="text" name="Name" maxlength="75" style="width: 100%; max-width: 100%; max-height: 35px" class="form-control" id="inputTitle" placeholder="@Resources.Home.OfferPageTitleLabel" value="@Model.Name" />
-                            @Html.ValidationMessageFor(model => model.Name)
+                            <span class="field-validation-error" data-valmsg-for="Name" data-valmsg-replace="true">@Resources.Home.EmptyNameError</span>
                         </div>
+
                         <div class="form-group">
                             <label for="inputDescription" class="control-label">@Resources.Home.OfferPageDescriptionLabel:</label>
                             <textarea class="form-control" name="Description" style="width: 100%; max-width: 100%; min-width: 100%;" id="inputDescription" placeholder="@Resources.Home.OfferPageDescriptionLabel">@Model.Description</textarea>
                         </div>
 
-                        <div class="row">
+                        <div class="form-group">
+                            <label class="control-label">@Resources.Home.OfferPageTagsLabel:</label>
 
-                            <div class="col-lg-6 col-md-6">
-                                <label class="control-label">@Resources.Home.OfferPageTagsLabel:</label>
-                                @{string TagsString = "";}
-                                @if (Model.Tags.Count != 0)
+                            @{string TagsString = "";}
+                            @if (Model.Tags.Count != 0)
+                            {
+                                foreach (Tags Tag in Model.Tags)
                                 {
-
-                                    foreach (Tags Tag in Model.Tags)
-                                    {
-                                        TagsString = TagsString + '#' + Tag.Name + ' ';
-                                    }
+                                    TagsString = TagsString + ',' + Tag.Name;
                                 }
-                                <input type="text" name="TagsString" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.TagsSeparator" value="@TagsString" />
+                            }
+                            <input name="TagsString" id="mySingleField" hidden="hidden" value="@TagsString">
+                            <div class="">
+                                <ul style="background-color: #fff; max-height: 37px" class="form-control" id="singleFieldTags"></ul>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top: 3%">
+
+
+
+                            <div class="col-lg-1 col-md-1" style="margin-top: 1%">
+                                <label class="control-label">@Resources.Home.Price:</label>
                             </div>
 
                             <div class="col-lg-4 col-md-4">
-                                <label class="control-label">@Resources.Home.Price:</label>
-                                <input type="text" name="Price" pattern="^[ 0-9]+$" oninvalid="setCustomValidity('@Resources.Home.PriceValidationError')" onchange="try{setCustomValidity('')}catch(e){}" class="form-control" style="width: 100%; max-width: 100%; max-height: 35px" id="inputTags" placeholder="@Resources.Home.Price" value="@Model.Price" />
+                                <input type="text" name="Price" pattern="^[ 0-9]+$" oninvalid="setCustomValidity('@Resources.Home.PriceValidationError')" onchange="try{setCustomValidity('')}catch(e){}" class="form-control" style="margin-left: 8%;width: 90%; max-width: 100%; max-height: 36px" id="inputTags" placeholder="@Resources.Home.Price" value="@Model.Price" />
+                            </div>
+
+                            <div class="col-lg-2 col-md-2" style="margin-top: 1%; text-align: left">
+                                <label class="control-label">@Resources.Home.Сurrency:</label>
                             </div>
 
                             <div class="col-lg-2 col-md-2">
-                                <label class="control-label">@Resources.Home.Сurrency:</label>
-
-
-                                <select class="form-control" name="Currency" style="max-height: 35px; padding: 0px; padding-left: 5px; width: 100%; max-width: 100%">
+                                <select class="form-control" name="Currency" style="max-height: 35px; padding: 0px; padding-left: 5px; padding-top: 5px; width: 100%; max-width: 100%">
                                     @if (ViewBag.Currency == "USD")
                                     {
                                         <option selected value="USD" style="margin-top: 0px">USD</option>
@@ -102,29 +113,21 @@
                                         <option value="CNY">CNY</option>
                                     }
                                 </select>
+                            </div>
 
-
-
-
-                                <div class="dropdown">
-                                    <ul class="dropdown-menu dropdown-menu-right" style="margin: 0 auto; left: 0px; width: 50px"></ul>
-                                </div>
-
+                            <div class="col-lg-3 col-md-3">
+                                @if (Model.OfferID == null)
+                                {
+                                    <button type="submit" class="btn btn-default" style="width: 100%; margin-top: 1%; margin-bottom: 1.5%">@Resources.Home.CreateButton</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-default" style="width: 100%; margin-top: 1%; margin-bottom: 1.5%">@Resources.Home.Edit</button>
+                                }
                             </div>
 
                         </div>
-                        @if (Model.OfferID == null)
-                        {
-                            <div class="form-group" style="margin-top: 1em">
-                                <button type="submit" class="btn btn-default">@Resources.Home.CreateButton</button>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="form-group" style="margin-top: 1em">
-                                <button type="submit" class="btn btn-default">@Resources.Home.Edit</button>
-                            </div>
-                        }
+
                     </form>
                 </div>
                 <div class="col-md-4 column">
@@ -260,7 +263,23 @@
                     $('.cloudinary-fileupload').show();
                 }
             });
+
+            var sampleTags = new Array();
+
+            @foreach (string Tag in ViewBag.Tags)
+            {
+                <text>
+                    sampleTags.push('@Tag');
+                </text>
+            }
+
+            $('#singleFieldTags').tagit({
+                availableTags: sampleTags,
+                // This will make Tag-it submit a single form value, as a comma-delimited field.
+                singleField: true,
+                singleFieldNode: $('#mySingleField')
+            });
+
         });
     </script>
-
 }

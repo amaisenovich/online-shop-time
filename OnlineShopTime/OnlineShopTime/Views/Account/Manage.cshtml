@@ -1,14 +1,10 @@
 ﻿@using OnlineShopTime.Models;
 @using Microsoft.AspNet.Identity;
 @{
-    ViewBag.Title = "Управление учетной записью";
+    ViewBag.Title = Resources.Home.ChangePassword;
 }
 
-<h2>@ViewBag.Title.</h2>
-
-<p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
-    <div class="col-md-6">
         @if (ViewBag.HasLocalPassword)
         {
             @Html.Partial("_ChangePasswordPartial")
@@ -19,10 +15,6 @@
         }
         <section id="externalLogins">
             @Html.Action("RemoveAccountList")
-            @Html.Partial("_ExternalLoginsListPartial", new { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
         </section>
-    </div>
-    <div class="col-md-6">
-    </div>
 </div>
 

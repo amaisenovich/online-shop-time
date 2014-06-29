@@ -4,26 +4,24 @@
     ViewBag.Title = "DeleteOffer";
 }
 
-<center>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2"></div>
-            <h2 class="col-lg-8a">@Resources.Home.AreYouSureOfferDelete</h2>
-            <div class="col-lg-2"></div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-lg-3"></div>
-            @Html.Partial("_OfferPartial", Model)
-            <div class="col-lg-3"></div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-6">
-                <a href="/Offer/Delete?OfferID=@Model.OfferID" class="btn btn-default btn-danger btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.Delete</a>
-            </div>
-            <div class="col-lg-3"></div>
-        </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <center><h2 class="col-lg-8">@Resources.Home.AreYouSureOfferDelete</h2></center>
+        <div class="col-lg-2"></div>
     </div>
-</center>
+    <br />
+    <div class="row">
+        <div class="col-lg-3"></div>
+        @Html.Partial("_OfferPartial", Model)
+        <div class="col-lg-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <a href="/Offer/Delete?OfferID=@Model.OfferID" class="btn btn-default btn-danger btn-lg" style="width: 100%; margin-top: 2%">@Resources.Home.Delete</a>
+        </div>
+        <div class="col-lg-3"></div>
+    </div>
+</div>

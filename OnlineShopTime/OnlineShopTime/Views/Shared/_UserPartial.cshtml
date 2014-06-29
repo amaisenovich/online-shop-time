@@ -26,14 +26,25 @@ else
             @Cloud.Api.UrlImgUp.Transform(new Transformation().Width(150).Height(150).Crop("fill")).BuildImageTag(Model.AvatarURL, "id = image")
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <a href="Offer/ShowUserOffers?UserID=@Model.UserID">
-                <h3 style="line-height:1px">
-                    @Model.FirstName
-                </h3>
-                <h3 style="line-height:1px">
-                    @Model.LastName
-                </h3>
-            </a>
+            @if ((Model.FirstName != null) || (Model.LastName != null))
+            {
+                <a href="Offer/ShowUserOffers?UserID=@Model.UserID">
+                    <h3 style="line-height:1px">
+                        @Model.FirstName
+                    </h3>
+                    <h3 style="line-height:1px">
+                        @Model.LastName
+                    </h3>
+                </a>
+            }
+            else
+            {
+                <a href="Offer/ShowUserOffers?UserID=@Model.UserID">
+                    <h3>
+                        @Model.UserName
+                    </h3>
+                </a>
+            }
             <br />
 
             @{
@@ -53,7 +64,14 @@ else
                     <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
                         <div class="panel-heading">@Resources.Home.PhoneNumber</div>
                         <div class="panel-body" style="margin-top:-10px; margin-bottom: -10px;word-wrap: break-word">
-                            @Model.PhoneNumber
+                            @if (Model.PhoneNumber != null)
+                            {
+                                @Model.PhoneNumber
+                            }
+                            else
+                            {
+                                @Resources.Home.NoNumber
+                            }
                         </div>
                     </div>
                 </div>
@@ -62,7 +80,14 @@ else
                     <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%; margin-bottom: -10px">
                         <div class="panel-heading">Email</div>
                         <div class="panel-body" style="margin-top: -10px;margin-bottom: -10px; word-wrap: break-word">
-                            @Model.Email
+                            @if (Model.Email != null)
+                            {
+                                @Model.Email
+                            }
+                            else
+                            {
+                                @Resources.Home.NoEmail
+                            }
                         </div>
                     </div>
                 </div>

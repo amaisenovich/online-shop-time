@@ -2,7 +2,7 @@
 @using OnlineShopTime.Models
 
 @{
-    ViewBag.Title = "ShowOrders";
+    ViewBag.Title = Resources.Home.UserOrders;
 }
 <br>
 <center>
@@ -57,6 +57,7 @@
         {
             ViewBag.Buttons = "History";
             ViewBag.Status = @Resources.Home.TransactionIsСompleted;
+            ViewBag.OrderDate = Order.DateAndTime;
         }
         if (Model.DataToShow == "ActiveOrders")
         {

@@ -349,7 +349,7 @@
     <value>User Login</value>
   </data>
   <data name="UsersRights" xml:space="preserve">
-    <value>Users Rights</value>
+    <value>Users rights</value>
   </data>
   <data name="Demote" xml:space="preserve">
     <value>Demote</value>
@@ -398,5 +398,65 @@
   </data>
   <data name="NoTags" xml:space="preserve">
     <value>No tags</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Sign in</value>
+  </data>
+  <data name="EmptyTitleMessage" xml:space="preserve">
+    <value>Title can't be empty</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember me</value>
+  </data>
+  <data name="IfYouDontHaveAccount" xml:space="preserve">
+    <value>If you have an account</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Confurm" xml:space="preserve">
+    <value>Confurm</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>Personal Info</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Password changed</value>
+  </data>
+  <data name="YouEnteredAs" xml:space="preserve">
+    <value>You entered as</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="UserOrders" xml:space="preserve">
+    <value>User orders</value>
+  </data>
+  <data name="YouHaveNoOffers" xml:space="preserve">
+    <value>You have no offers</value>
+  </data>
+  <data name="NoEmail" xml:space="preserve">
+    <value>No email</value>
+  </data>
+  <data name="NoNumber" xml:space="preserve">
+    <value>No phone number</value>
   </data>
 </root>

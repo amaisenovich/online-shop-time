@@ -14,17 +14,17 @@ namespace OnlineShopTime.Controllers
         public ActionResult Index()
         {
             IndexViewData = (IndexDataModel)Session["IndexData"];
+            WorkWithTags WWT = new WorkWithTags();
 
             if (IndexViewData == null)
             {
                 IndexViewData = new IndexDataModel();
                 IndexViewData.ShowString = "NewOffers";
                 WorkWithOffers WWO = new WorkWithOffers(Server);
-                WorkWithTags WWT = new WorkWithTags();
                 IndexViewData.NewOffers = WWO.GetNewOffers();
-                IndexViewData.WeightTags = WWT.GetWeightTags();
             }
 
+            IndexViewData.WeightTags = WWT.GetWeightTags();
             ViewBag.ViewData = IndexViewData;
             Session["IndexData"] = IndexViewData;
 

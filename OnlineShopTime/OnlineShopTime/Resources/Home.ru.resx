@@ -402,4 +402,64 @@
   <data name="NoTags" xml:space="preserve">
     <value>Нет тэгов</value>
   </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Войти на сайт</value>
+  </data>
+  <data name="EmptyTitleMessage" xml:space="preserve">
+    <value>Название предложения не может быть пустым</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить меня</value>
+  </data>
+  <data name="IfYouDontHaveAccount" xml:space="preserve">
+    <value>если у вас нет учетной записи</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Зарегистрируйтесь</value>
+  </data>
+  <data name="Confurm" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>Фотография</value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>Личная информация</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Сменить пароль</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Пароль изменен</value>
+  </data>
+  <data name="YouEnteredAs" xml:space="preserve">
+    <value>Вы вошли как</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="UserOrders" xml:space="preserve">
+    <value>Заказы пользователя</value>
+  </data>
+  <data name="YouHaveNoOffers" xml:space="preserve">
+    <value>У вас нет предложений</value>
+  </data>
+  <data name="NoEmail" xml:space="preserve">
+    <value>Email не указан</value>
+  </data>
+  <data name="NoNumber" xml:space="preserve">
+    <value>Нет номера телефона</value>
+  </data>
 </root>

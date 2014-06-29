@@ -68,8 +68,15 @@
                 <div class="panel panel-default" style="margin-left: 1%; margin-right: 1%">
                     <div class="panel-heading">@Resources.Home.OfferedBy</div>
                     <div class="panel-body" style="word-wrap: break-word">
-                        @{String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName; }
-                        @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                        @if ((Model.Users.FirstName != null) || (Model.Users.LastName != null))
+                        {
+                            String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
+                            @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(Model.Users.UserName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                        }
                     </div>
                 </div>
             </div>

@@ -27,15 +27,18 @@ namespace OnlineShopTime.Models
         public string GetAndDeleteCurrency(Offers Offer)
         {
             string Result = null;
-            if (Offer.Price.Contains("RUB"))
-                Result = "RUB";
-            if (Offer.Price.Contains("EUR"))
-                Result = "EUR";
-            if (Offer.Price.Contains("CNY"))
-                Result = "CNY";
-            if (Offer.Price.Contains("USD"))
-                Result = "USD";
-            Offer.Price = Offer.Price.Substring(0, Offer.Price.Length - 4);
+            if (Offer.Price != null)
+            {
+                if (Offer.Price.Contains("RUB"))
+                    Result = "RUB";
+                if (Offer.Price.Contains("EUR"))
+                    Result = "EUR";
+                if (Offer.Price.Contains("CNY"))
+                    Result = "CNY";
+                if (Offer.Price.Contains("USD"))
+                    Result = "USD";
+                Offer.Price = Offer.Price.Substring(0, Offer.Price.Length - 4);                
+            }
             return Result;
         }
         public IQueryable<Offers> GetTopOffers()
@@ -57,7 +60,7 @@ namespace OnlineShopTime.Models
         }
         public void AddTagsToOffer(Offers Offer, string TagsString)
         {
-            string[] InputedTags = TagsString.Split(' ', '#');
+            string[] InputedTags = TagsString.Split(',');
             foreach (string str in InputedTags)
             {
                 if (str != "")
@@ -126,6 +129,7 @@ namespace OnlineShopTime.Models
             return newOffer.OfferID;
         }
 
+
         public void CreateIndex(Offers newOffer)
         {
             // index location
@@ -151,28 +155,41 @@ namespace OnlineShopTime.Models
         {
             Offers RemoveOffer = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords).FirstOrDefault();
             DeleteOfferRaiting(OfferID);
-            DeleteOfferComments(OfferID);
             DeleteOfferTags(OfferID);
+            DeleteOfferComments(OfferID);
+            DeleteOfferOrders(OfferID);
             Db.Offers.Remove(RemoveOffer);
+            Db.SaveChanges();
+        }
+        private void DeleteOfferOrders(string OfferID)
+        {
+            IQueryable<Orders> OfferOrders = from OrdersRecords in Db.Orders where OrdersRecords.OfferID == OfferID select OrdersRecords;
+            if (OfferOrders != null)
+                foreach (Orders Order in OfferOrders)
+                    Db.Orders.Remove(Order);
+            Db.SaveChanges();
+        }
+        private void DeleteOfferComments(string OfferID)
+        {
+            IQueryable<Comments> OfferCommnets = from CommentsRecords in Db.Comments where CommentsRecords.OfferID == OfferID select CommentsRecords;
+            if (OfferCommnets != null)
+                foreach (Comments Comment in OfferCommnets)
+                    Db.Comments.Remove(Comment);
             Db.SaveChanges();
         }
         public void DeleteOfferTags(string OfferID)
         {
             Offers Offer = (from OffersRecords in Db.Offers where OffersRecords.OfferID == OfferID select OffersRecords).FirstOrDefault();
             ICollection<Tags> OfferTags = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords.Tags).FirstOrDefault();
-            foreach (Tags Tag in OfferTags)
+            if (OfferTags != null)
             {
-                Offer.Tags.Remove(Tag);
-                Tag.Offers.Remove(Offer);
+                foreach (Tags Tag in OfferTags)
+                {
+                    Offer.Tags.Remove(Tag);
+                    Tag.Offers.Remove(Offer);
+                }
+                Db.SaveChanges();
             }
-            Db.SaveChanges();
-        }
-        private void DeleteOfferComments(string OfferID)
-        {
-            IQueryable<Comments> Coments = from ComentRec in Db.Comments where ComentRec.OfferID == OfferID select ComentRec;
-            foreach (Comments Coment in Coments)
-                Db.Comments.Remove(Coment);
-            Db.SaveChanges();
         }
         private void DeleteOfferRaiting(string OfferID)
         {

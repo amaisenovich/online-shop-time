@@ -18,13 +18,20 @@ namespace OnlineShopTime.Models
             IQueryable<Tags> Tags = from TagsRecords in Db.Tags select TagsRecords;
             foreach (Tags Tag in Tags)
             {
-                WeightTags WeightTag = new WeightTags();
-                WeightTag.TagName = '#' + Tag.Name;
-                WeightTag.Weight = Tag.Offers.Count;
-                WeightTag.TagID = Tag.TagID;
-                Result.Add(WeightTag);                
+                if (Tag.Offers.Count != 0)
+                {
+                    WeightTags WeightTag = new WeightTags();
+                    WeightTag.TagName = '#' + Tag.Name;
+                    WeightTag.Weight = Tag.Offers.Count;
+                    WeightTag.TagID = Tag.TagID;
+                    Result.Add(WeightTag);
+                }
             }
             return Result;
+        }
+        public IQueryable<string> GetTagsNamesList()
+        {
+            return (from TagsRecords in Db.Tags select TagsRecords.Name);
         }
         public int GetTagInOffersCount()
         {
