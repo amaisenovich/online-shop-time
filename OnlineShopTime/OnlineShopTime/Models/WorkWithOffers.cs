@@ -153,9 +153,17 @@ namespace OnlineShopTime.Models
         {
             Offers RemoveOffer = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords).FirstOrDefault();
             DeleteOfferRaiting(OfferID);
-            DeleteOfferComments(OfferID);
             DeleteOfferTags(OfferID);
+            DeleteOfferComments(OfferID);
             Db.Offers.Remove(RemoveOffer);
+            Db.SaveChanges();
+        }
+        private void DeleteOfferComments(string OfferID)
+        {
+            IQueryable<Comments> OfferCommnets = from CommentsRecords in Db.Comments where CommentsRecords.OfferID == OfferID select CommentsRecords;
+            if (OfferCommnets != null)
+                foreach (Comments Comment in OfferCommnets)
+                    Db.Comments.Remove(Comment);
             Db.SaveChanges();
         }
         public void DeleteOfferTags(string OfferID)
@@ -171,13 +179,6 @@ namespace OnlineShopTime.Models
                 }
                 Db.SaveChanges();
             }
-        }
-        private void DeleteOfferComments(string OfferID)
-        {
-            IQueryable<Comments> Coments = from ComentRec in Db.Comments where ComentRec.OfferID == OfferID select ComentRec;
-            foreach (Comments Coment in Coments)
-                Db.Comments.Remove(Coment);
-            Db.SaveChanges();
         }
         private void DeleteOfferRaiting(string OfferID)
         {
