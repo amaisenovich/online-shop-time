@@ -19,10 +19,11 @@ namespace OnlineShopTime.Utils
         {
             if (!string.IsNullOrEmpty(keywords))
             {
-                string[] fields = { "Name", "Description" };
+                string[] fields = { "Name", "Description", "Tags" };
                 var parser = new MultiFieldQueryParser(Lucene.Net.Util.Version.LUCENE_29,
                         fields, new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_29));
                 Query multiQuery = parser.Parse(keywords);
+
 
                 this.AddQuery(multiQuery);
             }
