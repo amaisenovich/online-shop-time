@@ -155,7 +155,16 @@ namespace OnlineShopTime.Models
             DeleteOfferRaiting(OfferID);
             DeleteOfferTags(OfferID);
             DeleteOfferComments(OfferID);
+            DeleteOfferOrders(OfferID);
             Db.Offers.Remove(RemoveOffer);
+            Db.SaveChanges();
+        }
+        private void DeleteOfferOrders(string OfferID)
+        {
+            IQueryable<Orders> OfferOrders = from OrdersRecords in Db.Orders where OrdersRecords.OfferID == OfferID select OrdersRecords;
+            if (OfferOrders != null)
+                foreach (Orders Order in OfferOrders)
+                    Db.Orders.Remove(Order);
             Db.SaveChanges();
         }
         private void DeleteOfferComments(string OfferID)
