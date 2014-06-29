@@ -408,4 +408,22 @@
   <data name="EmptyTitleMessage" xml:space="preserve">
     <value>Название предложения не может быть пустым</value>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Запомнить меня</value>
+  </data>
+  <data name="IfYouDontHaveAccount" xml:space="preserve">
+    <value>если у вас нет учетной записи</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Зарегистрируйтесь</value>
+  </data>
 </root>
