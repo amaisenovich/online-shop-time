@@ -408,6 +408,7 @@
     <Content Include="Views\AccessDenied\UserBanned.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Shared\_NoSearchResults.cshtml" />
+    <Content Include="Views\Shared\_NoUserOffers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

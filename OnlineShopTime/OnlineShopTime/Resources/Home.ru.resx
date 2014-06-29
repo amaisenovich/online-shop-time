@@ -429,4 +429,31 @@
   <data name="Confurm" xml:space="preserve">
     <value>Подтверждение</value>
   </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>Фотография</value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>Личная информация</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Сменить пароль</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Пароль изменен</value>
+  </data>
+  <data name="YouEnteredAs" xml:space="preserve">
+    <value>Вы вошли как</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Текущий пароль</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="UserOrders" xml:space="preserve">
+    <value>Заказы пользователя</value>
+  </data>
+  <data name="YouHaveNoOffers" xml:space="preserve">
+    <value>У вас нет предложений</value>
+  </data>
 </root>

@@ -3,7 +3,7 @@
 @using OnlineShopTime.Utils
 
 @{
-    ViewBag.Title = "EditProfile";
+    ViewBag.Title = Resources.Home.EditProfile;
 }
 
 <h2>@Resources.Home.EditProfile</h2>
@@ -16,7 +16,7 @@
         <div class="row ">
             <div class="col-md-6">
                 <div class="form-horizontal" style="min-height: 10em">
-                    <h4>Users</h4>
+                    <h4>@Resources.Home.PersonalInfo:</h4>
                     <hr />
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.UserID)
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h4>Avatar</h4>
+                <h4>@Resources.Home.Avatar:</h4>
                 <hr />
                 @if (Model.AvatarURL != null)
                 {

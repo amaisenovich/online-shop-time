@@ -349,7 +349,7 @@
     <value>User Login</value>
   </data>
   <data name="UsersRights" xml:space="preserve">
-    <value>Users Rights</value>
+    <value>Users rights</value>
   </data>
   <data name="Demote" xml:space="preserve">
     <value>Demote</value>
@@ -425,5 +425,32 @@
   </data>
   <data name="Confurm" xml:space="preserve">
     <value>Confurm</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>Personal Info</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="PasswordChanged" xml:space="preserve">
+    <value>Password changed</value>
+  </data>
+  <data name="YouEnteredAs" xml:space="preserve">
+    <value>You entered as</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Current password</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="UserOrders" xml:space="preserve">
+    <value>User orders</value>
+  </data>
+  <data name="YouHaveNoOffers" xml:space="preserve">
+    <value>You have no offers</value>
   </data>
 </root>

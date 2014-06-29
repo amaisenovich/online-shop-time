@@ -162,12 +162,15 @@ namespace OnlineShopTime.Models
         {
             Offers Offer = (from OffersRecords in Db.Offers where OffersRecords.OfferID == OfferID select OffersRecords).FirstOrDefault();
             ICollection<Tags> OfferTags = (from OfferRecords in Db.Offers where OfferRecords.OfferID == OfferID select OfferRecords.Tags).FirstOrDefault();
-            foreach (Tags Tag in OfferTags)
+            if (OfferTags != null)
             {
-                Offer.Tags.Remove(Tag);
-                Tag.Offers.Remove(Offer);
+                foreach (Tags Tag in OfferTags)
+                {
+                    Offer.Tags.Remove(Tag);
+                    Tag.Offers.Remove(Offer);
+                }
+                Db.SaveChanges();
             }
-            Db.SaveChanges();
         }
         private void DeleteOfferComments(string OfferID)
         {
