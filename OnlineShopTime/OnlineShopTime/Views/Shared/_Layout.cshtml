@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
     <link rel="stylesheet" href="~/Content/bootstrap-image-gallery.min.css">
     <link href="~/Content/darkly_jqcloud.css" rel="stylesheet" />
+    <link href="~/Content/jquery.tagit.css" rel="stylesheet" />
+    <link href="~/Content/tagit.ui-zendesk.css" rel="stylesheet" />
 
     @Scripts.Render("~/bundles/modernizr")
     @{
@@ -85,7 +87,7 @@
         <a class="close">×</a>
         <a class="play-pause"></a>
         <!-- The modal dialog, which will be used to wrap the lightbox content -->
-        <div class="modal fade">
+        <div class="modal fade" style="overflow: hidden;">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -115,6 +117,8 @@
     <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
     <script src="~/Scripts/bootstrap-image-gallery.min.js"></script>
     <script src="~/Scripts/jqcloud-1.0.0.min.js"></script>
+    <script src="~/Scripts/tag-it.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
 </body>
 
 </html>

@@ -295,10 +295,12 @@
     <Content Include="Content\darkly_bootstrap.css" />
     <Content Include="Content\darkly_jqcloud.css" />
     <Content Include="Content\delete.gif" />
+    <Content Include="Content\jquery.tagit.css" />
     <Content Include="Content\lumen_bootstrap.css" />
     <Content Include="Content\lumen_jqcloud.css" />
     <Content Include="Content\rateit.css" />
     <Content Include="Content\star.gif" />
+    <Content Include="Content\tagit.ui-zendesk.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -336,6 +338,7 @@
     <None Include="Scripts\jquery-2.1.1-vsdoc.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.cloudinary.js" />
     <Content Include="Scripts\jquery.fileupload.js" />
     <Content Include="Scripts\jquery.iframe-transport.js" />
@@ -355,6 +358,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tag-it.js" />
+    <Content Include="Scripts\tag-it.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

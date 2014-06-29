@@ -26,6 +26,10 @@ namespace OnlineShopTime.Models
             }
             return Result;
         }
+        public IQueryable<string> GetTagsNamesList()
+        {
+            return (from TagsRecords in Db.Tags select TagsRecords.Name);
+        }
         public int GetTagInOffersCount()
         {
             int Result = 0;

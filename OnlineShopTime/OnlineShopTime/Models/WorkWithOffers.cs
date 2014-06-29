@@ -57,7 +57,7 @@ namespace OnlineShopTime.Models
         }
         public void AddTagsToOffer(Offers Offer, string TagsString)
         {
-            string[] InputedTags = TagsString.Split(' ', '#');
+            string[] InputedTags = TagsString.Split(',');
             foreach (string str in InputedTags)
             {
                 if (str != "")
@@ -116,7 +116,7 @@ namespace OnlineShopTime.Models
             OldOne.Photo3URL = EditedOffer.Photo3URL;
             OldOne.Photo4URL = EditedOffer.Photo4URL;
             Db.SaveChanges();
-            CreateIndex(OldOne);
+            //CreateIndex(OldOne);
             return OldOne.OfferID;
         }
         public string AddNewOffer(Offers newOffer, string UserName)
@@ -124,11 +124,11 @@ namespace OnlineShopTime.Models
             newOffer = this.CompleteOfferWithData(newOffer, UserName);
             Db.Offers.Add(newOffer);
             Db.SaveChanges();
-            CreateIndex(newOffer);
+            //CreateIndex(newOffer);
             return newOffer.OfferID;
         }
 
-        private void CreateIndex(Offers newOffer)
+        private void CreкateIndex(Offers newOffer)
         {
             // index location
             var indexLocation = new FileSystemIndexLocation(new DirectoryInfo(Server.MapPath("~/Index")));

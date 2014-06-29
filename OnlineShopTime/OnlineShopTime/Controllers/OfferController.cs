@@ -36,6 +36,10 @@ namespace OnlineShopTime.Controllers
                 if (Offer.Photo4URL != null) imageURLs.Enqueue(Offer.Photo4URL);
             }
 
+            WorkWithTags WWT = new WorkWithTags();
+
+            ViewBag.Tags = WWT.GetTagsNamesList();
+
             if (ViewBag.Currency == null)
                 ViewBag.Currency = "USA";
 
