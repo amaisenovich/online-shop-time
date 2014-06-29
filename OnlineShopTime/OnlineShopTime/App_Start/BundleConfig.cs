@@ -10,6 +10,7 @@ namespace OnlineShopTime
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-2.1.1.min.js",
+                        "~/Scripts/jquery.ui.widget.js",
                         "~/Scripts/jquery.rateit.min.js"));
 
 
@@ -27,11 +28,13 @@ namespace OnlineShopTime
 
             bundles.Add(new StyleBundle("~/Content/light_css").Include(
                       "~/Content/lumen_bootstrap.css",
+                      "~/Content/lumen_jqcloud.css",
                       "~/Content/site.css",
                       "~/Content/rateit.css"));
 
             bundles.Add(new StyleBundle("~/Content/dark_css").Include(
                       "~/Content/darkly_bootstrap.css",
+                      "~/Content/darkly_jqcloud.css",
                       "~/Content/site.css",
                       "~/Content/rateit.css"));
         }

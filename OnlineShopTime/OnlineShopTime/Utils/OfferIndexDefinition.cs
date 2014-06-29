@@ -17,7 +17,7 @@ namespace OnlineShopTime.Utils
             document.Add(new Field("OfferID", entity.OfferID, Field.Store.YES, Field.Index.NOT_ANALYZED));
             document.Add(new Field("Name", entity.Name, Field.Store.YES, Field.Index.ANALYZED));
             document.Add(new Field("User", entity.Users.UserID, Field.Store.YES, Field.Index.NOT_ANALYZED));
-            document.Add(new Field("Photo1URL", entity.Photo1URL, Field.Store.YES, Field.Index.NOT_ANALYZED));
+            document.Add(new Field("Photo1URL", entity.Photo1URL ?? "v6ac3uaxfe5gtlqtrbr7", Field.Store.YES, Field.Index.NOT_ANALYZED));
             document.Add(new Field("Price", entity.Price, Field.Store.YES, Field.Index.NOT_ANALYZED));
             document.Add(new Field("OfferedBy", entity.OfferedBy, Field.Store.YES, Field.Index.NOT_ANALYZED));
             document.Add(new Field("Tags", String.Join(" ", entity.Tags.Select(m => m.Name)), Field.Store.YES, Field.Index.ANALYZED));
