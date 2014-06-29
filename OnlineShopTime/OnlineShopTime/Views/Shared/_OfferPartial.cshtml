@@ -80,16 +80,25 @@
                     }
                     else
                     {
-                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink(Model.Users.UserName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })                         
+                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink(Model.Users.UserName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
                     }
                 </h4>
             </div>
 
             @if (ViewBag.Buttons != null)
             {
-                <div class="col-lg-5 col-md-5" style="text-align: right">
-                    <h4 style="margin-top: 14px"> @ViewBag.Status</h4>
-                </div>
+                if (ViewBag.Buttons == "History")
+                {
+                    <div class="col-lg-5 col-md-5" style="text-align: right">
+                        <h4 style="margin-top: 14px"> @ViewBag.OrderDate</h4>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-5 col-md-5" style="text-align: right">
+                        <h4 style="margin-top: 14px"> @ViewBag.Status</h4>
+                    </div>                     
+                }
             }
         </div>
 

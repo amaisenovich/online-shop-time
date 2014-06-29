@@ -64,19 +64,7 @@ namespace OnlineShopTime.Models
                                                 (from OrdersRec in Db.Orders where OrdersRec.OfferID == OfferID select OrdersRec)
                                             where FiltredOrders.ClientID == UserID
                                             select FiltredOrders;
-            if (UserOrders.Count() == 0)
-            {
-                AddToOrders(OfferID, UserID);
-            }
-            else
-            {
-                if (UserOrders.FirstOrDefault().OrderStatus == "Completed")
-                {
-                    ReorderOffer(UserOrders.FirstOrDefault());
-                }
-                else
-                    AddToOrders(OfferID, UserID);
-            }
+            AddToOrders(OfferID, UserID);
         }
         public IQueryable<Orders> GetUserIncomingOrders(string UserID)
         {
@@ -85,7 +73,8 @@ namespace OnlineShopTime.Models
         }
         public IQueryable<Orders> GetUserOrdersHistory(string UserID)
         {
-            return from OrdersRecords in Db.Orders where OrdersRecords.ClientID == UserID where OrdersRecords.OrderStatus == "Completed" orderby OrdersRecords.DateAndTime select OrdersRecords;
+            IQueryable<Orders> UserOrdersHistory = (from OrdersRecords in Db.Orders orderby OrdersRecords.DateAndTime descending select OrdersRecords).Where(item =>((item.ClientID == UserID) || (item.Offers.OfferedBy == UserID)));
+            return UserOrdersHistory;
         }
         public IQueryable<Orders> GetUserActiveOrders(string UserID)
         {
