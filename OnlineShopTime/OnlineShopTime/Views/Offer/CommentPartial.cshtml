@@ -1,0 +1,32 @@
+﻿@model OnlineShopTime.Models.Comments
+@using Microsoft.AspNet.Identity
+
+<div class="media" id="comment">
+    <div class="pull-left">
+        <img class="media-object" src="http://res.cloudinary.com/itransition/image/upload/c_fill,h_130,w_130/@Model.Users.AvatarURL" alt="...">
+    </div>
+    <div class="media-body">
+        <div class="media-heading">
+            <h4 style="display:inline">
+                @{
+                    float? likesCount = Model.Users.UserRaiting.Where(m => m.UserID == Model.Users.UserID && m.Rating == 1).Sum(m => m.Rating);
+                    float? dislikesCount = Model.Users.UserRaiting.Where(m => m.UserID == Model.Users.UserID && m.Rating == -1).Sum(m => m.Rating) * -1;
+                }
+                @if ((Model.Users.FirstName != null) || (Model.Users.LastName != null))
+                {
+                    String DisplayName = Model.Users.FirstName + " " + Model.Users.LastName;
+                    @Html.ActionLink((string)DisplayName, "ShowUserOffers", "Offer", new { UserID = @Model.PostedBy }, new { @style = "margin-top:0px", @class = "well well-sm" })
+                }
+                else
+                {
+                    @Html.ActionLink(Model.Users.UserName, "ShowUserOffers", "Offer", new { UserID = @Model.PostedBy }, new { @style = "margin-top:0px", @class = "well well-sm" })
+                }
+            </h4>
+            <div id="like-buttons" style="display:inline">
+                <button class="btn btn-sm btn-primary" data-userid="@Model.Users.UserID" data-voterid="@User.Identity.GetUserId()" id="like"><span id="likenum">@likesCount</span>  <span class="glyphicon glyphicon-thumbs-up"></span></button>
+                <button class="btn btn-sm btn-danger" data-userid=@Model.Users.UserID data-voterid="@User.Identity.GetUserId()" id="dislike"><span class="glyphicon glyphicon-thumbs-down"></span> <span id="dislikenum">@dislikesCount</span></button>
+            </div>
+        </div>
+        @Model.Message
+    </div>
+</div>

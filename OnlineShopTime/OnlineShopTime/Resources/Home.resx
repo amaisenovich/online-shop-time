@@ -459,4 +459,10 @@
   <data name="NoNumber" xml:space="preserve">
     <value>No phone number</value>
   </data>
+  <data name="NoComments" xml:space="preserve">
+    <value>No comments</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
 </root>

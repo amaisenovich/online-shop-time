@@ -260,7 +260,6 @@
       <DependentUpon>ShopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\WeightTags.cs" />
-    <Compile Include="Models\WorkWithComments.cs" />
     <Compile Include="Models\WorkWithOrders.cs" />
     <Compile Include="Models\WorkWithTags.cs" />
     <Compile Include="Models\WorkWithUsers.cs" />
@@ -412,6 +411,7 @@
     <Content Include="Views\Shared\Search.cshtml" />
     <Content Include="Views\Shared\_NoSearchResults.cshtml" />
     <Content Include="Views\Shared\_NoUserOffers.cshtml" />
+    <Content Include="Views\Offer\CommentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

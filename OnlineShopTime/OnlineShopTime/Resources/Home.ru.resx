@@ -462,4 +462,10 @@
   <data name="NoNumber" xml:space="preserve">
     <value>Нет номера телефона</value>
   </data>
+  <data name="NoComments" xml:space="preserve">
+    <value>Нет комментариев</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
 </root>

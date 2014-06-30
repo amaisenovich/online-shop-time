@@ -210,5 +210,41 @@ namespace OnlineShopTime.Controllers
                 return View("Search", result.Results.ToList());
             }
         }
+
+        public void AddComment()
+        {
+            string message = Request.Form["Message"];
+            string offerID = Request.Form["OfferID"];
+            string userID = Request.Form["PostedBy"];
+
+            Comments comment;
+            using (ShopDBEntities db = new ShopDBEntities())
+            {
+                comment = new Comments()
+                {
+                    Message = message,
+                    OfferID = offerID,
+                    PostedBy = userID,
+                    DateAndTime = DateTime.Now,
+                    Users = db.Users.FirstOrDefault(m => m.UserID == userID),
+                    Offers = db.Offers.FirstOrDefault(m => m.OfferID == offerID),
+                    CommentID = Guid.NewGuid().ToString()
+                };
+
+                db.Comments.Add(comment);
+                db.SaveChanges();
+            }
+            Response.Write(comment.CommentID);
+        }
+
+        public ActionResult GetComment(string commentId)
+        {
+            Comments comment;
+            ShopDBEntities db = new ShopDBEntities();
+            
+                comment = db.Comments.FirstOrDefault(m => m.CommentID == commentId);
+            
+            return PartialView("CommentPartial", comment);
+        }
     }
 }
