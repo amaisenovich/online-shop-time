@@ -6,16 +6,16 @@
 
 @{
     string defaultImage = "v6ac3uaxfe5gtlqtrbr7";
-    string jumboSize = "425px";
+    //string jumboSize = "425px";
 }
 
-@if (ViewBag.Buttons != null)
+@*@if (ViewBag.Buttons != null)
 {
     jumboSize = "468px";
-}
+}*@
 
 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 container">
-    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px; max-height: @jumboSize; min-height: @jumboSize;">
+    <div class="jumbotron" style="word-wrap: break-word; padding-right: 30px; padding-left: 30px; padding-top: 24px; padding-bottom: 24px;">
 
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-3 col-xs-4" style="padding-bottom:10px">
@@ -80,12 +80,16 @@
                     }
                     else
                     {
-                        <span class="glyphicon glyphicon-user"></span>  @Html.ActionLink(Model.Users.UserName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
+                        <span class="glyphicon glyphicon-user"></span>@Html.ActionLink(Model.Users.UserName, "ShowUserOffers", "Offer", new { UserID = @Model.OfferedBy }, new { @style = "margin-top:0px" })
                     }
                 </h4>
             </div>
 
-            @if (ViewBag.Buttons != null)
+            <div class="col-lg-5 col-md-5" style="text-align: right">
+                <h4 style="margin-top: 14px"> @ViewBag.OrderDate</h4>
+            </div>
+
+            @*@if (ViewBag.Buttons != null)
             {
                 if (ViewBag.Buttons == "History")
                 {
@@ -99,7 +103,7 @@
                         <h4 style="margin-top: 14px"> @ViewBag.Status</h4>
                     </div>                     
                 }
-            }
+            }*@
         </div>
 
 
@@ -142,14 +146,14 @@
             if (ViewBag.Buttons == "IncomingOrdersActiveAwaitConfurm")
             {
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <a href="ApplyOrderConfirm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderApply</a>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <a href="CancelOrderConfurm?OrderID=@ViewBag.OrderID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.OrderCancel</a>
                     </div>
-                    <div class="col-lg-4">
-                        <a href="ShowUserInfo?UserID=@ViewBag.UserID" class="btn btn-default btn-lg" style="width: 100%; margin-top: 2%;">@Resources.Home.Client</a>
+                    <div class="col-lg-6" style="padding-top: 1%; padding-right: 15px; text-align: right">
+                        <h4><span class="glyphicon glyphicon-user"></span><a href="ShowUserInfo?UserID=@ViewBag.UserID" style="width: 100%; margin-top: 50px;">@ViewBag.UserName</a></h4>
                     </div>
                 </div>
             }

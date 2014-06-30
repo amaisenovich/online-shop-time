@@ -53,11 +53,20 @@
     <hr />
     @foreach (Orders Order in Model.Data)
     {
+        ViewBag.OrderDate = Order.DateAndTime;
+        if ((Order.Users.FirstName != null) || (Order.Users.LastName != null))
+        {
+            ViewBag.UserName = Order.Users.FirstName + ' ' + Order.Users.LastName;
+        }
+        else
+        {
+            ViewBag.UserName = Order.Users.UserName;
+        }
+            
         if (Model.DataToShow == "OrdersHistory")
         {
             ViewBag.Buttons = "History";
             ViewBag.Status = @Resources.Home.TransactionIsСompleted;
-            ViewBag.OrderDate = Order.DateAndTime;
         }
         if (Model.DataToShow == "ActiveOrders")
         {
