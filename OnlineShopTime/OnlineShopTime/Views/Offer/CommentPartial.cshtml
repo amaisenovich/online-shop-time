@@ -26,7 +26,10 @@
                 <button class="btn btn-sm btn-primary" data-userid="@Model.Users.UserID" data-voterid="@User.Identity.GetUserId()" id="like"><span id="likenum">@likesCount</span>  <span class="glyphicon glyphicon-thumbs-up"></span></button>
                 <button class="btn btn-sm btn-danger" data-userid=@Model.Users.UserID data-voterid="@User.Identity.GetUserId()" id="dislike"><span class="glyphicon glyphicon-thumbs-down"></span> <span id="dislikenum">@dislikesCount</span></button>
             </div>
-        </div>
+            <div style="display:inline; float:right">
+                @Model.DateAndTime
+            </div>
+            </div>
         @Model.Message
     </div>
 </div>

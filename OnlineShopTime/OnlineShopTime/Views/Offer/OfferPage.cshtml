@@ -225,6 +225,7 @@
             foreach (Comments comment in Model.Comments.OrderByDescending(m => m.DateAndTime))
             {
                 @Html.Partial("CommentPartial", comment)
+                <hr />
             }
         }
     </div>
