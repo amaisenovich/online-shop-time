@@ -195,6 +195,8 @@
     <!-- Form Name -->
     @*<legend>Оставьте комментарий</legend>*@
 
+    @if (User.Identity.IsAuthenticated)
+    {
     <div class="media" style="margin-bottom:15px">
         <div class="pull-left">
             @{
@@ -214,6 +216,8 @@
             <button id="submit_comment" name="submit_comment" class="btn btn-default">@Resources.Home.Submit</button>
         </div>
     </div>
+        <hr/>
+    }
 
     <div id="comment_section">
         @if (Model.Comments.Count == 0)
