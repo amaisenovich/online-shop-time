@@ -22,6 +22,13 @@ namespace OnlineShopTime.Models
             User.UserRights = Rights;
             Db.SaveChanges();
         }
+        public void CheckUserRoles()
+        {
+            IQueryable<Users> UsersRecords = from UserRecords in Db.Users select UserRecords;
+            foreach (Users User in UsersRecords)
+                if ((User.UserRights == "") || (User.UserRights == null))
+                    User.UserRights = "User";
+        }
         public int[] GetUserRaiting(string Id)
         {        
             int likes = 0;

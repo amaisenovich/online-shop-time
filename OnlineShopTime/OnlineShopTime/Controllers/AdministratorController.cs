@@ -19,6 +19,7 @@ namespace OnlineShopTime.Controllers
             if (Users == null)
             {
                 Users = WWU.GetWorseUsers();
+                WWU.CheckUserRoles();
             }
             Session["Users"] = Users;
             if (User.Identity.Name != "")
